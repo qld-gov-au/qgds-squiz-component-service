@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DXP Component Library
 
 The DXP Component Library is a library of simple components built on Component Service technology.
@@ -474,3 +475,24 @@ By default, your component will not be styled in the DXP console preview. To add
 2. Deploy the code to the repository and update the existing GitBridge.
 
 3. Link the styles and scripts hosted via GitBridge to the DXP console preview.
+=======
+# QGDS Bootstrap5 Squiz Component Service
+
+## Overview
+
+Proof of Concept (PoC) for the DXP Component Service using Bootstrap 5 implementation of the Queensland Government Design System (QGDS) and Squiz.
+
+## Status
+
+Early exploration phase - individual user stories being prototyped across team branches.
+
+## Getting Started
+
+_(Add setup/run instructions here as they emerge from the PoC)_
+
+## References
+
+- [Squiz DXP Component Service Documentation](https://docs.squiz.net/component-service/latest/index.html)
+- [Squiz DXP Component Library (Sample Components)](https://github.com/squizlabs/dxp-component-library)
+- [QGDS Bootstrap 5 library](https://qld-gov-au.github.io/qgds-bootstrap5/?path=/docs/welcome--overview)
+>>>>>>> e34dfbaf569a2f41b2ede61bee1729513b2fe211

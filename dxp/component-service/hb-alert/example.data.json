@@ -1,0 +1,5 @@
+{
+  "variantClass"    : "alert-info",
+  "heading"         : "Test Alert",
+  "content"         : "This is a test alert"
+}

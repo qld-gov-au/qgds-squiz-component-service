@@ -1,0 +1,1 @@
+(()=>{var a=Handlebars.template;(Handlebars.templates=Handlebars.templates||{}).typography=a({compiler:[8,">= 4.3.0"],main:function(a,e,t,r,l){return"\x3c!-- QGDS Partial: typography --\x3e"},useData:!0})})();

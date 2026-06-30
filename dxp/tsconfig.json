@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true, // Optional: allows you to use .ts in imports if you want
+    "noEmit": true,                     // Vite handles the "emit" (building), not tsc
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "removeComments": true,       
+    "paths": {
+      "@qgds/handlebars"   : ["./utils/qgds-handlebars/_exports.ts"],
+      "@qgds/lib/*"        : ["./lib/qgds-bootstrap5/*"],
+      "@qgds/pkg/*"        : ["../node_modules/@qld-gov-au/qgds-bootstrap5/dist/*"]  ,
+      "@utils/*"           : ["./utils/*"]
+    } 
+  }
+}

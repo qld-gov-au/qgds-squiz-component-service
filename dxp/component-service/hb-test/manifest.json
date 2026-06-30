@@ -1,0 +1,184 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json",
+  "name": "test",
+  "namespace": "kareem-cs-poc",
+  "description": "Displays a quote with the author's name.",
+  "displayName": "test",
+  "version": "2.2.1",
+  "type": "edge",
+  "environment": [
+    {
+      "name": "YOUTUBE_API_KEY",
+      "required": true
+    }
+  ],
+  "mainFunction": "main",
+  "icon": {
+    "id": "announcement",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "title": "Blockquote content",
+        "required": [],
+        "properties": {
+          "footerConfigurationGroup": {
+            "type": "object",
+            "title": "👇 Click to Expand Footer Settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "footerLinks": {
+                "type": "array",
+                "title": "Footer Links",
+                "items": {
+                  "type": "SquizLink"
+                }
+              }
+            }
+          },
+          "content": {
+            "type": "string",
+            "title": "Quote",
+            "description": "The content of the quote.",
+            "translatable": true,
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "cite-text": {
+            "type": "string",
+            "title": "Citation",
+            "description": "The citation describes the source of the quote.",
+            "translatable": true,
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "citeUrl": {
+            "type": "string",
+            "title": "Citation URL",
+            "description": "The citation URL in presented in the html source code as a reference to the quote. It is highly recommended to add the quote's source link to improve SEO, even if it isn't visible to users.",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "citeUrlClickable": {
+            "type": "string",
+            "title": "Is Citation URL Clickable?",
+            "description": "Link the visible Citation text to the Citation URL.",
+            "enum": [
+              "yes",
+              "no"
+            ],
+            "default": "no",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": ""
+  },
+  "previews": {
+    "default": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.2.1.html"
+          }
+        }
+      }
+    },
+    "default-QLDGov": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.2.1.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.9.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.9.html"
+          }
+        }
+      }
+    }
+  }
+}

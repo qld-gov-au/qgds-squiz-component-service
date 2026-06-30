@@ -1,0 +1,31 @@
+  
+  {{#if questionLabel}}
+  <div class="qld-text-input-label {{listClasses}}">
+    <sq-field style="display: contents;" data-sq-field="questionLabel">{{questionLabel}}</sq-field>
+    {{#if optionalLabel}}
+    <span class="label-text-optional" data-sq-field="optionalLabel">{{optionalLabel}}</span>
+    {{/if}}
+  </div>
+  {{/if}}
+
+  {{#if hintLabel}}
+  <span class="qld-hint-text" data-sq-field="hintLabel">{{hintLabel}}</span>
+  {{/if}}
+
+  {{#if successMessageText}}
+  <div class="valid-feedback" data-sq-field="successMessageText">{{successMessageText}}</div>
+  {{/if}}
+
+  {{#if errorMessageText}}
+  <div class="invalid-feedback" data-sq-field="errorMessageText">{{errorMessageText}}</div>
+  {{/if}}
+  
+  {{#each listitems}}
+  <div class="form-check {{#if ../isValid}}is-valid{{else}}{{#ifCond ../isValid "===" false}}is-invalid{{/ifCond}}{{/if}}">
+    <input class="form-check-input" type="{{#if ../type}}{{../type}}{{else}}{{#if type}}{{type}}{{else}}checkbox{{/if}}{{/if}}" name="{{name}}" id="{{id}}" value="{{value}}" tabindex="{{isdefined ../tabindex 0}}" {{#if isDisabled}}disabled{{/if}} {{#if isChecked}}checked{{/if}} {{#if isRequired}}required{{/if}} >
+    <label class="form-check-label" for="{{id}}" data-sq-field="label">
+      {{label}}
+    </label>
+  </div>
+  {{/each}}
+  

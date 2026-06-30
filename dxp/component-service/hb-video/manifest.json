@@ -1,0 +1,145 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json",
+  "name": "video",
+  "namespace": "kareem-cs-poc",
+  "description": "This component can be used to embed videos into your content.",
+  "displayName": "Video",
+  "version": "1.0.0",
+  "type": "edge",
+  "environment": [
+    {
+      "name": "YOUTUBE_API_KEY",
+      "required": true
+    }
+  ],
+  "mainFunction": "main",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "title": "Configuration",
+        "required": [
+          "videoUrl"
+        ],
+        "properties": {
+          "videoType": {
+            "type": "string",
+            "title": "Video type",
+            "enum": [
+              "YouTube",
+              "Vimeo",
+              "Other"
+            ],
+            "default": "YouTube"
+          },
+          "videoUrl": {
+            "type": "string",
+            "title": "Video URL",
+            "description": "Enter a full YouTube/Vimeo URL or the unique Video ID (e.g., https://youtube.com or just 123456)."
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": ""
+  },
+  "previews": {
+    "default": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.2.1.html"
+          }
+        }
+      }
+    },
+    "default-QLDGov": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.2.1.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.9.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.9.html"
+          }
+        }
+      }
+    }
+  }
+}

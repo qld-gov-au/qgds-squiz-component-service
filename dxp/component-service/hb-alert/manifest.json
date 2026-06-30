@@ -1,0 +1,146 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json",
+  "name": "alert",
+  "namespace": "kareem-cs-poc",
+  "description": "Displays an alert message.",
+  "displayName": "Alert",
+  "version": "1.0.1",
+  "type": "edge",
+  "mainFunction": "main",
+  "icon": {
+    "id": "report_problem",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "title": "Alert content",
+        "required": [],
+        "properties": {
+          "variantClass": {
+            "type": "string",
+            "title": "Alert type",
+            "default": "alert-info",
+            "enum": [
+              "alert-info",
+              "alert-warning",
+              "alert-danger"
+            ]
+          },
+          "heading": {
+            "type": "string",
+            "title": "Heading",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "content": {
+            "type": "FormattedText",
+            "title": "Content",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": ""
+  },
+  "previews": {
+    "default": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.2.1.html"
+          }
+        }
+      }
+    },
+    "default-QLDGov": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.2.1.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-8": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.8.html"
+          }
+        }
+      }
+    },
+    "QLDGov_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QLDGov-2.1.9.html"
+          }
+        }
+      }
+    },
+    "QGDS_2-1-9": {
+      "autoReload": true,
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "../../assets/preview/QGDS-2.1.9.html"
+          }
+        }
+      }
+    }
+  }
+}

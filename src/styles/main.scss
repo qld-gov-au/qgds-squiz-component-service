@@ -10,3 +10,6 @@
 // Components - styles for all components in the default theme.
 // @import 'components/**/*';
 @use '../../dxp/component-service/**/css/*';
+
+// QGDS styles
+@use '../../dxp/assets/**/**/*';

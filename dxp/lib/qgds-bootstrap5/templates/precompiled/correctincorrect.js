@@ -1,0 +1,1 @@
+(()=>{var e=Handlebars.template;(Handlebars.templates=Handlebars.templates||{}).correctincorrect=e({compiler:[8,">= 4.3.0"],main:function(e,a,r,t,n){return""},useData:!0})})();
