@@ -23,7 +23,7 @@ Early exploration phase - individual user stories being prototyped across team b
 ### Installation
 
 ```
-cd kernel
+cd {project-root}
 nvm use
 npm install
 ```
