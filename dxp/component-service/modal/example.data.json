@@ -1,0 +1,16 @@
+{
+  "launchButtonLabel": "Open modal",
+  "modalSize": "default",
+  "header": {
+    "title": "Modal title",
+    "closeButton": true
+  },
+  "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+  "footer": {
+    "showCancelButton": true,
+    "showConfirmButton": true
+  },
+  "modalIdSettings": {
+    "modalIdSource": "default"
+  }
+}

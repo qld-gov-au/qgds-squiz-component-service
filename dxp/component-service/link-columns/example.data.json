@@ -1,0 +1,20 @@
+{
+  "id": "",
+  "theme": "default",
+  "linkColumnSettings": {
+    "itemsFlowVert": true,
+    "viewAllButton": true,
+    "viewAllLink": {
+      "text": "View all",
+      "url": "#",
+      "target": "_blank"
+    }
+  },
+  "links": [
+    {"text": "List item 01", "url": "#", "target": "_self"},
+    {"text": "List item 02", "url": "#", "target": "_self"},
+    {"text": "List item 03", "url": "#", "target": "_self"},
+    {"text": "List item 04", "url": "#", "target": "_self"},
+    {"text": "List item 05", "url": "#", "target": "_self"}
+  ]
+}

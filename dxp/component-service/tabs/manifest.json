@@ -1,0 +1,221 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.7",
+  "name": "tabs",
+  "displayName": "Tabs",
+  "description": "QGDS Bootstrap 5 - Tabs component",
+  "namespace": "qgds-bs5",
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "icon": {
+    "id": "tab",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "tabsSettings": {
+            "type": "object",
+            "title": "Tabs settings",
+            "required": [],
+            "properties": {
+              "typeVariant": {
+                "type": "string",
+                "title": "Type variant",
+                "description": "Section tabs show an intro section and a heading.",
+                "enum": ["default", "section-tabs"],
+                "default": "default"
+              },
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Visual variant for the tabs.",
+                "enum": ["default", "light", "alt", "dark", "dark-alt"],
+                "default": "default"
+              },
+              "uniqueId": {
+                "type": "string",
+                "title": "Unique ID",
+                "description": "Unique ID for this tab set.",
+                "default": ""
+              }
+            }
+          },
+          "items": {
+            "type": "array",
+            "title": "Tabs",
+            "minItems": 1,
+            "description": "Tab buttons and their content panels.",
+            "items": {
+              "type": "object",
+              "title": "Tab",
+              "properties": {
+                "tabText": {
+                  "type": "string",
+                  "title": "Tab label"
+                },
+                "title": {
+                  "type": "string",
+                  "title": "Panel heading"
+                },
+                "content": {
+                  "type": "FormattedText",
+                  "title": "Panel content"
+                },
+                "icon": {
+                  "type": "string",
+                  "title": "Icon class",
+                  "description": "Optional icon class (e.g. qld-icon-calendar).",
+                  "default": "",
+                  "examples": ["qld-icon-calendar"]
+                },
+                "hasCta": {
+                  "type": "boolean",
+                  "title": "Call to action",
+                  "description": "When enabled, show a link below the tab content.",
+                  "default": false
+                },
+                "disabled": {
+                  "type": "boolean",
+                  "title": "Disabled",
+                  "description": "When this option is selected, the tab is disabled and cannot be clicked.",
+                  "default": false
+                }
+              },
+              "required": ["tabText", "title", "content"],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "hasCta": {
+                        "const": true
+                      }
+                    },
+                    "required": ["hasCta"]
+                  },
+                  "then": {
+                    "properties": {
+                      "ctaLink": {
+                        "type": "SquizLink",
+                        "title": "Link",
+                        "description": "Link for the call to action (shown when Call to action is enabled)."
+                      }
+                    },
+                    "required": []
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "required": ["items"],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "tabsSettings": {
+                  "properties": {
+                    "typeVariant": {
+                      "const": "section-tabs"
+                    }
+                  },
+                  "required": ["typeVariant"]
+                }
+              },
+              "required": ["tabsSettings"]
+            },
+            "then": {
+              "properties": {
+                "tabsSettings": {
+                  "type": "object",
+                  "title": "Tabs settings",
+                  "required": [],
+                  "properties": {
+                    "typeVariant": {
+                      "type": "string",
+                      "title": "Type variant",
+                      "description": "Section tabs show an intro section and a heading.",
+                      "enum": ["default", "section-tabs"],
+                      "default": "default"
+                    },
+                    "variant": {
+                      "type": "string",
+                      "title": "Variant",
+                      "description": "Visual variant for the tabs.",
+                      "enum": ["default", "light", "alt", "dark", "dark-alt"],
+                      "default": "default"
+                    },
+                    "uniqueId": {
+                      "type": "string",
+                      "title": "Unique ID",
+                      "description": "Unique ID for this tab set.",
+                      "default": ""
+                    },
+                    "tabVariant": {
+                      "type": "string",
+                      "title": "Tab variant",
+                      "description": "Variant for the intro tab-content section.",
+                      "enum": ["default", "light", "alt", "dark", "dark-alt"],
+                      "default": "default"
+                    },
+                    "introSectionWrapperClasses": {
+                      "type": "string",
+                      "title": "Intro section wrapper classes",
+                      "default": ""
+                    },
+                    "siblingSectionTitle": {
+                      "type": "string",
+                      "title": "Intro section title",
+                      "description": "Shown above the tab list.",
+                      "default": ""
+                    },
+                    "siblingSectionContent": {
+                      "type": "FormattedText",
+                      "title": "Intro section content",
+                      "description": "Shown above the tab list.",
+                      "default": ""
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        ]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

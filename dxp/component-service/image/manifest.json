@@ -1,0 +1,211 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.5",
+  "name": "image",
+  "displayName": "Image",
+  "description": "QGDS Bootstrap 5 - Image Component",
+  "namespace": "qgds-bs5",
+  "icon": {"id": "image", "color": {"type": "hex", "value": "#6bbe27"}},
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "imageField": {
+            "type": "object",
+            "title": "Image",
+            "required": [],
+            "properties": {
+              "imageSource": {
+                "type": "string",
+                "title": "Image source",
+                "description": "Choose an image from the Matrix or enter a custom URL.",
+                "enum": ["squizImage", "customUrl"],
+                "default": "squizImage"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {"imageSource": {"const": "squizImage"}},
+                  "required": ["imageSource"]
+                },
+                "then": {
+                  "properties": {
+                    "squizImageField": {
+                      "type": "SquizImage",
+                      "title": "Image",
+                      "description": "Select image from Matrix."
+                    }
+                  },
+                  "required": ["squizImageField"]
+                }
+              },
+              {
+                "if": {
+                  "properties": {"imageSource": {"const": "customUrl"}},
+                  "required": ["imageSource"]
+                },
+                "then": {
+                  "properties": {
+                    "src": {
+                      "type": "string",
+                      "title": "Image URL",
+                      "description": "Source URL of the image."
+                    },
+                    "alt": {
+                      "type": "string",
+                      "title": "Alt text",
+                      "description": "Alternative text for the image."
+                    }
+                  },
+                  "required": ["src"]
+                }
+              }
+            ]
+          },
+          "ratioClass": {
+            "type": "string",
+            "title": "Aspect ratio",
+            "description": "CSS class for image aspect ratio.",
+            "enum": ["image-ratio-1x1", "image-ratio-3x2", "image-ratio-2x3", "image-ratio-4x3", "image-ratio-3x4", "image-ratio-16x9"],
+            "default": "image-ratio-3x2"
+          },
+          "otherClass": {
+            "type": "string",
+            "title": "Additional image classes",
+            "description": "Extra CSS classes for the image.",
+            "default": ""
+          },
+          "imagePosition": {
+            "type": "object",
+            "title": "Image position",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "positionX": {
+                "type": "string",
+                "title": "Horizontal position",
+                "description": "Object position on the horizontal axis.",
+                "enum": ["position-x-left", "position-x-center", "position-x-right"],
+                "default": "position-x-center"
+              },
+              "positionY": {
+                "type": "string",
+                "title": "Vertical position",
+                "description": "Object position on the vertical axis.",
+                "enum": ["position-y-top", "position-y-center", "position-y-bottom"],
+                "default": "position-y-center"
+              }
+            }
+          },
+          "customSizeOptions": {
+            "type": "object",
+            "title": "Custom size settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "width": {
+                "type": "string",
+                "title": "Width",
+                "description": "Width value (number only)."
+              },
+              "widthUnit": {
+                "type": "string",
+                "title": "Width unit",
+                "description": "Unit for width (e.g. px, %).",
+                "default": "px"
+              },
+              "height": {
+                "type": "string",
+                "title": "Height",
+                "description": "Height value (number only)."
+              },
+              "heightUnit": {
+                "type": "string",
+                "title": "Height unit",
+                "description": "Unit for height (e.g. px, %).",
+                "default": "px"
+              }
+            }
+          },
+          "figCaptionOptions": {
+            "type": "object",
+            "title": "Fig caption settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "figureClass": {
+                "type": "string",
+                "title": "Figure wrapper classes",
+                "description": "CSS classes for the figure wrapper (when caption or credit is set).",
+                "default": ""
+              },
+              "caption": {
+                "type": "string",
+                "title": "Caption",
+                "description": "Figure caption shown below the image.",
+                "ui:metadata": {"inlineEditable": true}
+              },
+              "credit": {
+                "type": "string",
+                "title": "Credit",
+                "description": "Photo or image credit text.",
+                "ui:metadata": {"inlineEditable": true}
+              }
+            }
+          },
+          "lazy": {
+            "type": "boolean",
+            "title": "Lazy load",
+            "description": "When true, adds loading=\"lazy\" to the image.",
+            "default": false
+          },
+          "style": {
+            "type": "string",
+            "title": "Inline style",
+            "description": "Optional inline style string for the image."
+          },
+          "tabindex": {
+            "type": "string",
+            "title": "Tab index",
+            "description": "Tab index for keyboard navigation."
+          },
+          "role": {
+            "type": "string",
+            "title": "ARIA role",
+            "description": "ARIA role for the image."
+          }
+        },
+        "required": []
+      },
+      "output": {"responseType": "html"}
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {"type": "file", "path": "example.data.json"},
+          "wrapper": {"path": "preview.html"}
+        }
+      }
+    }
+  },
+  "staticFiles": {"locationRoot": "./"}
+}

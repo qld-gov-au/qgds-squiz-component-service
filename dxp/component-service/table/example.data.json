@@ -1,0 +1,52 @@
+{
+  "tableSettings": {"variantClass": "default", "striped": false, "hover": false, "customClass": ""},
+  "captionOptions": {"caption": "Table caption", "subcaption": "2021 - 2024"},
+  "columnHeadersOptions": {"headers": ["Header", "Header", "Header"]},
+  "rowsOptions": {
+    "rows": [
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "correct"},
+          {"value": "Cell", "style": "incorrect"}
+        ]
+      },
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"}
+        ]
+      },
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"}
+        ]
+      },
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"}
+        ]
+      },
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"}
+        ]
+      },
+      {
+        "cells": [
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"},
+          {"value": "Cell", "style": "default"}
+        ]
+      }
+    ]
+  },
+  "footerRowOptions": {"cells": ["Footer", "Footer", "Footer"]}
+}

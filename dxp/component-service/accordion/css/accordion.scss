@@ -1,0 +1,159 @@
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Chevron icons: no token can be used inside a data URI. Light = #09549f, dark = #78ba00.
+$accordion-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2309549f'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+$accordion-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2378ba00'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+
+.accordion-group {
+  --accordion-focus: #0085b3;
+
+  .dark &,
+  .dark-alt & {
+    --accordion-focus: #01b0e5;
+  }
+}
+
+.accordion {
+  --accordion-color: #414141;
+  --accordion-bg: #fff;
+  --accordion-border-color: #ebebeb;
+  --accordion-focus: #0085b3;
+  --accordion-border-width: 1px;
+  --accordion-border-radius: 0;
+  --accordion-inner-border-radius: 0;
+  --accordion-btn-padding-x: var(--spacing-sm);
+  --accordion-btn-padding-y: var(--spacing-sm);
+  --accordion-btn-color: #09549f;
+  --accordion-btn-bg: #f5f5f5;
+  --accordion-btn-icon: #{$accordion-icon};
+  --accordion-btn-active-icon: #{$accordion-icon};
+  --accordion-btn-icon-width: var(--spacing-md);
+  --accordion-btn-icon-transform: rotate(180deg);
+  --accordion-btn-icon-transition: transform 0.25s ease-in;
+  --accordion-btn-focus-box-shadow: none;
+  --accordion-active-bg: var(--accordion-btn-bg);
+  --accordion-active-color: var(--accordion-btn-color);
+
+  .light & {
+    --accordion-bg: #eff4f9;
+    --accordion-btn-bg: #e5eef5;
+    --accordion-border-color: #cde;
+  }
+
+  .alt & {
+    --accordion-bg: #e8e8e8;
+    --accordion-btn-bg: #e0e0e0;
+    --accordion-border-color: #7a7a7a;
+  }
+
+  .dark &,
+  .dark-alt & {
+    --accordion-btn-icon: #{$accordion-icon-dark};
+    --accordion-btn-active-icon: #{$accordion-icon-dark};
+    --accordion-color: #fff;
+    --accordion-btn-color: #fff;
+    --accordion-active-color: #fff;
+    --accordion-focus: #01b0e5;
+  }
+
+  .dark & {
+    --accordion-bg: #09549f;
+    --accordion-btn-bg: #04498f;
+    --accordion-border-color: #1d9ac6;
+  }
+
+  .dark-alt & {
+    --accordion-bg: #05325f;
+    --accordion-btn-bg: #052c53;
+    --accordion-border-color: #09acfe;
+  }
+
+  margin-bottom: var(--spacing-md);
+
+  &-button {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-bold);
+    line-height: var(--base-line-height);
+    text-decoration-line: underline;
+    text-underline-offset: 0.125rem;
+    gap: var(--spacing-sm);
+
+    &:hover {
+      background: var(--accordion-bg);
+      text-decoration-thickness: 2px;
+    }
+
+    &:focus,
+    &:focus:not(:focus-visible) {
+      outline: 3px solid var(--accordion-focus);
+      outline-offset: 2px;
+    }
+  }
+
+  &-header {
+    font-weight: var(--font-normal);
+    margin-block-start: 0;
+  }
+}
+
+div .accordion-body {
+  padding: var(--spacing-sm);
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Toggle all button
+.accordion-toggle {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  padding-block-end: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-sm);
+
+  .accordion-toggle-btn {
+    background-color: transparent;
+    border: none;
+    color: #09549f;
+    font-size: inherit;
+    position: relative;
+    text-decoration: underline;
+    text-underline-offset: 0.125rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding-inline: 2px;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::after {
+      content: "";
+      background: $accordion-icon center / contain no-repeat;
+      transition: transform 0.25s ease-in;
+      height: var(--spacing-sm);
+      aspect-ratio: 1 / 1;
+      margin-block: 1px;
+    }
+
+    &:focus {
+      outline: 2px solid var(--accordion-focus);
+      border-radius: 1px;
+    }
+
+    .dark &,
+    .dark-alt & {
+      color: #fff;
+
+      &::after {
+        background-image: $accordion-icon-dark;
+      }
+    }
+
+    &--open::after {
+      transform: rotate(180deg);
+    }
+  }
+}

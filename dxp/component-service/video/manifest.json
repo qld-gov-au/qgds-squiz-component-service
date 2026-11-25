@@ -1,0 +1,230 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.1",
+  "name": "video",
+  "displayName": "Video Component",
+  "description": "QGDS Bootstrap 5 - Video Component",
+  "namespace": "qgds-bs5",
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "icon": {
+    "id": "video_library",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "source": {
+            "type": "string",
+            "title": "Video source",
+            "description": "YouTube or Vimeo link, or uploaded to CMS video format file.",
+            "enum": ["YouTube", "Vimeo", "Custom"],
+            "default": "YouTube"
+          },
+          "videoId": {
+            "type": "string",
+            "title": "Video ID",
+            "description": "The ID of the video.",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "videoSize": {
+            "type": "string",
+            "title": "Video size",
+            "description": "The size of the video.",
+            "enum": ["Full width", "Two thirds", "Half page"],
+            "default": "Full width",
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "aspectRatio": {
+            "type": "string",
+            "title": "Aspect ratio",
+            "description": "The aspect ratio of the video.",
+            "default": "16:9",
+            "enum": ["1:1", "4:3", "16:9", "21:9"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "duration": {
+            "type": "string",
+            "title": "Duration",
+            "description": "The duration of the video."
+          },
+          "thumbnail": {
+            "type": "object",
+            "title": "Thumbnail",
+            "required": [],
+            "properties": {
+              "imageSource": {
+                "type": "string",
+                "title": "Image source",
+                "description": "Choose an image from the Matrix or enter a custom URL.",
+                "enum": ["Matrix", "Custom URL"],
+                "default": "Matrix"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "imageSource": {
+                      "const": "Matrix"
+                    }
+                  },
+                  "required": ["imageSource"]
+                },
+                "then": {
+                  "properties": {
+                    "squizImageField": {
+                      "type": "SquizImage",
+                      "title": "Image",
+                      "description": "Select image from Matrix.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  },
+                  "required": []
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "imageSource": {
+                      "const": "Custom URL"
+                    }
+                  },
+                  "required": []
+                },
+                "then": {
+                  "properties": {
+                    "src": {
+                      "type": "string",
+                      "title": "Image URL",
+                      "description": "Source URL of the image.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the video.",
+            "default": "example description text",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "transcriptContent": {
+            "type": "FormattedText",
+            "title": "Transcript content",
+            "format": "multi-line",
+            "description": "The transcript content of the video.",
+            "default": "<p>Example transcript content text</p>",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "additionalSettings": {
+            "type": "object",
+            "title": "Video additional settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "autoPlay": {
+                "type": "boolean",
+                "title": "Auto play",
+                "description": "Whether to auto play the video.",
+                "default": false,
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "videoControls": {
+                "type": "boolean",
+                "title": "Video controls",
+                "description": "Whether to show the video controls.",
+                "default": true,
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              }
+            }
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "vimeo": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.vimeo.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "custom": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.custom.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

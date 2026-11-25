@@ -1,0 +1,13 @@
+{
+  "name": "content-section-1-column",
+  "displayName": "Content section - 1 column",
+  "description": "Single-column content layout with a centred container for body components.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "content",
+      "displayName": "Main content",
+      "description": "One full-width column inside the section container. Use for typography, forms, cards, and other stacked components."
+    }
+  ]
+}

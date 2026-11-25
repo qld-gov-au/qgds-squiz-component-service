@@ -1,0 +1,41 @@
+{
+  "currentAssetId": "102",
+  "section": {
+    "id": "100",
+    "title": "Parent page",
+    "url": "/parent-page",
+    "children": [
+      {
+        "id": "101",
+        "title": "Sibling page",
+        "url": "/parent-page/sibling-page",
+        "children": []
+      },
+      {
+        "id": "102",
+        "title": "Current page",
+        "url": "/parent-page/current-page",
+        "children": [
+          {
+            "id": "103",
+            "title": "Child page",
+            "url": "/parent-page/current-page/child-page",
+            "children": []
+          },
+          {
+            "id": "104",
+            "title": "Child page",
+            "url": "/parent-page/current-page/child-page-2",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "105",
+        "title": "Sibling page",
+        "url": "/parent-page/sibling-page-2",
+        "children": []
+      }
+    ]
+  }
+}

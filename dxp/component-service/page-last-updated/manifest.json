@@ -1,0 +1,75 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.2.1",
+  "name": "page-last-updated",
+  "displayName": "Page last updated",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "update",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "description": "Outputs the last updated date of the page the component is placed on, from the page's updated date, as '31 January 1900'.",
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    }
+  ],
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "tableSettings": {
+    "variantClass": "default",
+    "striped": false,
+    "hover": false,
+    "customClass": ""
+  },
+  "tableContent": "<table style=\"width: 100%;\"><thead><tr><th>Header</th><th>Header</th><th>Header</th></tr></thead><tbody><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr></tbody><tfoot><tr><td>Footer</td><td>Footer</td><td>Footer</td></tr></tfoot></table>"
+}

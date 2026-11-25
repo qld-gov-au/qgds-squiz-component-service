@@ -1,0 +1,55 @@
+{
+  "type": "indent-text",
+  "variantClass": "light",
+  "promoImageField": {
+    "imageSource": "squizImage",
+    "squizImageField": {
+      "name": "Banner example 3 to 2",
+      "alt": "Banner example 3 to 2",
+      "caption": "Banner example 3 to 2",
+      "imageVariations": {
+        "original": {
+          "url": "https://picsum.photos/536/354",
+          "width": 100,
+          "height": 100,
+          "byteSize": 1000,
+          "mimeType": "image/jpeg",
+          "aspectRatio": "3:2",
+          "sha1Hash": "1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    }
+  },
+  "contentAlignment": "content-left",
+  "icon": "icon-dot-grid",
+  "title": "Title goes here and has a maximum of 65 character limit",
+  "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor, leo vulputate ut odio mattis.",
+  "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor, leo vulputate ut odio mattis. Vel suspendisse mi quisque consequat aliquet egestas.",
+  "ctaItems": [
+    {
+      "link": {
+        "text": "View all",
+        "url": "#123",
+        "target": "_self"
+      }
+    }
+  ],
+  "btnItems": [
+    {
+      "variantClass": "btn-primary",
+      "link": {
+        "text": "View all",
+        "url": "#123",
+        "target": "_self"
+      }
+    },
+    {
+      "variantClass": "btn-secondary",
+      "link": {
+        "text": "View all",
+        "url": "#123",
+        "target": "_self"
+      }
+    }
+  ]
+}

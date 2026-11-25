@@ -1,0 +1,226 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.11",
+  "name": "promotional-panel",
+  "displayName": "Promotional Panel Component",
+  "description": "QGDS Bootstrap 5 - Promotional Panel Component",
+  "icon": {
+    "id": "campaign",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "default": "contained",
+            "enum": ["promo", "contained", "indent-text", "indent-img"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "variantClass": {
+            "type": "string",
+            "title": "Variant class",
+            "default": "default",
+            "enum": ["default", "light", "alt", "dark", "dark-alt"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "promoImageField": {
+            "type": "object",
+            "title": "Image",
+            "required": [],
+            "properties": {
+              "imageSource": {
+                "type": "string",
+                "title": "Image source",
+                "description": "Choose an image from the Matrix or enter a custom URL.",
+                "enum": ["squizImage", "customUrl"],
+                "default": "squizImage",
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {"imageSource": {"const": "squizImage"}},
+                  "required": ["imageSource"]
+                },
+                "then": {
+                  "properties": {
+                    "squizImageField": {
+                      "type": "SquizImage",
+                      "title": "Image",
+                      "description": "Select image from Matrix.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  },
+                  "required": ["squizImageField"]
+                }
+              },
+              {
+                "if": {
+                  "properties": {"imageSource": {"const": "customUrl"}},
+                  "required": ["imageSource"]
+                },
+                "then": {
+                  "properties": {
+                    "src": {
+                      "type": "string",
+                      "title": "Image URL",
+                      "description": "Source URL of the image.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "promoImageDescription": {
+                      "type": "string",
+                      "title": "Promo image description",
+                      "description": "Promotional image description.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  },
+                  "required": ["src"]
+                }
+              }
+            ]
+          },
+          "contentAlignment": {
+            "type": "string",
+            "title": "Content alignment",
+            "default": "content-left",
+            "enum": ["content-left", "content-right"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon",
+            "enum": ["none", "icon-dot-grid", "icon-phone", "icon-email", "icon-search"],
+            "default": "none",
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "default": "Title goes here and has a maximum of 65 character limit",
+            "maxLength": 65,
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "abstract": {
+            "type": "string",
+            "title": "Abstract",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "body": {
+            "type": "FormattedText",
+            "title": "Body",
+            "default": "Body text example",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "ctaItems": {
+            "title": "CTA items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "SquizLink",
+                  "title": "Link",
+                  "description": "Component link - inline editable SquizLink",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                }
+              },
+              "required": ["link"]
+            }
+          },
+          "btnItems": {
+            "title": "Button items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variantClass": {
+                  "type": "string",
+                  "title": "Variant class",
+                  "description": "Button variant class",
+                  "default": "btn-primary",
+                  "enum": ["btn-primary", "btn-secondary"],
+                  "ui:metadata": {
+                    "quickOption": true
+                  }
+                },
+                "link": {
+                  "type": "SquizLink",
+                  "title": "Link",
+                  "description": "Component link - inline editable SquizLink",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                }
+              },
+              "required": ["link"]
+            }
+          }
+        },
+        "required": ["title"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

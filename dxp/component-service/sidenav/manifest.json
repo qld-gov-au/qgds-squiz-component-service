@@ -1,0 +1,110 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.2",
+  "name": "sidenav",
+  "displayName": "Sidenav Component",
+  "description": "QGDS Bootstrap 5 - Sidenav Component",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "AMAPI_TOKEN",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_DISK_CACHE",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    }
+  ],
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "collapseTitle": {
+            "type": "string",
+            "title": "Collapse title",
+            "description": "Title for the collapse button in mobile view",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "showChildren": {
+            "type": "boolean",
+            "title": "Show children",
+            "default": true
+          }
+        },
+        "required": ["collapseTitle"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

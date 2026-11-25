@@ -1,0 +1,260 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.14",
+  "name": "table",
+  "displayName": "Table",
+  "description": "QGDS Bootstrap 5 - Table Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "table_rows",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "tableSettings": {
+            "type": "object",
+            "title": "Table settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "variantClass": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Visual variant for the table.",
+                "enum": ["default", "dark"],
+                "default": "default"
+              },
+              "striped": {
+                "type": "boolean",
+                "title": "Striped",
+                "description": "Apply striped style to the table.",
+                "default": false
+              },
+              "hover": {
+                "type": "boolean",
+                "title": "Hover",
+                "description": "Enable hover state on table rows.",
+                "default": false
+              },
+              "customClass": {
+                "type": "string",
+                "title": "Table classes",
+                "description": "Additional CSS classes for table.",
+                "examples": ["qld-table--borderless"],
+                "default": ""
+              }
+            }
+          },
+          "captionOptions": {
+            "type": "object",
+            "title": "Caption",
+            "required": [],
+            "properties": {
+              "caption": {
+                "type": "string",
+                "title": "Caption",
+                "description": "Table caption text.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "subcaption": {
+                "type": "string",
+                "title": "Subcaption",
+                "description": "Optional subcaption shown below the main caption.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            }
+          },
+          "columnHeadersOptions": {
+            "type": "object",
+            "title": "Column headers",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "headers": {
+                "type": "array",
+                "title": "Headers",
+                "description": "Header cell text for each column.",
+                "items": {
+                  "type": "string",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                }
+              }
+            }
+          },
+          "rowsOptions": {
+            "type": "object",
+            "title": "Rows",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "rows": {
+                "type": "array",
+                "title": "Rows",
+                "description": "Table body rows.",
+                "items": {
+                  "type": "object",
+                  "title": "Row",
+                  "properties": {
+                    "cells": {
+                      "type": "array",
+                      "title": "Cells",
+                      "description": "Cell values for this row.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "FormattedText",
+                            "title": "Content",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          }
+                        },
+                        "required": ["value"]
+                      }
+                    }
+                  },
+                  "required": ["cells"]
+                }
+              }
+            }
+          },
+          "footerRowOptions": {
+            "type": "object",
+            "title": "Footer row",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "cells": {
+                "type": "array",
+                "title": "Cells",
+                "description": "Cell values for the footer row. Leave empty to hide the footer.",
+                "items": {
+                  "type": "string",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "tableSettings": {
+                  "properties": {
+                    "variantClass": {
+                      "const": "default"
+                    }
+                  },
+                  "required": ["variantClass"]
+                }
+              },
+              "required": ["tableSettings"]
+            },
+            "then": {
+              "properties": {
+                "rowsOptions": {
+                  "type": "object",
+                  "title": "Rows",
+                  "required": [],
+                  "properties": {
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "title": "Row",
+                        "properties": {
+                          "cells": {
+                            "type": "array",
+                            "title": "Cells",
+                            "items": {
+                              "type": "object",
+                              "title": "Cell",
+                              "properties": {
+                                "value": {
+                                  "type": "FormattedText",
+                                  "title": "Content",
+                                  "ui:metadata": {
+                                    "inlineEditable": true
+                                  }
+                                },
+                                "style": {
+                                  "type": "string",
+                                  "title": "Cell style",
+                                  "description": "Select the style of the cell.",
+                                  "enum": ["default", "correct", "incorrect"],
+                                  "default": "default"
+                                }
+                              },
+                              "required": ["value"]
+                            }
+                          }
+                        },
+                        "required": ["cells"]
+                      }
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        ]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

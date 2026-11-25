@@ -1,0 +1,424 @@
+/* stylelint-disable declaration-no-important -- disabled/focus states must override Bootstrap */
+// QGDS Button
+// extends https://getbootstrap.com/docs/5.3/components/buttons/#variables
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+
+// Focus ring (replaces the source `focusable` mixin).
+@mixin button-focusable {
+  outline: toRem(3) solid transparent;
+  outline-offset: toRem(-3);
+
+  &:focus {
+    outline: toRem(3) solid var(--button-focus-color);
+    outline-offset: toRem(2);
+  }
+}
+
+// QGDS specific button variables.
+.btn {
+  --button-focus-color: #0085b3;
+  --button-spinner-border-width: #{toRem(1.5)};
+  --qld-btn-padding-x: var(--spacing-md);
+  --qld-btn-padding-y: var(--spacing-xs);
+  --qld-btn-font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", "Liberation Sans", arial, sans-serif;
+  --qld-btn-border-width: #{toRem(3)};
+  --qld-btn-active-border-color: transparent;
+  --qld-btn-border-radius: #{toRem(4)};
+  --qld-btn-focus-box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  --qld-btn-disabled-opacity: 0.5;
+  --qld-btn-spinner-icon-size-md: #{toRem(24)};
+  --qld-icon-color: #008635;
+  --qld-icon-hover-color: #005b23;
+
+  // Primary button variant
+  &-primary {
+    --qld-btn-bg: #09549f;
+    --qld-btn-hover-bg: #003e7d;
+    --qld-btn-active-bg: #f5f5f5;
+    --qld-btn-active-color: #04284c;
+    --qld-btn-disabled-bg: #e0e0e0;
+    --qld-btn-disabled-color: #636363;
+    --qld-btn-disabled-opacity: 1;
+    --qld-btn-disabled-border-color: transparent;
+    --qld-btn-focus-bg: #003e7d;
+    --qld-btn-focus-border-color: #003e7d;
+    --qld-icon-color: currentcolor;
+    --qld-icon-hover-color: currentcolor;
+  }
+
+  // Secondary button variant
+  &-secondary,
+  &-outline-secondary {
+    --qld-btn-bg: transparent;
+    --qld-btn-color: #09549f;
+    --qld-btn-border-color: #008635;
+    --qld-btn-hover-border-color: #005b23;
+    --qld-btn-hover-color: #09549f;
+    --qld-btn-hover-bg: transparent;
+    --qld-btn-active-color: #04284c;
+    --qld-btn-active-bg: #f5f5f5;
+    --qld-btn-active-border-color: #f5f5f5;
+    --qld-btn-active-shadow: none;
+    --qld-btn-disabled-bg: transparent;
+    --qld-btn-disabled-color: #636363;
+    --qld-btn-disabled-opacity: 1;
+    --qld-btn-disabled-border-color: #e0e0e0;
+    --qld-gradient: none;
+    --qld-btn-focus-border-color: #005b23;
+  }
+
+  // Tertiary button variant
+  &-tertiary {
+    --qld-btn-color: #09549f;
+    --qld-btn-border-color: transparent;
+    --qld-btn-hover-color: #09549f;
+    --qld-btn-hover-bg: #f5f5f5;
+    --qld-btn-hover-border-color: transparent;
+    --qld-btn-active-color: #04284c;
+    --qld-btn-active-bg: transparent;
+    --qld-btn-active-shadow: none;
+    --qld-btn-disabled-bg: transparent;
+    --qld-btn-disabled-color: #636363;
+    --qld-btn-disabled-opacity: 1;
+    --qld-btn-disabled-border-color: transparent;
+    --qld-gradient: none;
+  }
+}
+
+.dark .btn,
+.dark-alt .btn {
+  --button-focus-color: #01b0e5;
+  --qld-icon-color: #ffe500;
+  --qld-icon-hover-color: #ffef60;
+
+  // Primary button variant (dark mode)
+  &-primary {
+    --qld-btn-bg: #ffe500;
+    --qld-btn-border-color: #ffe500;
+    --qld-btn-color: #121940;
+    --qld-btn-hover-color: #121940;
+    --qld-btn-hover-bg: #78ba00;
+    --qld-btn-hover-border-color: #78ba00;
+    --qld-btn-active-color: #04284c;
+    --qld-btn-active-bg: #f5f5f5;
+    --qld-btn-disabled-bg: rgb(224 224 224 / 10%);
+    --qld-btn-disabled-color: #deebf9;
+    --qld-btn-disabled-border-color: transparent;
+    --qld-btn-focus-bg: #78ba00;
+    --qld-btn-focus-border-color: #78ba00;
+    --qld-icon-color: currentcolor;
+    --qld-icon-hover-color: currentcolor;
+  }
+
+  // Secondary button variant (dark mode)
+  &-secondary,
+  &-outline-secondary {
+    --qld-btn-border-color: #ffe500;
+    --qld-btn-color: #fff;
+    --qld-btn-hover-border-color: #ffef60;
+    --qld-btn-hover-bg: transparent;
+    --qld-btn-hover-color: #fff;
+    --qld-btn-active-bg: #f5f5f5;
+    --qld-btn-active-border-color: #f5f5f5;
+    --qld-btn-active-color: #04284c;
+    --qld-btn-disabled-bg: transparent;
+    --qld-btn-disabled-color: #deebf9;
+    --qld-btn-disabled-border-color: rgb(224 224 224 / 10%);
+    --qld-btn-focus-bg: transparent;
+    --qld-btn-focus-border-color: #ffef60;
+  }
+
+  // Tertiary button variant (dark mode)
+  &-tertiary {
+    --qld-btn-color: #fff;
+    --qld-btn-bg: transparent;
+    --qld-btn-hover-color: #fff;
+    --qld-btn-hover-bg: #04498f;
+    --qld-btn-active-bg: transparent;
+    --qld-btn-active-border-color: transparent;
+    --qld-btn-active-color: #fff;
+    --qld-btn-focus-bg: #04498f;
+    --qld-btn-disabled-bg: transparent;
+    --qld-btn-disabled-color: #deebf9;
+    --qld-btn-disabled-border-color: transparent;
+  }
+}
+
+// General styling rules.
+a.btn,
+.btn {
+  --qld-body-color: var(--qld-btn-color);
+
+  white-space: normal;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: #{toRem(160)};
+  min-height: #{toRem(52)};
+  text-align: center;
+
+  .qld-icon {
+    flex-shrink: 0;
+  }
+
+  span[class^="icon-"],
+  span[class^="fa-"] {
+    margin: 0 var(--spacing-xs);
+  }
+
+  &:hover {
+    --qld-icon-color: var(--qld-icon-hover-color);
+  }
+
+  &:hover,
+  &:visited,
+  &:focus {
+    color: var(--qld-btn-color);
+    text-decoration: underline;
+    text-decoration-color: inherit;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
+  &:active {
+    color: var(--qld-btn-active-color);
+  }
+
+  @include button-focusable;
+
+  &:visited {
+    color: var(--qld-btn-color);
+
+    &:hover {
+      text-decoration-color: inherit;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    --qld-body-color: var(--qld-btn-disabled-color);
+    --qld-icon-color: currentcolor;
+
+    &:visited {
+      color: var(--qld-btn-disabled-color);
+    }
+
+    &:focus {
+      background-color: var(--qld-btn-disabled-bg) !important;
+      border-color: var(--qld-btn-disabled-border-color) !important;
+      color: var(--qld-btn-disabled-color) !important;
+      box-shadow: none !important;
+      text-decoration: none !important;
+    }
+  }
+
+  // Progress state styles
+  &.btn-progress {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .spinner-border {
+      width: var(--qld-btn-spinner-icon-size-md);
+      height: var(--qld-btn-spinner-icon-size-md);
+
+      --qld-spinner-border-width: var(--button-spinner-border-width);
+    }
+
+    .btn-label-default {
+      display: none;
+    }
+
+    .btn-label-progress {
+      display: inline;
+    }
+
+    // Remove hover effects
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Default state - hide progress label
+  .btn-label-progress {
+    display: none;
+  }
+
+  .btn-label-default {
+    display: inline;
+  }
+
+  // Primary button variant
+  &-primary {
+    box-shadow:
+      0 4px 8px 3px rgb(0 0 0 / 10%),
+      0 1px 3px rgb(0 0 0 / 20%);
+
+    &:hover {
+      box-shadow:
+        7px 6px 13px rgb(0 0 0 / 2%),
+        0 2px 5px rgb(0 0 0 / 10%),
+        0 13px 20px rgb(0 0 0 / 10%);
+    }
+
+    &:active {
+      box-shadow:
+        0 1px 2px rgb(0 0 0 / 20%),
+        0 1px 3px 1px rgb(0 0 0 / 10%);
+      text-decoration: none;
+    }
+
+    &:focus {
+      box-shadow:
+        0 1px 2px rgb(0 0 0 / 30%),
+        0 2px 6px 2px rgb(0 0 0 / 15%);
+      background-color: var(--qld-btn-focus-bg);
+      border-color: var(--qld-btn-focus-border-color);
+    }
+
+    &:disabled,
+    &.disabled {
+      box-shadow: none;
+    }
+  }
+
+  // Secondary button variant
+  &-secondary,
+  &-outline-secondary {
+    --qld-body-color: var(--qld-btn-border-color);
+
+    &:hover {
+      --qld-body-color: var(--qld-btn-hover-border-color);
+    }
+
+    &:focus {
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+      border-color: var(--qld-btn-focus-border-color);
+
+      --qld-body-color: var(--qld-btn-hover-border-color);
+    }
+
+    &:active {
+      text-decoration: none;
+
+      --qld-body-color: var(--qld-btn-active-color);
+    }
+  }
+
+  // Tertiary button variant
+  &-tertiary {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+
+    --qld-body-color: #09549f;
+
+    &:hover {
+      --qld-body-color: #005b23;
+    }
+
+    &:focus {
+      background-color: var(--qld-btn-hover-bg);
+
+      --qld-body-color: #005b23;
+    }
+
+    &:active {
+      text-decoration: none;
+      color: var(--qld-btn-active-color);
+
+      --qld-body-color: var(--qld-btn-active-color);
+    }
+
+    &:disabled,
+    &.disabled {
+      text-decoration: none;
+    }
+  }
+}
+
+// Dark mode button variants
+.dark .btn,
+.dark a.btn,
+.dark-alt .btn,
+.dark-alt a.btn {
+  &:disabled,
+  &.disabled {
+    --qld-body-color: var(--qld-btn-disabled-color);
+
+    &:focus {
+      background-color: var(--qld-btn-disabled-bg) !important;
+      border-color: var(--qld-btn-disabled-border-color) !important;
+      color: var(--qld-btn-disabled-color) !important;
+      box-shadow: none !important;
+      text-decoration: none !important;
+    }
+  }
+
+  // Progress state focus for dark mode
+  &.btn-progress:focus {
+    outline: #01b0e5 solid toRem(3);
+    outline-offset: toRem(2);
+  }
+
+  &-primary {
+    &:focus {
+      background-color: var(--qld-btn-focus-bg);
+      border-color: var(--qld-btn-focus-border-color);
+    }
+  }
+
+  &-secondary,
+  &-outline-secondary {
+    --qld-body-color: var(--qld-btn-border-color);
+
+    &:hover {
+      border: var(--qld-btn-border-width) solid var(--qld-btn-hover-border-color);
+
+      --qld-body-color: var(--qld-btn-hover-border-color);
+    }
+
+    &:focus {
+      border-color: var(--qld-btn-focus-border-color);
+
+      --qld-body-color: var(--qld-btn-focus-border-color);
+    }
+
+    &:active {
+      color: var(--qld-btn-active-color);
+      background-color: var(--qld-btn-active-bg);
+      border-color: var(--qld-btn-active-bg);
+
+      --qld-body-color: var(--qld-btn-active-color);
+    }
+  }
+
+  &-tertiary {
+    --qld-body-color: #fff;
+
+    &:hover {
+      --qld-body-color: #ffef60;
+    }
+
+    &:focus {
+      background-color: var(--qld-btn-hover-bg);
+    }
+
+    &:active {
+      text-decoration: none;
+
+      --qld-body-color: #fff;
+    }
+  }
+}
+
+// Spinner animation
+@keyframes btn-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

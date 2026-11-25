@@ -1,0 +1,18 @@
+{
+  "name": "content-section-2-columns",
+  "displayName": "Content section - 2 columns",
+  "description": "Two-column content layout with equal-width columns in a centred container.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "column1",
+      "displayName": "Column 1",
+      "description": "First column (left on medium screens and up). Stack components in reading order."
+    },
+    {
+      "key": "column2",
+      "displayName": "Column 2",
+      "description": "Second column (right on medium screens and up)."
+    }
+  ]
+}

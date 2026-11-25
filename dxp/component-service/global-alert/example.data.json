@@ -1,0 +1,40 @@
+{
+  "alertItems": [
+    {
+      "variant": "global-alert-critical",
+      "ariaLabel": "Critical alert",
+      "dismissedExpiryDays": 0,
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dictum efficitur egestas.</p><p>Aenean sed pretium mauris. Quisque euismod in nisl et consequat.</p> ",
+      "link": {
+        "url": "https://www.qld.gov.au/",
+        "text": "Read more",
+        "target": "_blank"
+      },
+      "preventDismiss": false
+    },
+    {
+      "variant": "global-alert-warning",
+      "ariaLabel": "Warning alert",
+      "dismissedExpiryDays": 0,
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.</p><ul><li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li><li>Aliquam tincidunt mauris eu risus.</li><li>Vestibulum auctor dapibus neque.</li></ul>",
+      "link": {
+        "url": "https://www.qld.gov.au/",
+        "text": "Read more",
+        "target": "_blank"
+      },
+      "preventDismiss": false
+    },
+    {
+      "variant": "global-alert-info",
+      "ariaLabel": "Information alert",
+      "dismissedExpiryDays": 0,
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.</p><ol><li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li><li>Aliquam tincidunt mauris eu risus.</li><li>Vestibulum auctor dapibus neque.</li></ol>",
+      "link": {
+        "url": "https://www.qld.gov.au/",
+        "text": "Read more",
+        "target": "_blank"
+      },
+      "preventDismiss": false
+    }
+  ]
+}

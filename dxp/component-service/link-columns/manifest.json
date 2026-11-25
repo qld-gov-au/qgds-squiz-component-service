@@ -1,0 +1,132 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.4",
+  "name": "link-columns",
+  "displayName": "Link columns",
+  "description": "QGDS Bootstrap 5 - Link columns component (section with list of links).",
+  "namespace": "qgds-bs5",
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Optional ID for the section element.",
+            "default": ""
+          },
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "theme": {
+            "type": "string",
+            "title": "Theme",
+            "description": "Theme class for the section.",
+            "enum": ["default", "light", "alt", "dark", "dark-alt"],
+            "default": "default"
+          },
+          "linkColumnSettings": {
+            "type": "object",
+            "title": "Link columns settings",
+            "description": "Settings for layout and view-all link.",
+            "properties": {
+              "itemsFlowVert": {
+                "type": "boolean",
+                "title": "Items flow vertical",
+                "description": "When true, ul has class col-vert-3; when false, col-3.",
+                "default": true
+              },
+              "viewAllButton": {
+                "type": "boolean",
+                "title": "View all button",
+                "description": "When true, show a view-all link as the last list item.",
+                "default": false
+              }
+            },
+            "required": [],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "viewAllButton": {
+                      "const": false
+                    }
+                  },
+                  "required": []
+                },
+                "then": {
+                  "properties": {},
+                  "required": []
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "viewAllButton": {
+                      "const": true
+                    }
+                  },
+                  "required": []
+                },
+                "then": {
+                  "properties": {
+                    "viewAllLink": {
+                      "type": "SquizLink",
+                      "title": "View all link",
+                      "description": "Link for the view all button (shown when view all button is enabled)."
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ]
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "items": {
+              "type": "SquizLink",
+              "title": "Link"
+            }
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

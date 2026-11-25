@@ -1,0 +1,10 @@
+// Cards Listing: no shadow on the cards.
+// The shadows come from the shared card styles in ../../card/css/card.scss. Setting the variable and
+// box-shadow on .card-listing .card removes the shadow at rest, on hover and on focus. The override
+// only applies inside the listing, so Cards (Advanced) and Cards (Simple) keep their shadows.
+
+.card-listing .card {
+  --qld-card-box-shadow: none;
+
+  box-shadow: none;
+}

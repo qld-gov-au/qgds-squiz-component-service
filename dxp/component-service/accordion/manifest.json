@@ -1,0 +1,110 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json",
+  "version": "0.0.3",
+  "name": "accordion",
+  "displayName": "Accordion Component",
+  "description": "QGDS Bootstrap 5 - Accordion Component",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "groupId": {
+            "type": "string",
+            "title": "Group ID"
+          },
+          "toggleAll": {
+            "type": "boolean",
+            "title": "Toggle all",
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "headingTag": {
+            "type": "string",
+            "title": "Heading tag",
+            "default": "h2",
+            "enum": ["h2", "h3", "h4", "h5", "h6"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "accordionItems": {
+            "title": "Accordion items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "title": "ID",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                },
+                "title": {
+                  "type": "string",
+                  "title": "Title",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                },
+                "expanded": {
+                  "type": "boolean",
+                  "title": "Expanded"
+                },
+                "content": {
+                  "type": "FormattedText",
+                  "title": "WYSIWYG Content",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                }
+              },
+              "required": ["id", "title"]
+            }
+          }
+        },
+        "required": ["groupId"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

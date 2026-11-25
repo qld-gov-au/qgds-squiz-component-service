@@ -1,0 +1,62 @@
+.blockquote {
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --quote-border-color: #6bbe27;
+  --quote-text-color: #04284c;
+  --quote-ref-text-color: #414141;
+  --quote-border-width: #{toRem(4)};
+  --blockquote-bg: #fff;
+
+  .light & {
+    --blockquote-bg: #eff4f9;
+  }
+
+  .alt & {
+    --blockquote-bg: #e8e8e8;
+  }
+
+  .dark & {
+    --blockquote-bg: #09549f;
+  }
+
+  .dark-alt & {
+    --blockquote-bg: #05325f;
+  }
+
+  .dark &,
+  .dark-alt & {
+    --quote-text-color: #fff;
+    --quote-ref-text-color: #fff;
+  }
+
+  background: var(--blockquote-bg);
+  border-inline-start: var(--quote-border-width) solid var(--quote-border-color);
+  padding-block: var(--spacing-xs);
+  padding-inline: calc(var(--spacing-sm) * 1.25) var(--spacing-sm);
+
+  blockquote {
+    max-width: 54rem;
+    margin-block-end: 0;
+    color: var(--quote-text-color);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-md);
+    font-weight: var(--font-bold);
+
+    p:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  .quote-source {
+    color: var(--quote-ref-text-color);
+    font-size: var(--font-size-xs);
+    margin-block-start: calc(var(--spacing-sm) * 0.75);
+  }
+
+  > figcaption {
+    background: transparent;
+    color: var(--quote-ref-text-color);
+    display: block;
+    caption-side: bottom;
+    padding: 0;
+  }
+}

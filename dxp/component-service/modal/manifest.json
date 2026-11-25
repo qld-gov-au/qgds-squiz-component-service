@@ -1,0 +1,175 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.5",
+  "name": "modal",
+  "displayName": "Modal",
+  "description": "QGDS Bootstrap 5 - Modal component",
+  "namespace": "qgds-bs5",
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "icon": {
+    "id": "open_in_new",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "modalIdSettings": {
+            "type": "object",
+            "title": "Modal ID",
+            "required": [],
+            "properties": {
+              "modalIdSource": {
+                "type": "string",
+                "title": "Modal ID variant",
+                "description": "Choose custom to enter your own ID.",
+                "enum": ["default", "custom"],
+                "default": "default"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "modalIdSource": {
+                      "const": "custom"
+                    }
+                  },
+                  "required": ["modalIdSource"]
+                },
+                "then": {
+                  "properties": {
+                    "customModalId": {
+                      "type": "string",
+                      "title": "Custom modal ID",
+                      "description": "Custom modal ID. This can also be used in a link with these attributes: data-bs-toggle='modal' data-bs-target='#YourcustomModalId'.",
+                      "default": ""
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            }
+          },
+          "header": {
+            "type": "object",
+            "title": "Header",
+            "required": [],
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Modal title",
+                "description": "Modal title (shown in header).",
+                "default": "Modal title"
+              },
+              "closeButton": {
+                "type": "boolean",
+                "title": "Show close button",
+                "description": "Show the close (X) button in the header.",
+                "default": true
+              }
+            },
+            "ui:metadata": {
+              "collapsedByDefault": true
+            }
+          },
+          "launchButtonLabel": {
+            "type": "string",
+            "title": "Trigger button label",
+            "description": "Text for the button that opens the modal.",
+            "default": "Open modal"
+          },
+          "modalSize": {
+            "type": "string",
+            "title": "Modal size",
+            "description": "Size of the modal dialog.",
+            "enum": ["default", "small", "large", "extra-large"],
+            "default": "default"
+          },
+          "content": {
+            "type": "FormattedText",
+            "title": "Body content",
+            "description": "Content of the modal body.",
+            "default": [
+              {
+                "type": "tag",
+                "tag": "span",
+                "children": [
+                  {
+                    "type": "tag",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "By signing in to this account, you agree to Terms & Conditions."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "footer": {
+            "type": "object",
+            "title": "Footer",
+            "required": [],
+            "properties": {
+              "showCancelButton": {
+                "type": "boolean",
+                "title": "Show cancel button",
+                "description": "Show the Cancel button in the footer.",
+                "default": false
+              },
+              "showConfirmButton": {
+                "type": "boolean",
+                "title": "Show confirm button",
+                "description": "Show the Confirm button in the footer.",
+                "default": false
+              }
+            },
+            "ui:metadata": {
+              "collapsedByDefault": true
+            }
+          }
+        },
+        "required": ["content"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "variant": "dark",
+  "sitename": "Site name, Namestyle or Name Identifier",
+  "contact": {
+    "title": "Contact us",
+    "content": "<p>Get in touch for enquiries, feedback, complaints and compliments.</p>",
+    "button": {
+      "text": "Contact us",
+      "url": "https://www.qld.gov.au/contact-us"
+    },
+    "showList": true,
+    "list": [
+      {
+        "type": "phone",
+        "label": "<b>Phone:</b> <a href='tel:137468' rel='noopener'>13 QGOV (13 74 68)</a>"
+      },
+      {
+        "type": "email",
+        "label": "<b>Email:</b> <span class='user-select-all'><a href='mailto:email@qld.gov.au' rel='noopener'>email@qld.gov.au</a></span>"
+      }
+    ]
+  },
+  "footerLinks": {
+    "list": [
+      {
+        "text": "Copyright",
+        "url": "https://www.qld.gov.au/legal/copyright"
+      },
+      {
+        "text": "Disclaimer",
+        "url": "https://www.qld.gov.au/legal/disclaimer"
+      },
+      {
+        "text": "Privacy",
+        "url": "https://www.qld.gov.au/legal/privacy"
+      },
+      {
+        "text": "Right to information",
+        "url": "https://www.qld.gov.au/about/rights-accountability/right-to-information"
+      },
+      {
+        "text": "Accessibility",
+        "url": "https://www.qld.gov.au/help/accessibility"
+      },
+      {
+        "text": "Jobs in Queensland Government",
+        "url": "https://smartjobs.qld.gov.au",
+        "target": "_blank"
+      },
+      {
+        "text": "Other languages",
+        "url": "https://www.qld.gov.au/help/languages"
+      }
+    ]
+  },
+  "optionalColumn1": {
+    "title": "Optional Column 1",
+    "content": "",
+    "followLinks": [],
+    "customLinks": []
+  },
+  "optionalColumn2": {
+    "title": "Follow us",
+    "content": "",
+    "followLinks": [
+      {
+        "icon": "facebook",
+        "accessibleLabel": "Facebook page",
+        "link": {
+          "text": "Facebook",
+          "url": "#",
+          "target": "_blank"
+        }
+      },
+      {
+        "icon": "linkedin",
+        "accessibleLabel": "LinkedIn page",
+        "link": {
+          "text": "LinkedIn",
+          "url": "#",
+          "target": "_blank"
+        }
+      },
+      {
+        "icon": "x",
+        "accessibleLabel": "X page",
+        "link": {
+          "text": "X (Twitter)",
+          "url": "#",
+          "target": "_blank"
+        }
+      },
+      {
+        "icon": "youtube",
+        "link": {
+          "text": "Youtube",
+          "url": "#",
+          "target": "_blank"
+        }
+      },
+      {
+        "icon": "instagram",
+        "link": {
+          "text": "Instagram",
+          "url": "#",
+          "target": "_blank"
+        }
+      }
+    ],
+    "customLinks": []
+  },
+  "acknowledgement": "<p>We pay our respects to the Aboriginal and Torres Strait Islander ancestors of this land, their spirits and their legacy. The foundations laid by these ancestors—our First Nations peoples—give strength, inspiration and courage to current and future generations towards creating a better Queensland.</p>",
+  "footerLogo": {
+    "show": true
+  },
+  "copyright": {
+    "content": "&copy; The State of Queensland (Organisation)",
+    "yearFrom": ""
+  }
+}

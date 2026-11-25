@@ -1,0 +1,270 @@
+// Breadcrumbs.
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Spacing, font sizes and line heights use kernel tokens (src/styles/common/_variables.scss).
+
+// Focus ring (replaces the source `focusable` mixin).
+@mixin breadcrumbs-focusable($offset: 2px) {
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+
+  &:focus {
+    outline: 3px solid var(--qld-focus-color, #002e85);
+    outline-offset: $offset;
+  }
+}
+
+.breadcrumb {
+  // Shared CSS custom properties
+  --qld-breadcrumb-divider: var(--qgds-icon-chevron-right);
+  --qld-breadcrumb-expander: var(--qgds-icon-more-horizontal);
+  --qld-breadcrumb-item-active-color: #636363;
+  --qld-breadcrumb-divider-color: #008635;
+  --qld-breadcrumb-expander-color: #008635;
+  --qld-breadcrumb-item-padding-x: 0;
+  --qld-breadcrumb-bg: transparent;
+  --qld-breadcrumb-margin-bottom: 0;
+  --qld-breadcrumb-padding-y: calc(var(--spacing-sm) * 2);
+  --qld-breadcrumb-link-color: #09549f;
+  --qld-breadcrumb-link-text-decoration-color: #09549f;
+  --qld-breadcrumb-link-text-decoration-color-hover: #09549f;
+
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+  flex-wrap: nowrap;
+}
+
+// Dark mode overrides
+.dark .breadcrumb,
+.dark-alt .breadcrumb {
+  --qld-breadcrumb-item-active-color: #deebf9;
+  --qld-breadcrumb-divider-color: #ffe500;
+  --qld-breadcrumb-link-color: #fff;
+  --qld-breadcrumb-link-text-decoration-color: #fff;
+  --qld-breadcrumb-link-text-decoration-color-hover: #fff;
+}
+
+.dark .breadcrumb .breadcrumb-vertical > li > a,
+.dark-alt .breadcrumb .breadcrumb-vertical > li > a {
+  --qld-breadcrumb-link-color: #09549f;
+}
+
+.breadcrumb .expanded .breadcrumb-collapse-wrapper {
+  max-height: 100%;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 30%),
+    0 2px 6px 2px rgb(0 0 0 / 15%); // level 2 shadow
+
+  pointer-events: all;
+  transition: max-height 0.5s ease-in;
+  z-index: 1;
+}
+
+.breadcrumb .breadcrumb-vertical > li {
+  list-style: none;
+  width: 100%;
+
+  &::after {
+    display: none;
+  }
+}
+
+.breadcrumb .breadcrumb-vertical > li a {
+  --qld-focus-color: #0085b3;
+
+  @include breadcrumbs-focusable(-6px);
+
+  text-decoration: none;
+  padding: var(--spacing-sm); // source 0.75rem 1rem, nearest token
+  display: block;
+  width: 100%;
+  color: #414141;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+
+  &:hover {
+    text-decoration: underline;
+    color: #09549f;
+    text-decoration-thickness: 2px;
+    background-color: #ebebeb;
+  }
+}
+
+.breadcrumb .breadcrumb-collapse-wrapper {
+  position: absolute;
+  margin-top: var(--spacing-sm);
+  max-height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  width: 360px;
+  border-radius: 4px;
+  transition: max-height 0.5s ease-out;
+}
+
+.breadcrumb .breadcrumb-vertical {
+  padding: 0;
+  background-color: #f5f5f5;
+  border-bottom: 4px solid #008635;
+}
+
+// Breadcrumb items
+.breadcrumb-item {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-lg);
+  display: none;
+  white-space: nowrap;
+
+  &:not(:first-child) a {
+    margin-left: var(--spacing-xs); // source 5px, nearest token
+  }
+
+  &:nth-last-child(2) {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+
+    // Handle outline offset when focused
+    &:focus-within {
+      overflow: initial;
+    }
+  }
+
+  &:first-child {
+    flex-shrink: 0;
+  }
+
+  a {
+    @include breadcrumbs-focusable(3px);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:focus {
+      overflow: initial;
+    }
+  }
+
+  // Override Bootstrap's default :before pseudo element
+  &::before {
+    display: none;
+  }
+
+  // Divider
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    mask-image: var(--qld-breadcrumb-divider);
+    mask-size: 1rem 1rem;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    background-color: var(--qld-breadcrumb-divider-color);
+    position: relative;
+    top: 4px;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  // Breadcrumb link
+  a,
+  a:visited,
+  a:hover {
+    color: var(--qld-breadcrumb-link-color);
+    text-decoration-color: var(--qld-breadcrumb-link-text-decoration-color);
+  }
+}
+
+.breadcrumb-toggle {
+  appearance: none;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+  background: none;
+  border: 0 none transparent;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.breadcrumb-toggle > button {
+  @include breadcrumbs-focusable(3px);
+
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  line-height: var(--line-height-sm);
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 0;
+  vertical-align: middle;
+
+  &::after {
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: " ";
+    mask-image: var(--qld-breadcrumb-expander);
+    background-color: var(--qld-breadcrumb-link-color);
+    mask-size: 1.5rem 1.5rem;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: rgb(19 18 18 / 10%);
+  }
+}
+
+// Responsive styles (below Bootstrap lg)
+@media (width <= 991.98px) {
+  .breadcrumb {
+    --qld-breadcrumb-padding-y: var(--spacing-sm);
+  }
+
+  .breadcrumb-item {
+    max-width: unset;
+  }
+
+  .breadcrumb-item:nth-last-child(2) {
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 0;
+
+    // Rotate the back arrow 180 degrees, shift left to align chevron with text
+    &::after {
+      transform: rotate(180deg);
+      transform-origin: center;
+      margin-left: calc(var(--spacing-xs) * -0.5);
+      top: 7px;
+      min-width: 1.5rem;
+    }
+  }
+}
+
+// Large and above
+@media (width >= 992px) {
+  .breadcrumb-item {
+    display: inline;
+    font-size: var(--base-font-size);
+  }
+
+  .breadcrumb-item.active {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    flex-shrink: 999999;
+    margin-left: calc(var(--spacing-xs) * 0.5);
+  }
+}

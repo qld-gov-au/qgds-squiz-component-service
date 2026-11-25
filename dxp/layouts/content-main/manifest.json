@@ -1,0 +1,18 @@
+{
+  "name": "content-main",
+  "displayName": "Content main",
+  "description": "Main content area with side navigation column and primary content column (QGDS content page grid).",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "sidenav",
+      "displayName": "Side navigation",
+      "description": "Left column on large screens (col-lg-3). Typically the QGDS side navigation component."
+    },
+    {
+      "key": "main",
+      "displayName": "Main content",
+      "description": "Primary page body inside <main class=\"px-lg-32\"> (col-lg-8). Stack section layouts and components here."
+    }
+  ]
+}

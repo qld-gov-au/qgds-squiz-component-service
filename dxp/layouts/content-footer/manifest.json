@@ -1,0 +1,18 @@
+{
+  "name": "content-footer",
+  "displayName": "Content footer",
+  "description": "QGDS content footer row with content info and back-to-top actions.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "contentInfo",
+      "displayName": "Content info",
+      "description": "Left column (col-auto). Typically dates, tags, or other page metadata."
+    },
+    {
+      "key": "backToTop",
+      "displayName": "Back to top",
+      "description": "Right-aligned on medium screens and up. Typically the QGDS back-to-top component."
+    }
+  ]
+}

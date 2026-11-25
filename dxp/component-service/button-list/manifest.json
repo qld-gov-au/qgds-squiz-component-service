@@ -1,0 +1,89 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.2",
+  "name": "button-list",
+  "displayName": "Button List Component",
+  "description": "QGDS Bootstrap 5 - Button List Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "link",
+    "color": {"type": "hex", "value": "#6bbe27"}
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": "d-flex flex-md-row flex-sm-column flex-wrap gap-24 my-32"
+          },
+          "buttons": {
+            "type": "array",
+            "title": "Buttons",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "title": "Button",
+              "required": ["label"],
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label",
+                  "default": "Button label",
+                  "ui:metadata": {"inlineEditable": true}
+                },
+                "className": {
+                  "type": "string",
+                  "title": "Variant",
+                  "default": "btn-primary",
+                  "enum": ["btn-primary", "btn-secondary", "btn-tertiary"]
+                },
+                "link": {
+                  "type": "SquizLink",
+                  "title": "Link",
+                  "ui:metadata": {"inlineEditable": true}
+                },
+                "iconClass": {
+                  "type": "string",
+                  "title": "Icon class",
+                  "examples": ["qld-icon-"]
+                },
+                "iconPosition": {
+                  "type": "string",
+                  "title": "Icon position",
+                  "default": "leading",
+                  "enum": ["leading", "trailing"]
+                },
+                "ariaLabel": {
+                  "type": "string",
+                  "title": "Custom aria-label"
+                }
+              }
+            }
+          }
+        }
+      },
+      "output": {"responseType": "html"}
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": {"path": "preview.html"},
+          "inputData": {"type": "file", "path": "example.data.json"}
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

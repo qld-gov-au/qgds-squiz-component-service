@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "wrapperClasses": "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4",
+    "variant": "default",
+    "action": "multi",
+    "isArrowVisible": false,
+    "equalHeight": false
+  },
+  "cards": [
+    {
+      "heading": {
+        "title": "Card title",
+        "headingTag": "h3",
+        "link": {
+          "url": "#"
+        }
+      },
+      "body": {
+        "date": "",
+        "content": "Card body text <a href='#'>lorem ipsum</a> dolor sit amet."
+      },
+      "icon": {},
+      "image": {},
+      "feature": {
+        "enabled": false
+      },
+      "video": {
+        "enabled": false
+      },
+      "footer": {
+        "enabled": true,
+        "content": "<ul><li><a href='#'>Link text</a></li><li><a href='#'>Link text</a></li><li><a href='#'>Link text</a></li></ul>"
+      }
+    }
+  ]
+}

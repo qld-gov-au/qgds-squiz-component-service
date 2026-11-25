@@ -1,0 +1,101 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.0",
+  "name": "breadcrumbs",
+  "displayName": "Breadcrumbs",
+  "description": "QGDS Bootstrap 5 breadcrumbs. The trail is built from the Matrix site lineage for the page the component is placed on.",
+  "icon": {
+    "id": "chevron_right",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "API_HOME_PATHS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_TOKEN",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_DISK_CACHE",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    }
+  ],
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

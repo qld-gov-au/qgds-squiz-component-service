@@ -1,0 +1,229 @@
+// Side navigation.
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Spacing, font sizes and line heights use kernel tokens (src/styles/common/_variables.scss).
+// Spacing values with no exact token are expressed as a multiple of a token, so the layout is unchanged.
+
+$sidenav-accordion-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2309549f'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+$sidenav-accordion-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2378ba00'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+
+.qld-side-navigation {
+  --sidenav-level-one-left-padding: 0;
+  --sidenav-level-two-padding: calc(var(--spacing-sm) * 2);
+  --sidenav-level-three-padding: calc(var(--spacing-xs) * 7);
+  --sidenav-navlink-padding: var(--spacing-sm);
+  --sidenav-body-color: #414141;
+  --sidenav-heading-color: #04284c;
+  --sidenav-hover-bg: #f5f5f5;
+  --sidenav-hover-color: #09549f;
+  --sidenav-hover-underline-color: #09549f;
+  --sidenav-visited-color: #09549f;
+  --sidenav-active-color: #04284c;
+  --sidenav-heading-border-color: #6bbe27;
+  --sidenav-item-border-color: #7a7a7a;
+  --sidenav-subitem-border-color: #ebebeb;
+  --sidenav-submenu-divider: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ccddee' d='M2 10h12v1H2zM2 5h1v5H2z'/%3E%3C/svg%3E");
+  --sidenav-active-item-color: #04284c;
+  --qld-nav-link-color: #09549f;
+  --qld-accordion-color: #414141;
+  --qld-accordion-bg: #fff;
+  --qld-accordion-border-color: #ebebeb;
+  --qld-accordion-border-width: 1px;
+  --qld-accordion-border-radius: 0;
+  --qld-accordion-inner-border-radius: 0;
+  --qld-accordion-btn-padding-x: var(--spacing-sm);
+  --qld-accordion-btn-padding-y: var(--spacing-sm);
+  --qld-accordion-btn-color: #09549f;
+  --qld-accordion-btn-bg: #f5f5f5;
+  --qld-accordion-btn-icon: #{$sidenav-accordion-icon};
+  --qld-accordion-btn-active-icon: #{$sidenav-accordion-icon};
+  --qld-accordion-btn-icon-width: var(--spacing-md);
+  --qld-accordion-btn-icon-transform: rotate(180deg);
+  --qld-accordion-btn-icon-transition: transform 0.25s ease-in;
+  --qld-accordion-btn-focus-box-shadow: none;
+  --qld-accordion-active-bg: var(--qld-accordion-btn-bg);
+  --qld-accordion-active-color: var(--qld-accordion-btn-color);
+  --qld-focus: #0085b3;
+
+  border: var(--qld-accordion-border-width) solid var(--qld-accordion-border-color);
+  background-color: var(--qld-accordion-bg);
+}
+
+.light .qld-side-navigation {
+  --qld-accordion-bg: #eff4f9;
+  --qld-accordion-btn-bg: #e5eef5;
+  --qld-accordion-border-color: #cde;
+}
+
+.alt .qld-side-navigation {
+  --qld-accordion-bg: #e8e8e8;
+  --qld-accordion-btn-bg: #e0e0e0;
+  --qld-accordion-border-color: #7a7a7a;
+}
+
+// Shared 'Dark' theme variables
+.dark .qld-side-navigation,
+.dark-alt .qld-side-navigation {
+  --sidenav-body-color: #fff;
+  --sidenav-heading-color: #fff;
+  --sidenav-submenu-divider: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%2309ACFE' d='M2 10h12v1H2zM2 5h1v5H2z'/%3E%3C/svg%3E");
+  --sidenav-hover-bg: #04498f;
+  --sidenav-hover-color: #fff;
+  --sidenav-hover-underline-color: #fff;
+  --sidenav-visited-color: #fff;
+  --sidenav-active-color: #fff;
+  --sidenav-heading-border-color: #6bbe27;
+  --sidenav-item-border-color: #09acfe;
+  --sidenav-subitem-border-color: #1d9ac6;
+  --sidenav-active-item-color: #fff;
+  --qld-nav-link-color: #fff;
+  --qld-accordion-btn-icon: #{$sidenav-accordion-icon-dark};
+  --qld-accordion-btn-active-icon: #{$sidenav-accordion-icon-dark};
+  --qld-accordion-color: #fff;
+  --qld-accordion-btn-color: #fff;
+  --qld-accordion-active-color: #fff;
+  --qld-focus: #01b0e5;
+}
+
+// Theme specific variables
+.dark .qld-side-navigation {
+  --qld-accordion-bg: #09549f;
+  --qld-accordion-btn-bg: #04498f;
+  --qld-accordion-border-color: #1d9ac6;
+}
+
+.dark-alt .qld-side-navigation {
+  --qld-accordion-bg: #05325f;
+  --qld-accordion-btn-bg: #052c53;
+  --qld-accordion-border-color: #09acfe;
+}
+
+.qld-side-navigation .nav-title {
+  line-height: 1.5;
+  margin: 0;
+  border-bottom: 2px solid var(--sidenav-heading-border-color);
+}
+
+.qld-side-navigation .nav-title a {
+  color: var(--sidenav-heading-color);
+  text-decoration: none;
+  font-weight: inherit;
+  font-size: var(--base-font-size);
+}
+
+.qld-side-navigation .nav-title .nav-link {
+  line-height: var(--line-height-sm);
+}
+
+.qld-side-navigation .nav-title .nav-link:visited {
+  color: var(--sidenav-heading-color);
+}
+
+.qld-side-navigation .nav-link {
+  padding: var(--sidenav-navlink-padding);
+  font-size: var(--font-size-xs);
+  color: var(--sidenav-body-color);
+  text-decoration: none;
+  transition-duration: 0s;
+  line-height: var(--line-height-sm); // source 1.25rem (20px), nearest token
+
+  &:hover {
+    background-color: var(--sidenav-hover-bg);
+    color: var(--sidenav-hover-color);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+  }
+}
+
+.qld-side-navigation a.nav-link:visited {
+  color: var(--sidenav-visited-color);
+}
+
+.qld-side-navigation a.nav-link:visited:hover {
+  color: var(--sidenav-hover-color);
+  text-decoration-color: var(--sidenav-hover-underline-color);
+}
+
+.qld-side-navigation .nav-item.active {
+  color: var(--sidenav-active-color);
+}
+
+// Side navigation (ul.nav): remove bullets and reset left padding on nested lists
+.qld-side-navigation ul.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.qld-side-navigation ul.nav ul,
+.qld-side-navigation ul.nav ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+// First level items only
+.qld-side-navigation ul.nav > li.nav-item {
+  border-top: 1px solid var(--sidenav-item-border-color);
+}
+
+.qld-side-navigation ul.nav > li.nav-item:first-child {
+  border-top: none;
+}
+
+// Level two menu items
+.qld-side-navigation ul.nav li.nav-item > ul > li {
+  border-top: 1px solid var(--sidenav-subitem-border-color);
+}
+
+.qld-side-navigation ul.nav li.nav-item > ul > li > .nav-link {
+  padding-left: var(--sidenav-level-two-padding);
+}
+
+// Level three menu items
+.qld-side-navigation ul.nav li.nav-item > ul > li > ul > li {
+  border-top: none;
+}
+
+.qld-side-navigation ul.nav li.nav-item > ul > li > ul > li > .nav-link {
+  padding-left: var(--sidenav-level-three-padding);
+}
+
+// Active item: use > to only target the direct child, not nested nav-links
+.qld-side-navigation ul.nav li.nav-item.active > .nav-link {
+  font-weight: 600;
+  color: var(--sidenav-active-item-color);
+  text-decoration: none;
+}
+
+// Stalks on a UL menu (usually level 3): <ul class="nav ... with-stalks">
+.qld-side-navigation ul.nav .with-stalks .nav-item {
+  position: relative;
+}
+
+.qld-side-navigation ul.nav .with-stalks .nav-item::before {
+  content: "";
+  position: absolute;
+  background: var(--sidenav-submenu-divider);
+  background-repeat: no-repeat;
+  top: var(--spacing-sm);
+  left: calc(var(--spacing-sm) * 2);
+  bottom: 0;
+  width: var(--spacing-sm);
+}
+
+.qld-side-navigation .nav-wrapper {
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+@media (width >= 992px) {
+  .qld-side-navigation {
+    border: none;
+  }
+
+  .qld-side-navigation .nav-wrapper {
+    padding: 0;
+  }
+}

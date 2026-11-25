@@ -1,0 +1,65 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.5",
+  "name": "callout",
+  "displayName": "Callout Component",
+  "description": "QGDS Bootstrap 5 - Callout Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "format_quote",
+    "color": {"type": "hex", "value": "#6bbe27"}
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "variant": {
+            "type": "string",
+            "title": "Variant",
+            "enum": ["default", "light", "alt", "dark", "dark-alt"],
+            "default": "default",
+            "description": "Defines color variant",
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "ui:metadata": {"inlineEditable": true}
+          },
+          "content": {
+            "type": "FormattedText",
+            "title": "Content",
+            "ui:metadata": {"inlineEditable": true}
+          }
+        },
+        "required": ["content"]
+      },
+      "output": {"responseType": "html"}
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {"type": "file", "path": "example.data.json"},
+          "wrapper": {"path": "preview.html"}
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

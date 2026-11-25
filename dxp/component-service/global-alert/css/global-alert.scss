@@ -1,0 +1,183 @@
+.global-alert {
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --global-alert-focus-color: #222020;
+  --global-alert-bg-color: #e5eef5;
+  --global-alert-text-color: #414141;
+  --global-alert-border-color: #006a8f;
+  --global-alert-icon-color: #131212;
+  --global-alert-close-bg: rgb(19 18 18 / 10%);
+  --global-alert-close-icon-color: #000;
+  --global-alert-link-focus-color: #000;
+
+  background-color: var(--global-alert-bg-color);
+  color: var(--global-alert-text-color);
+  font-size: var(--font-size-xs);
+  line-height: var(--base-line-height);
+  border-radius: 0;
+  border-top-style: solid;
+  border-top-color: var(--global-alert-border-color);
+  border-width: 0;
+  padding-block: var(--spacing-xs);
+  padding-inline: var(--spacing-sm);
+  margin-bottom: 0;
+
+  &:first-child:not(:only-child) {
+    border-top-width: 1px;
+  }
+
+  & + & {
+    border-top-width: 1px;
+  }
+
+  .qld-global-alert-main {
+    display: flex;
+    column-gap: var(--spacing-sm);
+    align-items: flex-start;
+    width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .global-alert-icon {
+    width: toRem(20);
+    height: toRem(20);
+    padding: var(--spacing-xs) 0;
+
+    .qld-icon {
+      background-color: var(--global-alert-icon-color);
+    }
+  }
+
+  .global-alert-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex-grow: 1;
+    padding: var(--spacing-xs) 0;
+
+    // Link styling placed outside the 'action link', to include all links within the content as well.
+    a,
+    a:visited {
+      color: inherit;
+      text-decoration-color: inherit;
+      text-underline-offset: 0.3rem;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--global-alert-link-focus-color);
+      outline-offset: 2px;
+    }
+
+    .global-alert-action {
+      display: flex;
+      gap: var(--spacing-xs);
+    }
+
+    .global-alert-action a {
+      display: flex;
+      column-gap: var(--spacing-xs);
+      align-items: center;
+      font-weight: 600;
+      text-wrap: nowrap;
+    }
+  }
+
+  .global-alert-close {
+    display: inline-flex;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    align-items: center;
+
+    .btn-close {
+      position: relative;
+      top: 0;
+      right: 0;
+      background-color: var(--global-alert-close-bg);
+      border-radius: 50%;
+      width: toRem(32);
+      height: toRem(32);
+      background-image: none; // Overriding default Bootstrap close icon
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      padding: 0;
+      box-shadow: none;
+      transition: transform 0.2s ease;
+
+      &::before {
+        content: "";
+        display: block;
+        width: toRem(20);
+        height: toRem(20);
+        background-color: var(--global-alert-close-icon-color);
+        mask-image: var(--qgds-icon-close);
+        mask-position: center center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--global-alert-focus-color);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  &.global-alert-critical {
+    --global-alert-bg-color: #e22339;
+    --global-alert-text-color: #fff;
+    --global-alert-border-color: #8a1220;
+    --global-alert-icon-color: #fff;
+    --global-alert-focus-color: #fff;
+    --global-alert-close-icon-color: #fff;
+    --global-alert-link-focus-color: #fff;
+  }
+
+  &.global-alert-warning {
+    --global-alert-bg-color: #ffcc2c;
+    --global-alert-border-color: #b38800;
+  }
+
+  &.global-alert-info {
+    --global-alert-bg-color: #e5eef5;
+    --global-alert-border-color: #006a8f;
+  }
+}
+
+@media (width >= 768px) {
+  .global-alert .global-alert-content {
+    gap: var(--spacing-sm);
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+@media (width <= 991.98px) {
+  .global-alert .global-alert-content .global-alert-action {
+    margin-inline-end: toRem(32);
+  }
+}
+
+@media (width <= 767.98px) {
+  .global-alert .global-alert-content {
+    padding: 0;
+  }
+}
+
+@media (width >= 992px) {
+  .global-alert .global-alert-close .btn-close {
+    width: toRem(40);
+    height: toRem(40);
+
+    &::before {
+      width: var(--spacing-md);
+      height: var(--spacing-md);
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

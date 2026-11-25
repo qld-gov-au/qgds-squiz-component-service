@@ -1,0 +1,108 @@
+.qld-table {
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --table-border-color: #ebebeb;
+  --table-header-color: #04284c;
+  --table-cell-color: #414141;
+  --table-caption-color: #04284c;
+  --table-sub-caption-color: #636363;
+  --table-accent-color: #6bbe27;
+  --table-striped-bg: #f5f5f5;
+
+  border: 1px solid var(--table-border-color);
+  border-radius: #{toRem(12)};
+  margin-bottom: var(--spacing-sm);
+
+  // "Quiet table" without borders.
+  &--borderless {
+    border: 1px solid transparent;
+  }
+
+  .table {
+    margin-bottom: 0;
+    border-radius: #{toRem(12)};
+
+    // Required to maintain effective border-radius on the table.
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    caption {
+      caption-side: top;
+      text-align: start;
+      color: var(--table-caption-color);
+      padding: calc(var(--spacing-sm) * 0.75);
+      line-height: var(--line-height-lg);
+      font-weight: var(--font-bold);
+      font-size: var(--font-size-sm);
+      border-bottom: 1px solid var(--table-border-color);
+    }
+
+    .sub-caption {
+      color: var(--table-sub-caption-color);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-normal);
+      line-height: var(--base-line-height);
+      display: table-row;
+    }
+
+    thead th,
+    thead td {
+      border-bottom: 2px solid var(--table-accent-color);
+    }
+
+    th {
+      color: var(--table-header-color);
+      padding: calc(var(--spacing-sm) * 1.25) calc(var(--spacing-sm) * 0.75);
+      text-align: start;
+    }
+
+    td {
+      color: var(--table-cell-color);
+      padding: calc(var(--spacing-sm) * 0.75);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--table-border-color);
+    }
+
+    tfoot th,
+    tfoot td {
+      border-top: 2px solid var(--table-accent-color);
+      border-bottom: 0;
+      font-weight: var(--font-bold);
+      padding: calc(var(--spacing-sm) * 0.75);
+    }
+
+    &.table-striped tbody tr:nth-of-type(even) > * {
+      background-color: var(--table-striped-bg);
+    }
+
+    &.table-hover tbody tr:hover > * {
+      background-color: var(--table-striped-bg);
+    }
+  }
+
+  .table-dark {
+    --table-border-color: #1d9ac6;
+    --table-header-color: #fff;
+    --table-cell-color: #fff;
+    --table-caption-color: #fff;
+    --table-sub-caption-color: #fff;
+    --table-striped-bg: #04498f;
+
+    background-color: #09549f;
+    color: #fff;
+
+    caption,
+    .sub-caption {
+      background-color: #09549f;
+    }
+
+    thead th {
+      background-color: #04498f;
+    }
+  }
+}

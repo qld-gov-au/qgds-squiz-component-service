@@ -1,0 +1,236 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.0",
+  "name": "banner",
+  "displayName": "Banner Component",
+  "description": "QGDS Bootstrap 5 - Banner Component",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "API_HOME_PATHS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_TOKEN",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_DISK_CACHE",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    }
+  ],
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "generalSettings": {
+            "type": "object",
+            "title": "General settings",
+            "required": [],
+            "properties": {
+              "wrapperClasses": {
+                "type": "string",
+                "title": "Wrapper classes",
+                "default": ""
+              },
+              "bannerType": {
+                "type": "string",
+                "title": "Banner type",
+                "default": "default",
+                "description": "Defines banner spacing",
+                "enum": ["default", "no-banner", "banner-basic", "banner-advanced"],
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "variantClass": {
+                "type": "string",
+                "title": "Variant class",
+                "default": "default",
+                "enum": ["default", "light", "light-alt", "dark", "dark-alt"],
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "showBreadcrumbs": {
+                "type": "boolean",
+                "title": "Show breadcrumbs",
+                "description": "Shows the trail from the site root to the page the banner is placed on, from the Matrix site lineage.",
+                "default": false,
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              }
+            }
+          },
+          "textContent": {
+            "type": "object",
+            "title": "Text content",
+            "required": ["title"],
+            "properties": {
+              "blockTitle": {
+                "type": "boolean",
+                "title": "Use block style for title",
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "title": {
+                "type": "string",
+                "title": "Title",
+                "default": "Title",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "subtitle": {
+                "type": "string",
+                "title": "Subtitle",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "abstract": {
+                "type": "string",
+                "title": "Abstract",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            }
+          },
+          "backgroundType": {
+            "type": "string",
+            "title": "Background type",
+            "default": "none",
+            "enum": ["none", "with-texture", "with-bg-image", "with-hero-image"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "callToAction": {
+            "type": "string",
+            "title": "Call to action type",
+            "default": "none",
+            "enum": ["none", "buttons", "cards", "cards-mixed"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "ctaItems": {
+            "title": "CTA items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "SquizLink",
+                  "title": "Link",
+                  "description": "Component link - inline editable SquizLink",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                },
+                "variantClass": {
+                  "type": "string",
+                  "title": "Variant class",
+                  "description": "Button variant class, applies only when buttons is set in call to action type",
+                  "default": "btn-primary",
+                  "enum": ["btn-primary", "btn-secondary"]
+                }
+              },
+              "required": ["link"]
+            }
+          },
+          "bannerImageField": {
+            "type": "object",
+            "title": "Image",
+            "required": [],
+            "properties": {
+              "squizImageField": {
+                "type": "SquizImage",
+                "title": "Image",
+                "description": "Select image from Matrix.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            }
+          },
+          "imageClasses": {
+            "type": "string",
+            "title": "Image classes",
+            "default": "default",
+            "enum": ["default", "align-grid", "align-right", "align-right-with-gradient"]
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

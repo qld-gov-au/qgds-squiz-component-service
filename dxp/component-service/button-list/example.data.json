@@ -1,0 +1,20 @@
+{
+  "wrapperClasses": "d-flex flex-md-row flex-column flex-wrap gap-24 my-32",
+  "buttons": [
+    {
+      "className": "btn-primary",
+      "progressLabel": "Loading",
+      "iconClass": "qld-icon-external-link",
+      "iconPosition": "leading",
+      "label": "Call to action primary",
+      "link": {"text": "Google", "url": "https://google.com", "target": "_blank"}
+    },
+    {
+      "className": "btn-secondary",
+      "iconClass": "qld-icon-external-link",
+      "iconPosition": "leading",
+      "label": "Call to action secondary",
+      "link": {"text": "Google", "url": "https://google.com", "target": "_blank"}
+    }
+  ]
+}

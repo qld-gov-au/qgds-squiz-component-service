@@ -1,0 +1,338 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.0",
+  "name": "footer",
+  "displayName": "Footer",
+  "description": "Queensland Government site footer: contact us, government links, social links, Acknowledgement of Country, Coat of Arms and copyright.",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "web_asset",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "environment": [
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "AMAPI_TOKEN",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    }
+  ],
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "variant": {
+            "type": "string",
+            "title": "Colour variant",
+            "description": "Default is light. Dark and dark alt contrast the footer with the primary content.",
+            "default": "default",
+            "enum": ["default", "dark", "dark-alt"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "sitename": {
+            "type": "string",
+            "title": "Site name",
+            "description": "Shown above the footer columns. Leave empty to hide the row. To edit it in the preview, enter a name first.",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "contact": {
+            "type": "object",
+            "title": "Contact us",
+            "required": [],
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Heading",
+                "description": "Leave empty for \"Contact us\"."
+              },
+              "content": {
+                "type": "FormattedText",
+                "title": "Introduction",
+                "description": "Leave empty for the default introduction.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "button": {
+                "type": "SquizLink",
+                "title": "Contact button",
+                "description": "Leave empty for the default link to qld.gov.au/contact-us.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "showList": {
+                "type": "boolean",
+                "title": "Show contact details",
+                "default": true
+              },
+              "list": {
+                "type": "array",
+                "title": "Contact details",
+                "description": "Leave empty for the default phone and email details.",
+                "items": {
+                  "type": "object",
+                  "title": "Contact detail",
+                  "required": [],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "title": "Type",
+                      "enum": ["phone", "email"]
+                    },
+                    "label": {
+                      "type": "string",
+                      "format": "multi-line",
+                      "title": "Label"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "footerLinks": {
+            "type": "object",
+            "title": "Government links",
+            "description": "Leave the list empty to show the mandatory Queensland Government links.",
+            "required": [],
+            "properties": {
+              "list": {
+                "type": "array",
+                "title": "Links",
+                "items": {
+                  "type": "SquizLink",
+                  "title": "Link"
+                }
+              }
+            }
+          },
+          "optionalColumn1": {
+            "type": "object",
+            "title": "Optional column 1",
+            "required": [],
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Heading"
+              },
+              "content": {
+                "type": "string",
+                "format": "multi-line",
+                "title": "Content"
+              },
+              "followLinks": {
+                "type": "array",
+                "title": "Social links",
+                "items": {
+                  "type": "object",
+                  "title": "Social link",
+                  "required": [],
+                  "properties": {
+                    "icon": {
+                      "type": "string",
+                      "title": "Icon",
+                      "enum": ["facebook", "instagram", "linkedin", "x", "youtube"]
+                    },
+                    "accessibleLabel": {
+                      "type": "string",
+                      "title": "Screen reader label",
+                      "description": "Leave empty to use the link text."
+                    },
+                    "link": {
+                      "type": "SquizLink",
+                      "title": "Link"
+                    }
+                  }
+                }
+              },
+              "customLinks": {
+                "type": "array",
+                "title": "Custom links",
+                "items": {
+                  "type": "SquizLink",
+                  "title": "Link"
+                }
+              }
+            }
+          },
+          "optionalColumn2": {
+            "type": "object",
+            "title": "Optional column 2",
+            "required": [],
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Heading"
+              },
+              "content": {
+                "type": "string",
+                "format": "multi-line",
+                "title": "Content"
+              },
+              "followLinks": {
+                "type": "array",
+                "title": "Social links",
+                "items": {
+                  "type": "object",
+                  "title": "Social link",
+                  "required": [],
+                  "properties": {
+                    "icon": {
+                      "type": "string",
+                      "title": "Icon",
+                      "enum": ["facebook", "instagram", "linkedin", "x", "youtube"]
+                    },
+                    "accessibleLabel": {
+                      "type": "string",
+                      "title": "Screen reader label",
+                      "description": "Leave empty to use the link text."
+                    },
+                    "link": {
+                      "type": "SquizLink",
+                      "title": "Link"
+                    }
+                  }
+                }
+              },
+              "customLinks": {
+                "type": "array",
+                "title": "Custom links",
+                "items": {
+                  "type": "SquizLink",
+                  "title": "Link"
+                }
+              }
+            }
+          },
+          "acknowledgement": {
+            "type": "FormattedText",
+            "title": "Acknowledgement of Country",
+            "description": "Leave empty for the default Acknowledgement of Country. The heading is always \"Acknowledgement of Country\"."
+          },
+          "footerLogo": {
+            "type": "object",
+            "title": "Logo",
+            "required": [],
+            "properties": {
+              "show": {
+                "type": "boolean",
+                "title": "Show Coat of Arms"
+              }
+            }
+          },
+          "copyright": {
+            "type": "object",
+            "title": "Copyright",
+            "required": [],
+            "properties": {
+              "content": {
+                "type": "FormattedText",
+                "title": "Copyright text",
+                "description": "Leave empty for \"\u00a9 The State of Queensland\". Add the department name, for example \"\u00a9 The State of Queensland (Department of X)\". The current year is added automatically.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "yearFrom": {
+                "type": "string",
+                "title": "Start year",
+                "description": "Optional. The first year the site was published, for example 2003. The copyright line then shows 2003\u20132026. Leave empty to show the current year only."
+              }
+            }
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "defaultBlank": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.blank.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "dark": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.dark.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "darkAlt": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.darkAlt.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

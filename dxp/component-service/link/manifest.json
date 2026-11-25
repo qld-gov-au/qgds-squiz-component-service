@@ -1,0 +1,88 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.4",
+  "name": "link",
+  "displayName": "Link",
+  "description": "QGDS Bootstrap 5 - Link Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "link",
+    "color": {"type": "hex", "value": "#6bbe27"}
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "variant": {
+            "type": "string",
+            "title": "Variant",
+            "description": "Wrap link(s) in a div with class \"dark\" for dark theme styling.",
+            "enum": ["default", "dark"],
+            "default": "default"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "Link",
+              "properties": {
+                "link": {"type": "SquizLink", "title": "Link"},
+                "id": {"type": "string", "title": "ID", "default": ""},
+                "ariaLabel": {
+                  "type": "string",
+                  "title": "ARIA label",
+                  "description": "Accessible label. If empty, the link text is used."
+                },
+                "iconClass": {
+                  "type": "string",
+                  "title": "Icon class",
+                  "default": "qld-icon-document-pdf",
+                  "examples": ["qld-icon-document-pdf", "qld-icon-document-word", "qld-icon-document-spreadsheet", "qld-icon-image"]
+                },
+                "iconPosition": {
+                  "type": "string",
+                  "title": "Icon position",
+                  "default": "leading",
+                  "enum": ["leading", "trailing"]
+                },
+                "download": {
+                  "type": "string",
+                  "title": "Download",
+                  "description": "Download attribute (e.g. filename). Leave empty for no download.",
+                  "default": ""
+                }
+              },
+              "required": []
+            }
+          }
+        },
+        "required": []
+      },
+      "output": {"responseType": "html"}
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {"type": "file", "path": "example.data.json"},
+          "wrapper": {"path": "preview.html"}
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

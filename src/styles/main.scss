@@ -1,0 +1,6 @@
+// All common files - fonts, variables, etc. It also contains styles for themes switcher.
+@use "./common/**/*";
+
+// Components - styles for all components in the default theme.
+// @import 'components/**/*';
+@use "../../dxp/component-service/**/css/*";

@@ -1,0 +1,17 @@
+{
+  "variant": "dark",
+  "links": [
+    {
+      "link": {
+        "text": "Document title (PDF 2.5 MB)",
+        "url": "#",
+        "target": "_self"
+      },
+      "id": "",
+      "ariaLabel": "Document title (PDF 2.5 MB)",
+      "iconClass": "qld-icon-document-pdf",
+      "iconPosition": "leading",
+      "download": ""
+    }
+  ]
+}

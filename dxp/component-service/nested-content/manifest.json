@@ -1,0 +1,56 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.2",
+  "name": "nested-content",
+  "displayName": "Nested content",
+  "description": "QGDS Bootstrap 5 - Select pages from other locations in Matrix and embed that content into your page.",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "note_add",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "properties": {
+          "matrixAsset": {
+            "type": "string",
+            "format": "matrix-asset-uri",
+            "title": "Squiz asset",
+            "description": "Select an asset to embed into this location."
+          }
+        },
+        "required": ["matrixAsset"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

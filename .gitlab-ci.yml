@@ -1,0 +1,60 @@
+default:
+  tags:
+    - general/small
+  image: docker-hub.squiz.net/docker/base-images/node:24-alpine
+
+stages:
+    - lint-and-test
+    - build
+    - deploy
+
+lint-and-test:
+    stage: lint-and-test
+    script:
+        - npm ci
+        - npm run lint:js
+        - npm run lint:css
+        - npm run test
+    rules:
+        - if: $CI_PIPELINE_SOURCE != "merge_request_event" && $CI_COMMIT_BRANCH !~ /^deploy/
+
+build:
+    stage: build
+    script:
+        - npm ci
+        - npm run build
+    artifacts:
+        paths:
+            - dist/
+    rules:
+        - if: $CI_PIPELINE_SOURCE != "merge_request_event" && $CI_COMMIT_BRANCH !~ /^deploy/ && $CI_COMMIT_MESSAGE !~ /^\[WIP\]/
+
+deploy:
+    stage: deploy
+    before_script:
+        - apk add --no-cache openssh-client git
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        - chmod 644 ~/.ssh/known_hosts
+        - chmod 600 ~/.ssh/id_rsa
+        - git config --global user.name "$GITLAB_USER_NAME"
+        - git config --global user.email "$GITLAB_USER_EMAIL"
+    script:
+        - DEPLOY_BRANCH="deploy/$CI_COMMIT_BRANCH"
+        - git branch -D $DEPLOY_BRANCH || true
+        - git checkout --orphan $DEPLOY_BRANCH
+        - mkdir temp_store
+        - find . -mindepth 1 -maxdepth 1 ! -name 'temp_store' ! -name '.git' -exec mv {} temp_store/ \;
+        - mv temp_store/dist/* .
+        - rm -rf temp_store
+        - git add -f .
+        - git commit -m "Runner build of ${CI_COMMIT_SHA:0:8}" -m "Original message:" -m "$CI_COMMIT_MESSAGE"
+        - git push --force "$BUILD_REPOSITORY" "$DEPLOY_BRANCH"
+    dependencies:
+        - build
+    rules:
+        - if: $CI_PIPELINE_SOURCE != "merge_request_event" && $CI_COMMIT_BRANCH !~ /^deploy/ && $CI_COMMIT_MESSAGE !~ /^\[WIP\]/

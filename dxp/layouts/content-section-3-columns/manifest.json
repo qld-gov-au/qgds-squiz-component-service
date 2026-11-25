@@ -1,0 +1,23 @@
+{
+  "name": "content-section-3-columns",
+  "displayName": "Content section - 3 columns",
+  "description": "Three-column content layout with equal-width columns in a centred container.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "column1",
+      "displayName": "Column 1",
+      "description": "First column (left on medium screens and up). Stack components in reading order."
+    },
+    {
+      "key": "column2",
+      "displayName": "Column 2",
+      "description": "Second column (centre on medium screens and up)."
+    },
+    {
+      "key": "column3",
+      "displayName": "Column 3",
+      "description": "Third column (right on medium screens and up)."
+    }
+  ]
+}

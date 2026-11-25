@@ -1,0 +1,85 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.3",
+  "name": "inpage-alert",
+  "displayName": "Inpage Alert",
+  "description": "QGDS Bootstrap 5 - Inpage Alert Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "report_problem",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "variantClass": {
+            "type": "string",
+            "title": "Alert type",
+            "default": "success",
+            "enum": ["success", "info", "warning", "error"]
+          },
+          "heading": {
+            "type": "string",
+            "title": "Heading",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "headingTag": {
+            "type": "string",
+            "title": "Heading tag",
+            "default": "h2",
+            "enum": ["h2", "h3", "h4", "h5", "h6"]
+          },
+          "content": {
+            "type": "FormattedText",
+            "title": "Content",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "ariaLabel": {
+            "type": "string",
+            "title": "ARIA label"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

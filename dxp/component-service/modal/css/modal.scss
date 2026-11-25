@@ -1,0 +1,97 @@
+// QGDS Modal component
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+.modal {
+  --modal-padding: var(--spacing-md) var(--spacing-md);
+  --modal-border-color: #ebebeb;
+  --modal-border-width: #{toRem(1)};
+  --modal-border-radius: #{toRem(12)};
+  --modal-header-padding: var(--spacing-md) var(--spacing-md) 0;
+  --modal-header-border-width: 0;
+  --modal-title-line-height: var(--line-height-lg);
+  --modal-title-font-size: var(--font-size-md);
+  --modal-footer-gap: 0;
+  --modal-footer-bg: none;
+  --modal-footer-border-width: 0;
+
+  // Bootstrap modal variables
+  --bs-modal-padding: var(--modal-padding);
+  --bs-modal-border-color: var(--modal-border-color);
+  --bs-modal-border-width: var(--modal-border-width);
+  --bs-modal-border-radius: var(--modal-border-radius);
+  --bs-modal-header-padding: var(--modal-header-padding);
+  --bs-modal-header-border-width: var(--modal-header-border-width);
+  --bs-modal-title-line-height: var(--modal-title-line-height);
+  --bs-modal-footer-gap: var(--modal-footer-gap);
+  --bs-modal-footer-bg: var(--modal-footer-bg);
+  --bs-modal-footer-border-width: var(--modal-footer-border-width);
+
+  .btn-close {
+    --modal-close-size: #{toRem(40)};
+    --modal-close-color: #636363;
+    --modal-close-hover-color: #04284c;
+    --modal-close-hover-bg: #f5f5f5;
+    --modal-close-focus-outline: #0085b3;
+    --modal-close-icon: url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 13 13' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23636363' d='M18.0547 18.5938C17.8203 18.8281 17.3906 18.8281 17.1562 18.5938L12 13.3984L6.80469 18.5938C6.57031 18.8281 6.14062 18.8281 5.90625 18.5938C5.67188 18.3594 5.67188 17.9297 5.90625 17.6953L11.1016 12.5L5.90625 7.34375C5.67188 7.10938 5.67188 6.67969 5.90625 6.44531C6.14062 6.21094 6.57031 6.21094 6.80469 6.44531L12 11.6406L17.1562 6.44531C17.3906 6.21094 17.8203 6.21094 18.0547 6.44531C18.2891 6.67969 18.2891 7.10938 18.0547 7.34375L12.8594 12.5L18.0547 17.6953C18.2891 17.9297 18.2891 18.3594 18.0547 18.5938Z' /%3E%3C/svg%3E%0A");
+
+    width: var(--modal-close-size);
+    height: var(--modal-close-size);
+    padding: 0;
+    flex-shrink: 0; // Flex, do not shrink this perfectly round button.
+    border-radius: 50%;
+    color: var(--modal-close-color);
+    background-image: var(--modal-close-icon);
+    background-size: #{toRem(12)};
+
+    &:hover {
+      color: var(--modal-close-hover-color);
+      background-color: var(--modal-close-hover-bg);
+      background-size: #{toRem(15)};
+    }
+
+    &:focus {
+      color: var(--modal-close-hover-color);
+      background-color: var(--modal-close-hover-bg);
+      background-size: #{toRem(15)};
+      box-shadow: none;
+      outline: #{toRem(3)} solid var(--modal-close-focus-outline);
+      outline-offset: #{toRem(2)};
+    }
+  }
+
+  .modal-header .modal-title {
+    font-size: var(--modal-title-font-size);
+    line-height: var(--modal-title-line-height);
+  }
+
+  .modal-footer {
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    padding: 0 var(--spacing-md) var(--spacing-md);
+
+    .btn {
+      margin: 0 0 0 var(--spacing-md);
+    }
+  }
+
+  // Rescope for smaller modals
+  .modal-dialog.modal-sm .modal-footer {
+    flex-wrap: wrap;
+
+    .btn {
+      width: 100%;
+      margin: var(--spacing-sm) 0;
+    }
+  }
+
+  // Rescope for smaller viewports (below Bootstrap md breakpoint)
+  @media (max-width: #{toRem(767.98)}) {
+    .modal-footer {
+      flex-wrap: wrap;
+
+      .btn {
+        width: 100%;
+        margin: var(--spacing-sm) 0;
+      }
+    }
+  }
+}

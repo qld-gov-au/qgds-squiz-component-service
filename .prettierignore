@@ -1,0 +1,7 @@
+*.md
+node_modules/
+package.json
+*.lock
+*-lock.json
+src/coverage
+.gitlab-ci.yml

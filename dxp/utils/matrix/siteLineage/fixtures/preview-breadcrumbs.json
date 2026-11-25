@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Home",
+    "url": "/"
+  },
+  {
+    "title": "Fire information",
+    "url": "/fire-information"
+  },
+  {
+    "title": "Fires Near Me",
+    "url": "/fire-information/fires-near-me"
+  }
+]

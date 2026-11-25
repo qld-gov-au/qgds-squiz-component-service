@@ -1,0 +1,13 @@
+{
+  "name": "landing-main",
+  "displayName": "Landing main",
+  "description": "Landing page layout with one full-width main content zone for hero, promotional, and body components.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "wide",
+      "displayName": "Main content",
+      "description": "Full-width content area inside a fluid container. Use for banners, panels, and stacked page components."
+    }
+  ]
+}

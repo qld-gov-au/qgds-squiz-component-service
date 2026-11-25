@@ -1,0 +1,56 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.1",
+  "name": "raw-code",
+  "displayName": "Raw code",
+  "description": "Use carefully to insert raw HTML or embedded code snippets.",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "code",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "properties": {
+          "rawCode": {
+            "type": "string",
+            "format": "multi-line",
+            "title": "Raw code",
+            "description": "Use carefully to insert raw HTML or embedded code snippets."
+          }
+        },
+        "required": ["rawCode"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

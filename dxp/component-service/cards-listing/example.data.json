@@ -1,0 +1,16 @@
+{
+  "intro": {
+    "headingTag": "h2",
+    "title": "Explore the design system"
+  },
+  "listing": {
+    "source": "custom",
+    "rootNode": "matrix-asset://tgh1-web/465"
+  },
+  "settings": {
+    "columns": "2",
+    "variant": "default",
+    "display": "name",
+    "isEqualHeight": true
+  }
+}

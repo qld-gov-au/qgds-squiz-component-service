@@ -1,0 +1,94 @@
+[
+  {
+    "id": "hub-1",
+    "title": "Section one",
+    "url": "/section-one",
+    "assetType": "page_content",
+    "children": [
+      {
+        "id": "hub-1-child-1",
+        "title": "Overview",
+        "url": "/section-one/overview",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-1-child-2",
+        "title": "Getting started",
+        "url": "/section-one/getting-started",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-1-child-3",
+        "title": "FAQ",
+        "url": "/section-one/faq",
+        "assetType": "page_content"
+      }
+    ]
+  },
+  {
+    "id": "hub-2",
+    "title": "Section two",
+    "url": "/section-two",
+    "assetType": "page_content",
+    "children": [
+      {
+        "id": "hub-2-child-1",
+        "title": "Services",
+        "url": "/section-two/services",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-2-child-2",
+        "title": "Support",
+        "url": "/section-two/support",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-2-child-3",
+        "title": "Contact",
+        "url": "/section-two/contact",
+        "assetType": "page_content"
+      }
+    ]
+  },
+  {
+    "id": "hub-3",
+    "title": "Section three",
+    "url": "/section-three",
+    "assetType": "page_content",
+    "children": [
+      {
+        "id": "hub-3-child-1",
+        "title": "News",
+        "url": "/section-three/news",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-3-child-2",
+        "title": "Events",
+        "url": "/section-three/events",
+        "assetType": "page_content"
+      }
+    ]
+  },
+  {
+    "id": "hub-4",
+    "title": "About",
+    "url": "/about",
+    "assetType": "page_content",
+    "children": [
+      {
+        "id": "hub-4-child-1",
+        "title": "Our team",
+        "url": "/about/our-team",
+        "assetType": "page_content"
+      },
+      {
+        "id": "hub-4-child-2",
+        "title": "Careers",
+        "url": "/about/careers",
+        "assetType": "page_content"
+      }
+    ]
+  }
+]

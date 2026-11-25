@@ -1,0 +1,99 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.6",
+  "name": "global-alert",
+  "displayName": "Global Alert Component",
+  "description": "QGDS Bootstrap 5 - Global Alert Component",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "namespace": "qgds-bs5",
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "alertItems": {
+            "title": "Alert items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variant": {
+                  "type": "string",
+                  "title": "Variant",
+                  "enum": ["global-alert-critical", "global-alert-warning", "global-alert-info"]
+                },
+                "content": {
+                  "type": "FormattedText",
+                  "title": "Content",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                },
+                "link": {
+                  "type": "SquizLink",
+                  "title": "Link",
+                  "description": "Component link",
+                  "ui:metadata": {
+                    "inlineEditable": true
+                  }
+                },
+                "ariaLabel": {
+                  "type": "string",
+                  "title": "ARIA label"
+                },
+                "dismissedExpiryDays": {
+                  "type": "number",
+                  "title": "Dismissed expiry days"
+                },
+                "preventDismiss": {
+                  "type": "boolean",
+                  "title": "Prevent dismiss",
+                  "description": "Prevent the alert from being dismissed by the user.",
+                  "default": false
+                }
+              },
+              "required": ["variant", "content"]
+            }
+          }
+        },
+        "required": ["alertItems"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

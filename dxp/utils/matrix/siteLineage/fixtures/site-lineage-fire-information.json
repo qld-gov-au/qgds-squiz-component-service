@@ -1,0 +1,104 @@
+{
+  "links": [
+    {
+      "id": "link-home-fire",
+      "link_type": 1,
+      "parent_asset_id": "home",
+      "child_asset_id": "fire-information"
+    },
+    {
+      "id": "link-fire-fnm",
+      "link_type": 1,
+      "parent_asset_id": "fire-information",
+      "child_asset_id": "fires-near-me"
+    },
+    {
+      "id": "link-fire-alerts",
+      "link_type": 1,
+      "parent_asset_id": "fire-information",
+      "child_asset_id": "major-fire-updates"
+    },
+    {
+      "id": "link-fire-hr",
+      "link_type": 1,
+      "parent_asset_id": "fire-information",
+      "child_asset_id": "hazard-reductions"
+    },
+    {
+      "id": "link-hr-smoke",
+      "link_type": 1,
+      "parent_asset_id": "hazard-reductions",
+      "child_asset_id": "smoke-hr"
+    },
+    {
+      "id": "link-hr-managing",
+      "link_type": 1,
+      "parent_asset_id": "hazard-reductions",
+      "child_asset_id": "managing-smoke"
+    },
+    {
+      "id": "link-fire-fdr",
+      "link_type": 1,
+      "parent_asset_id": "fire-information",
+      "child_asset_id": "fdr-map"
+    }
+  ],
+  "assets": [
+    {
+      "id": "home",
+      "type": "page_standard",
+      "name": "Home",
+      "url": "/",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "fire-information",
+      "type": "page_standard",
+      "name": "Fire information",
+      "url": "/fire-information",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "fires-near-me",
+      "type": "page_standard",
+      "name": "Fires Near Me",
+      "url": "/fire-information/fires-near-me",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "major-fire-updates",
+      "type": "page_standard",
+      "name": "Alerts and Warnings",
+      "url": "/fire-information/major-fire-updates",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "hazard-reductions",
+      "type": "page_standard",
+      "name": "Hazard Reductions",
+      "url": "/hazard-reductions",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "smoke-hr",
+      "type": "page_standard",
+      "name": "Smoke from Hazard Reduction",
+      "url": "/fire-information/hazard-reductions/smoke-from-hazard-reduction",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "managing-smoke",
+      "type": "page_standard",
+      "name": "Managing smoke and its impact on the community",
+      "url": "/fire-information/hazard-reductions/managing-smoke-and-its-impact-on-the-community",
+      "status": {"id": 2, "code": "live"}
+    },
+    {
+      "id": "fdr-map",
+      "type": "page_standard",
+      "name": "Fire Danger Ratings and Total Fire Bans",
+      "url": "/fire-danger-ratings-map",
+      "status": {"id": 2, "code": "live"}
+    }
+  ]
+}

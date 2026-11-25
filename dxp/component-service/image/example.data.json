@@ -1,0 +1,42 @@
+{
+  "imageField": {
+    "imageSource": "squizImage",
+    "squizImageField": {
+      "name": "Health workers",
+      "alt": "Two healthcare workers sitting on a park bench reviewing information on a tablet device",
+      "caption": "Queensland Health staff using mobile technology to improve patient care and access medical records in the field",
+      "imageVariations": {
+        "original": {
+          "url": "https://qld-gov-au.github.io/qgds-bootstrap5/assets/img/image-example-health-workers-md.jpg",
+          "width": 768,
+          "height": 512,
+          "byteSize": 50000,
+          "mimeType": "image/jpeg",
+          "aspectRatio": "3:2",
+          "sha1Hash": ""
+        }
+      }
+    }
+  },
+  "ratioClass": "image-ratio-3x2",
+  "otherClass": "",
+  "imagePosition": {
+    "positionX": "position-x-center",
+    "positionY": "position-y-center"
+  },
+  "customSizeOptions": {
+    "width": "",
+    "widthUnit": "px",
+    "height": "",
+    "heightUnit": "px"
+  },
+  "figCaptionOptions": {
+    "figureClass": "",
+    "caption": "Queensland Health staff using mobile technology to improve patient care and access medical records in the field",
+    "credit": "Photo by Queensland Government"
+  },
+  "lazy": false,
+  "style": "",
+  "tabindex": "",
+  "role": ""
+}

@@ -1,0 +1,723 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.17",
+  "name": "header",
+  "displayName": "Header",
+  "description": "Queensland Government site header: pre-header, brand variants, site search, and primary navigation from site lineage.",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "menu",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "SITE_ROOT_ASSET_ID",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    },
+    {
+      "name": "AMAPI_DISK_CACHE",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    },
+    {
+      "name": "LOCAL_FUNNELBACK_SUGGEST_URL",
+      "required": false
+    },
+    {
+      "name": "FUNNELBACK_SUGGEST_UPSTREAM",
+      "required": false
+    }
+  ],
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "brandLayout": {
+            "type": "string",
+            "title": "Brand layout",
+            "description": "Queensland Health brand architecture layout.",
+            "default": "masterBrand",
+            "enum": ["masterBrand", "subBrand", "coBrand", "endorsedBrand", "standaloneBrand"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          },
+          "hasDeliveringForQLDLogo": {
+            "type": "boolean",
+            "title": "Delivering for Queensland logo",
+            "description": "Shows the Delivering for Queensland logo in the pre-header on small screens."
+          },
+          "siteRootAssetId": {
+            "type": "string",
+            "title": "Site root asset ID",
+            "description": "Matrix asset ID for the site root used to build primary navigation from site lineage. When empty, uses the component set SITE_ROOT_ASSET_ID environment variable."
+          },
+          "navigation": {
+            "type": "object",
+            "title": "Primary navigation",
+            "description": "Layout and metadata for primary nav built from site lineage (not used for manifest preview fixture trees).",
+            "required": [],
+            "properties": {
+              "layout": {
+                "type": "string",
+                "title": "Navigation layout",
+                "description": "Simple list shows compact dropdowns; mega menu shows child blurbs from the configured metadata field.",
+                "default": "simpleList",
+                "enum": ["simpleList", "megaMenu"]
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "layout": {
+                      "const": "megaMenu"
+                    }
+                  },
+                  "required": []
+                },
+                "then": {
+                  "properties": {
+                    "descriptionMetadataFieldKey": {
+                      "type": "string",
+                      "title": "Description metadata field key",
+                      "description": "Short name of the metadata field on each child page asset e.g. 'page-lead'."
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ]
+          },
+          "preHeader": {
+            "type": "object",
+            "title": "Pre-header",
+            "required": [],
+            "properties": {
+              "globalLink": {
+                "type": "SquizLink",
+                "title": "Global link",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "actions": {
+                "type": "array",
+                "title": "Pre-header actions",
+                "items": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "dropdown": {
+                      "type": "object",
+                      "title": "Dropdown",
+                      "required": [],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "title": "Dropdown type",
+                          "enum": ["none", "list", "html", "form"],
+                          "default": "none"
+                        }
+                      },
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "type": {
+                                "enum": ["list", "html", "form"]
+                              }
+                            },
+                            "required": []
+                          },
+                          "then": {
+                            "properties": {
+                              "text": {
+                                "type": "string",
+                                "title": "Dropdown label",
+                                "description": "Toggle label for list, HTML, or form dropdowns."
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "type": {
+                                "const": "none"
+                              }
+                            },
+                            "required": []
+                          },
+                          "then": {
+                            "properties": {
+                              "icon": {
+                                "type": "string",
+                                "title": "Icon",
+                                "description": "Type of icon for plain link actions.",
+                                "enum": ["phone", "login", "profile", "email", "help", "search"],
+                                "examples": ["phone", "login", "profile"]
+                              },
+                              "link": {
+                                "type": "SquizLink",
+                                "title": "Link",
+                                "description": "Plain pre-header link when dropdown type is none. Omit for list, HTML, or form dropdowns.",
+                                "ui:metadata": {
+                                  "inlineEditable": true
+                                }
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "type": {
+                                "const": "list"
+                              }
+                            },
+                            "required": []
+                          },
+                          "then": {
+                            "properties": {
+                              "items": {
+                                "type": "array",
+                                "title": "Dropdown items",
+                                "items": {
+                                  "type": "SquizLink",
+                                  "title": "Link",
+                                  "ui:metadata": {
+                                    "inlineEditable": true
+                                  }
+                                }
+                              },
+                              "viewMore": {
+                                "type": "SquizLink",
+                                "title": "View more link",
+                                "ui:metadata": {
+                                  "inlineEditable": true
+                                }
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "type": {
+                                "enum": ["html", "form"]
+                              }
+                            },
+                            "required": []
+                          },
+                          "then": {
+                            "properties": {
+                              "HTMLContent": {
+                                "type": "string",
+                                "format": "multi-line",
+                                "title": "HTML content",
+                                "description": "Raw HTML when dropdown type is HTML or form. Authors enter markup explicitly.",
+                                "default": ""
+                              }
+                            },
+                            "required": []
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "mainContent": {
+            "type": "object",
+            "title": "Main header content",
+            "required": [],
+            "properties": {
+              "url": {
+                "type": "SquizLink",
+                "title": "Brand link",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            }
+          },
+          "assets": {
+            "type": "object",
+            "title": "Assets",
+            "required": [],
+            "properties": {
+              "siteSearch": {
+                "type": "object",
+                "title": "Site search",
+                "required": [],
+                "properties": {
+                  "enabled": {
+                    "type": "string",
+                    "title": "Show search",
+                    "enum": ["show", "hide"],
+                    "default": "show"
+                  },
+                  "placeholder": {
+                    "type": "string",
+                    "title": "Placeholder"
+                  },
+                  "label": {
+                    "type": "string",
+                    "title": "Label"
+                  },
+                  "searchResultsUrl": {
+                    "type": "string",
+                    "title": "Search results page URL",
+                    "description": "Site search page (form action). Client JS appends Funnelback query parameters on submit."
+                  },
+                  "autosuggestUrl": {
+                    "type": "string",
+                    "title": "Autosuggest URL",
+                    "description": "Funnelback suggest.json base URL (no query string)."
+                  },
+                  "collection": {
+                    "type": "string",
+                    "title": "Collection"
+                  },
+                  "profile": {
+                    "type": "string",
+                    "title": "Profile"
+                  },
+                  "numRanks": {
+                    "type": "string",
+                    "title": "Number of results",
+                    "default": "10"
+                  },
+                  "tiers": {
+                    "type": "string",
+                    "title": "Tiers",
+                    "enum": ["off", "on"],
+                    "default": "off"
+                  }
+                }
+              }
+            }
+          },
+          "componentAdvancedOptions": {
+            "type": "object",
+            "title": "Advanced options",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "id": {
+                "type": "string",
+                "title": "Navigation ID",
+                "description": "HTML id on the primary nav element (default main-nav). Used by mobile menu toggle."
+              },
+              "classes": {
+                "type": "string",
+                "title": "Additional header classes"
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "brandLayout": {
+                  "const": "masterBrand"
+                }
+              },
+              "required": []
+            },
+            "then": {
+              "properties": {
+                "mainContent": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "SquizLink",
+                      "title": "Brand link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "brandLayout": {
+                  "const": "subBrand"
+                }
+              },
+              "required": []
+            },
+            "then": {
+              "properties": {
+                "mainContent": {
+                  "type": "object",
+                  "title": "Main header content",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "SquizLink",
+                      "title": "Brand link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "secondaryLockupType": {
+                      "type": "string",
+                      "title": "Secondary lockup",
+                      "description": "Sub-brand secondary mark: site title text or an image.",
+                      "enum": ["text", "image"],
+                      "default": "text"
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "secondaryLockupType": {
+                            "const": "text"
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "siteTitle": {
+                            "type": "string",
+                            "title": "Site title",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          },
+                          "subline": {
+                            "type": "string",
+                            "title": "Subline",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "secondaryLockupType": {
+                            "const": "image"
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "secondaryLogo": {
+                            "type": "SquizImage",
+                            "title": "Secondary logo image",
+                            "description": "Agency mark beside the Queensland Government COA.",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "brandLayout": {
+                  "const": "coBrand"
+                }
+              },
+              "required": []
+            },
+            "then": {
+              "properties": {
+                "mainContent": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "SquizLink",
+                      "title": "Brand link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "siteTitle": {
+                      "type": "string",
+                      "title": "Site title",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "subline": {
+                      "type": "string",
+                      "title": "Subline",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "brandLayout": {
+                  "const": "endorsedBrand"
+                }
+              },
+              "required": []
+            },
+            "then": {
+              "properties": {
+                "mainContent": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "SquizLink",
+                      "title": "Brand link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "logo": {
+                      "type": "SquizImage",
+                      "title": "Primary logo image",
+                      "description": "Primary lockup image (Queensland Government COA artwork).",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "secondaryLogo": {
+                      "type": "SquizImage",
+                      "title": "Secondary logo image",
+                      "description": "Endorsing agency mark.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "siteTitle": {
+                      "type": "string",
+                      "title": "Site title",
+                      "description": "Optional; used for alt text when logos are set.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "subline": {
+                      "type": "string",
+                      "title": "Subline",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "brandLayout": {
+                  "const": "standaloneBrand"
+                }
+              },
+              "required": []
+            },
+            "then": {
+              "properties": {
+                "mainContent": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "url": {
+                      "type": "SquizLink",
+                      "title": "Brand link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "logo": {
+                      "type": "SquizImage",
+                      "title": "Primary logo image",
+                      "description": "Agency primary logo (required for stand-alone sites).",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "secondaryLogo": {
+                      "type": "SquizImage",
+                      "title": "Secondary logo image",
+                      "description": "Optional secondary mark.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "siteTitle": {
+                      "type": "string",
+                      "title": "Site title",
+                      "description": "Optional; used for alt text when logos are set.",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "subline": {
+                      "type": "string",
+                      "title": "Subline",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        ]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.dxp.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "subBrand": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.subBrand.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "coBrand": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.coBrand.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "endorsed": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.endorsed.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "standAlone": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.standAlone.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

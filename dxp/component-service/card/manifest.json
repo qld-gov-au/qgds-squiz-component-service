@@ -1,0 +1,447 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.0",
+  "name": "cards-advanced",
+  "displayName": "Cards Component (Advanced)",
+  "description": "QGDS Bootstrap 5 - Cards Component (Advanced). It allows more customisation compared to Simple version - featured cards, video overlay, footer",
+  "namespace": "qgds-bs5",
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "icon": {
+    "id": "widgets",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "settings": {
+            "type": "object",
+            "title": "Settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "enum": ["default", "light", "alt", "dark", "dark-alt"],
+                "default": "default",
+                "description": "Defines color variant",
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "wrapperClasses": {
+                "type": "string",
+                "title": "Wrapper classes",
+                "default": "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+              },
+              "action": {
+                "type": "string",
+                "title": "Click action",
+                "enum": ["none", "single", "multi"],
+                "default": "single",
+                "description": "Defines click behaviour, shadow visibility and icon colour; none - default state, single - entire card clickable + shadow on hover, multi - shadow on lower resolutions"
+              },
+              "isArrowVisible": {
+                "type": "boolean",
+                "title": "Include arrow",
+                "description": "Displays an arrow next to the heading"
+              },
+              "isEqualHeight": {
+                "type": "boolean",
+                "title": "Equal height",
+                "default": false,
+                "description": "Makes card the same height within a row as the other cards"
+              }
+            }
+          },
+          "cards": {
+            "type": "array",
+            "title": "Cards",
+            "default": [
+              {
+                "heading": {
+                  "title": "Card title"
+                }
+              }
+            ],
+            "items": {
+              "type": "object",
+              "title": "Card",
+              "required": [],
+              "properties": {
+                "heading": {
+                  "type": "object",
+                  "title": "Heading",
+                  "required": ["title"],
+                  "properties": {
+                    "headingTag": {
+                      "type": "string",
+                      "title": "Heading tag",
+                      "default": "h3",
+                      "enum": ["h2", "h3", "h4", "h5", "h6"]
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "Title",
+                      "default": "Card title",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "link": {
+                      "type": "SquizLink",
+                      "title": "Link",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                },
+                "body": {
+                  "type": "object",
+                  "title": "Body",
+                  "required": [],
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "title": "Date",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    },
+                    "content": {
+                      "type": "FormattedText",
+                      "title": "Content",
+                      "ui:metadata": {
+                        "inlineEditable": true
+                      }
+                    }
+                  }
+                },
+                "image": {
+                  "type": "object",
+                  "title": "Image",
+                  "required": [],
+                  "description": "Enables card main image settings",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "title": "Enable",
+                      "default": false
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "source": {
+                            "type": "string",
+                            "title": "Source",
+                            "enum": ["Matrix", "External"],
+                            "default": "Matrix",
+                            "description": "Defines image source"
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          },
+                          "source": {
+                            "const": "Matrix"
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "matrix": {
+                            "type": "SquizImage",
+                            "title": "Squiz Image",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          },
+                          "source": {
+                            "const": "External"
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "external": {
+                            "type": "object",
+                            "title": "External",
+                            "required": [],
+                            "properties": {
+                              "url": {
+                                "type": "string",
+                                "title": "URL",
+                                "description": "Image URL"
+                              },
+                              "alt": {
+                                "type": "string",
+                                "title": "Alt text",
+                                "description": "Image alt attribute"
+                              }
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                },
+                "icon": {
+                  "type": "object",
+                  "title": "Icon",
+                  "required": [],
+                  "description": "Enables card icon",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "title": "Enable",
+                      "default": false
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "iconClass": {
+                            "type": "string",
+                            "title": "Icon class",
+                            "examples": ["qld-icon-"]
+                          },
+                          "position": {
+                            "type": "string",
+                            "title": "Icon position",
+                            "enum": ["top", "left"],
+                            "default": "left"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                },
+                "feature": {
+                  "type": "object",
+                  "title": "Featured card",
+                  "required": [],
+                  "description": "Enables featured card",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "title": "Enable",
+                      "default": false
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "imagePosition": {
+                            "type": "string",
+                            "title": "Featured image position (on higher resolutions)",
+                            "enum": ["left", "right"],
+                            "default": "left"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                },
+                "video": {
+                  "type": "object",
+                  "title": "Video",
+                  "required": [],
+                  "description": "Enables video overlay",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "title": "Enable",
+                      "default": false
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "duration": {
+                            "type": "string",
+                            "title": "Video duration",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                },
+                "footer": {
+                  "type": "object",
+                  "title": "Footer",
+                  "required": [],
+                  "description": "Enables footer",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "title": "Enable",
+                      "default": false
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "enabled": {
+                            "const": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "then": {
+                        "properties": {
+                          "content": {
+                            "type": "FormattedText",
+                            "title": "Content",
+                            "ui:metadata": {
+                              "inlineEditable": true
+                            }
+                          },
+                          "cta": {
+                            "type": "SquizLink",
+                            "title": "Call to action"
+                          },
+                          "links": {
+                            "type": "object",
+                            "title": "Links",
+                            "required": [],
+                            "properties": {
+                              "variant": {
+                                "type": "string",
+                                "title": "Variant",
+                                "enum": ["default", "tags"],
+                                "default": "default",
+                                "description": "Defines links appeareance"
+                              },
+                              "items": {
+                                "type": "array",
+                                "title": "Items",
+                                "items": {
+                                  "type": "object",
+                                  "title": "Item",
+                                  "required": [],
+                                  "properties": {
+                                    "link": {
+                                      "type": "SquizLink",
+                                      "title": "Link"
+                                    },
+                                    "iconClass": {
+                                      "type": "string",
+                                      "title": "Icon class",
+                                      "examples": ["qld-icon-"],
+                                      "description": "Defines icon displayed next to the link (default variant only)"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.no-action.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "breadcrumb-wrapper",
+  "displayName": "Breadcrumb wrapper",
+  "description": "QGDS no-banner shell with a breadcrumbs zone inside the banner grid.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "breadcrumbs",
+      "displayName": "Breadcrumbs",
+      "description": "Breadcrumb navigation inside `.banner-breadcrumbs`. Typically the QGDS breadcrumbs component."
+    }
+  ]
+}

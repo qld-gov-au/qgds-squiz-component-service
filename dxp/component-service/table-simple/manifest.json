@@ -1,0 +1,166 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.0.4",
+  "name": "table-simple",
+  "displayName": "Table (Simple)",
+  "description": "QGDS Bootstrap 5 - Table (Simple) Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "table_chart",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "tableSettings": {
+            "type": "object",
+            "title": "Table settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "variantClass": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Visual variant for the table.",
+                "enum": ["default", "dark"],
+                "default": "default"
+              },
+              "hover": {
+                "type": "boolean",
+                "title": "Hover",
+                "description": "Enable hover state on table rows.",
+                "default": false
+              },
+              "customClass": {
+                "type": "string",
+                "title": "Table classes",
+                "description": "Additional CSS classes for table.",
+                "examples": ["qld-table--borderless"],
+                "default": ""
+              }
+            }
+          },
+          "tableContent": {
+            "type": "FormattedText",
+            "title": "Table content",
+            "description": "Table content.",
+            "ui:metadata": {
+              "inlineEditable": true
+            },
+            "default": [
+              {
+                "type": "tag",
+                "tag": "table",
+                "attributes": {
+                  "style": "width: 100%;"
+                },
+                "children": [
+                  {
+                    "type": "tag",
+                    "tag": "tbody",
+                    "children": [
+                      {
+                        "type": "tag",
+                        "tag": "tr",
+                        "children": [
+                          {
+                            "type": "tag",
+                            "tag": "td",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Cell"
+                              },
+                              {
+                                "type": "tag",
+                                "tag": "br"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tag",
+                            "tag": "td",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Cell"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tag",
+                        "tag": "tr",
+                        "children": [
+                          {
+                            "type": "tag",
+                            "tag": "td",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Cell"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tag",
+                            "tag": "td",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Cell"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

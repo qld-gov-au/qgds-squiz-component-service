@@ -1,0 +1,43 @@
+{
+  "generalSettings": {
+    "variantClass": "dark",
+    "bannerType": "banner-basic",
+    "showBreadcrumbs": true
+  },
+  "textContent": {
+    "title": "Heading 1",
+    "blockTitle": false,
+    "subtitle": "",
+    "abstract": "Renew your licence at a customer service centre, government office or police station."
+  },
+  "backgroundType": "with-hero-image",
+  "bannerImageField": {
+    "squizImageField": {
+      "name": "Banner example 3 to 2",
+      "alt": "Banner example 3 to 2",
+      "caption": "Banner example 3 to 2",
+      "imageVariations": {
+        "original": {
+          "url": "https://picsum.photos/536/354",
+          "width": 100,
+          "height": 100,
+          "byteSize": 1000,
+          "mimeType": "image/jpeg",
+          "aspectRatio": "3:2",
+          "sha1Hash": "1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    }
+  },
+  "callToAction": "buttons",
+  "ctaItems": [
+    {
+      "link": {
+        "text": "Link 1",
+        "url": "https://www.google.com"
+      },
+      "variantClass": "btn-primary"
+    }
+  ],
+  "imageClasses": "align-grid"
+}

@@ -1,0 +1,647 @@
+// Header.
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Spacing, font sizes and line heights use kernel tokens (src/styles/common/_variables.scss).
+// Spacing values with no exact token are expressed as a multiple of a token, so the layout is unchanged.
+
+$header-duration-fast: 0.2s;
+$header-timing-function: ease-out;
+
+// Icon base styles (replaces the source `make-icon` mixin). The icon image comes from the
+// `--qgds-icon-<name>` custom properties published by the QGDS CSS.
+@mixin header-icon($size: 1.25rem) {
+  --icon-size-internal: var(--icon-size, #{$size});
+
+  display: inline-block;
+  width: var(--icon-size-internal);
+  height: var(--icon-size-internal);
+  background-position: center center;
+  background-repeat: no-repeat;
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  background-size: contain;
+  vertical-align: middle;
+  color: var(--qld-icon-color, var(--qld-action-icon-color, inherit));
+  background-color: currentcolor;
+}
+
+// Focus ring (replaces the source `focusable` mixin).
+@mixin header-focusable($offset: 2px) {
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+
+  &:focus {
+    outline: 3px solid var(--qld-focus-color, #002e85);
+    outline-offset: $offset;
+  }
+}
+
+// Play nice with navbar header.
+:root {
+  --qld-header-preheader-height: 52px;
+}
+
+@media (width >= 768px) {
+  :root {
+    --qld-header-preheader-height: 72px;
+  }
+}
+
+@media (width >= 992px) {
+  :root {
+    --qld-header-preheader-height: 36px;
+  }
+}
+
+.qld-header {
+  font-size: var(--base-font-size);
+}
+
+@media (width >= 576px) {
+  .qld-header {
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Pre-header (palette context: default / dark / dark-alt)
+.qld-header-pre-header {
+  // Palette values the source inherited from the QGDS palette classes.
+  --qld-link-color: #09549f;
+  --qld-link-hover-color: #09549f;
+  --qld-link-visited-color: var(--qld-link-color);
+  --qld-link-underline: #3f7ab4;
+  --qld-link-underline-hover: #09549f;
+  --qld-link-underline-visited: #8b63b0;
+  --qld-link-underline-visited-hover: #551a8b;
+  --qld-link-underline-offset: 0.3em;
+  --qld-link-underline-thickness: 0.5px;
+  --qld-link-underline-thickness-hover: 2px;
+  --qld-border-color: #ebebeb;
+  --qld-focus-color: #0085b3;
+  --qld-action-icon-color: #008635;
+  --qld-action-icon-hover-color: #005b23;
+  --qld-header-logo-color: #131212;
+  --qld-header-logo-color-hover: #09549f;
+  --qld-header-mobile-button-bg: #fff;
+  --qld-header-mobile-button-bg-hover: #f5f5f5;
+  --dropdown-bg: #fff;
+  --dropdown-bg-active: #f5f5f5;
+  --dropdown-menu-bg: #f5f5f5;
+
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-xs); // set here so whitespace doesn't add extra height.
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 20%),
+    0 1px 3px 1px rgb(0 0 0 / 10%);
+  position: relative;
+  z-index: 2;
+  height: var(--qld-header-preheader-height);
+}
+
+.qld-header-pre-header.dark {
+  --qld-body-bg: #09549f;
+  --qld-border-color: #1d9ac6;
+  --qld-link-color: #fff;
+  --qld-link-hover-color: #fff;
+  --qld-link-underline: #b5cce2;
+  --qld-link-underline-hover: #fff;
+  --qld-link-underline-visited: #e1c2ff;
+  --qld-link-underline-visited-hover: #fff;
+  --qld-focus-color: #01b0e5;
+  --qld-action-icon-color: #ffe500;
+  --qld-action-icon-hover-color: #ffef60;
+  --qld-header-logo-color: #fff;
+  --qld-header-logo-color-hover: #fff;
+  --qld-header-mobile-button-bg: #09549f;
+  --qld-header-mobile-button-bg-hover: #04498f;
+  --dropdown-bg: #09549f;
+  --dropdown-bg-active: #04498f;
+  --dropdown-menu-bg: #04498f;
+
+  background-color: #09549f;
+  color: #fff;
+}
+
+.qld-header-pre-header.dark-alt {
+  --qld-body-bg: #05325f;
+  --qld-border-color: #09acfe;
+  --qld-link-color: #fff;
+  --qld-link-hover-color: #fff;
+  --qld-link-underline: #b5cce2;
+  --qld-link-underline-hover: #fff;
+  --qld-link-underline-visited: #e1c2ff;
+  --qld-link-underline-visited-hover: #fff;
+  --qld-focus-color: #01b0e5;
+  --qld-action-icon-color: #ffe500;
+  --qld-action-icon-hover-color: #ffef60;
+  --qld-header-logo-color: #fff;
+  --qld-header-logo-color-hover: #fff;
+  --qld-header-mobile-button-bg: #05325f;
+  --qld-header-mobile-button-bg-hover: #052c53;
+  --dropdown-bg: #05325f;
+  --dropdown-bg-active: #052c53;
+  --dropdown-menu-bg: #052c53;
+
+  background-color: #05325f;
+  color: #fff;
+}
+
+.qld-header-pre-header .qld-header-mobile-controls {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@media (width >= 992px) {
+  .qld-header-pre-header .qld-header-mobile-controls {
+    display: none;
+  }
+}
+
+.qld-header-pre-header .qld-header-mobile-button {
+  @include header-focusable(-3px);
+
+  align-items: center;
+  appearance: none;
+  background-color: var(--qld-header-mobile-button-bg);
+  border: 0;
+  border-left: 1px solid var(--qld-border-color);
+  color: var(--qld-link-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--qld-header-preheader-height);
+  width: var(--qld-header-preheader-height);
+  font-size: var(--font-size-xs); // source 0.625rem (10px), nearest token
+  line-height: 1.25;
+  padding: 0;
+  text-decoration: underline solid transparent 0;
+  text-underline-offset: 0.3em;
+  transition-property: color, background-color, outline, outline-offset, text-decoration;
+  transition-duration: $header-duration-fast;
+  transition-timing-function: $header-timing-function;
+
+  &:hover {
+    background-color: var(--qld-header-mobile-button-bg-hover);
+    text-decoration: underline solid currentcolor 0.5px;
+
+    --qld-icon-color: var(--qld-action-icon-hover-color);
+  }
+
+  &::before {
+    @include header-icon;
+
+    content: "";
+    margin-bottom: calc(var(--spacing-xs) * 0.5);
+  }
+}
+
+.qld-header-pre-header .qld-header-mobile-button.is-search-toggle::before,
+.qld-header-pre-header .qld-header-mobile-button.is-search-toggle.is-closed::before {
+  mask-image: var(--qgds-icon-search);
+}
+
+.qld-header-pre-header .qld-header-mobile-button.is-search-toggle.is-open::before {
+  mask-image: var(--qgds-icon-close);
+}
+
+.qld-header-pre-header .qld-header-mobile-button.is-menu-toggle::before {
+  mask-image: var(--qgds-icon-menu);
+}
+
+@media (width >= 768px) {
+  .qld-header-pre-header .qld-header-mobile-button {
+    font-size: var(--font-size-xs);
+    line-height: 1.14;
+
+    --icon-size: 2rem;
+  }
+}
+
+@media (width >= 992px) {
+  .qld-header-pre-header .qld-header-mobile-button {
+    display: none;
+  }
+}
+
+.qld-header-pre-header .qld-header-link + .dropdown {
+  margin-left: var(--spacing-xs);
+}
+
+// Links (make-link replacement)
+.qld-header-link {
+  @include header-focusable;
+
+  color: var(--qld-link-color);
+  border-radius: 0.25rem;
+  transition: none;
+  text-underline-offset: var(--qld-link-underline-offset);
+  text-decoration-thickness: var(--qld-link-underline-thickness);
+  text-decoration-color: var(--qld-link-underline);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+
+  &:hover {
+    text-decoration-thickness: var(--qld-link-underline-thickness-hover);
+    text-decoration-color: var(--qld-link-underline-hover);
+  }
+
+  &:visited {
+    color: var(--qld-link-visited-color);
+    text-decoration-color: var(--qld-link-underline-visited);
+  }
+
+  &:visited:hover {
+    text-decoration-color: var(--qld-link-underline-visited-hover);
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+  }
+
+  &,
+  &:visited {
+    text-decoration: underline solid transparent 0;
+  }
+
+  &:hover,
+  &:visited:hover {
+    text-decoration-color: currentcolor;
+  }
+
+  &:disabled,
+  a[disabled] {
+    text-decoration: none;
+  }
+}
+
+.qld-header-link.has-no-underline:focus,
+.qld-header-link.has-no-underline:hover {
+  text-decoration: none;
+}
+
+.qld-header-link-icon {
+  margin-right: var(--spacing-xs);
+}
+
+.qld-header-logo {
+  display: block;
+  width: auto;
+  transition-property: filter, color, outline, outline-offset;
+  transition-duration: $header-duration-fast;
+  transition-timing-function: $header-timing-function;
+  color: var(--qld-header-logo-color);
+}
+
+a:hover .qld-header-logo {
+  color: var(--qld-header-logo-color-hover);
+}
+
+.qld-header-pre-header .qld-header-logo {
+  height: 1.75rem;
+}
+
+@media (width >= 768px) {
+  .qld-header-pre-header .qld-header-logo {
+    height: 2.5rem;
+  }
+}
+
+@media (width >= 992px) {
+  .qld-header-pre-header .qld-header-logo {
+    display: none;
+  }
+}
+
+// Delivering for Queensland custom colours.
+.qld-header-logo.is-delivering-for-qld {
+  --qld-header-logo-color: var(--qld-site-title-color);
+  --qld-header-logo-color-hover: var(--qld-site-title-color);
+}
+
+.qld-header .dropdown {
+  line-height: 1.5;
+  display: flex;
+}
+
+.qld-header .dropdown-toggle {
+  padding-inline: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  height: var(--qld-header-preheader-height);
+  background-color: var(--dropdown-bg);
+
+  &:focus {
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  &::after {
+    @include header-icon(1rem);
+
+    content: "";
+    mask-image: var(--qgds-icon-chevron-down);
+    margin-left: var(--spacing-xs);
+    transition: transform 0.2s;
+  }
+
+  &.show {
+    background-color: var(--dropdown-bg-active);
+  }
+
+  &.show::after {
+    transform: rotate(-180deg);
+  }
+}
+
+.qld-header .dropdown-menu {
+  // Bootstrap defined custom properties
+  --qld-dropdown-link-hover-bg: transparent;
+  --qld-dropdown-link-active-bg: transparent;
+
+  width: 20.25rem;
+  min-height: 1rem;
+  padding: var(--spacing-sm) calc(var(--spacing-xs) * 3.5) var(--spacing-sm);
+  border-radius: 0 0 0.75rem 0.75rem;
+  border: 0;
+  background-color: var(--dropdown-menu-bg);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 20%),
+    0 1px 3px 1px rgb(0 0 0 / 10%);
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: translate(0, var(--qld-header-preheader-height)) !important; // overrides Popper positioning
+}
+
+.qld-header .dropdown-menu hr {
+  margin: var(--spacing-md) 0;
+  color: var(--qld-border-color);
+  border-color: var(--qld-border-color);
+  opacity: 1;
+}
+
+.qld-header .dropdown-menu p {
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+}
+
+.qld-header .dropdown-menu a.btn-primary {
+  margin: calc(var(--spacing-xs) * 2.5) 0 var(--spacing-xs) 0;
+  text-decoration-color: inherit;
+  text-decoration-thickness: inherit;
+}
+
+.qld-header ul.dropdown-menu.show:has(> li) {
+  padding-bottom: calc(var(--spacing-xs) * 2.5);
+}
+
+.qld-header .dropdown-item {
+  --icon-translate-x: 0rem;
+
+  position: relative;
+  border-bottom: solid 1px var(--qld-border-color);
+  padding: var(--spacing-sm) calc(var(--spacing-xs) * 3.5) var(--spacing-sm) 0;
+  line-height: 1.5;
+  white-space: normal; // allow text to wrap
+
+  &:hover {
+    --icon-translate-x: 0.25rem;
+
+    color: var(--qld-link-visited-color);
+  }
+
+  &::after {
+    @include header-icon;
+
+    content: "";
+    mask-image: var(--qgds-icon-arrow-right);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(var(--icon-translate-x), -50%);
+    transition-property: color, background-color, transform;
+    transition-duration: $header-duration-fast;
+    transition-timing-function: $header-timing-function;
+  }
+}
+
+.qld-header .dropdown-item span,
+.qld-header .dropdown-item svg {
+  vertical-align: middle;
+}
+
+.qld-header-dropdown-icon {
+  vertical-align: middle;
+  margin-left: var(--spacing-xs);
+  height: 1rem;
+  width: 1rem;
+}
+
+// Main header (brand area)
+.qld-header-main {
+  --qld-header-border-color: #6bbe27;
+  --qld-header-brand-divider-color: #6bbe27;
+  --qld-header-logo-color: #131212;
+  --qld-header-logo-color-hover: #131212;
+  --qld-header-subline-color: #414141;
+  --qld-site-title-color: #022a50;
+
+  position: relative;
+  border-bottom: 0.25rem solid var(--qld-header-border-color);
+}
+
+.qld-header-main.dark,
+.qld-header-main.dark-alt {
+  --qld-header-border-color: #6bbe27;
+  --qld-header-brand-divider-color: #6bbe27;
+  --qld-header-logo-color: #fff;
+  --qld-header-logo-color-hover: #fff;
+  --qld-header-subline-color: #fff;
+  --qld-site-title-color: #fff;
+}
+
+@media (width >= 992px) {
+  .qld-header-main {
+    border-bottom: none;
+  }
+}
+
+.qld-header-brand {
+  font-variant-numeric: lining-nums;
+  text-decoration: none;
+}
+
+@media (width >= 992px) {
+  .qld-header-brand {
+    padding-block: calc(var(--spacing-sm) * 2);
+  }
+}
+
+// Prevent tabbing into empty link on smaller screens.
+@media (width <= 991.98px) {
+  .qld-header-brand:not(:has(.qld-header-secondary-content)) {
+    display: none;
+  }
+}
+
+// Queensland Health co-brand mandatory spacing (stacked COA + site name).
+@media (width >= 992px) {
+  .qld-header-brand--co-brand .qld-header-brand-image {
+    padding: calc(var(--spacing-sm) * 2) calc(var(--spacing-xs) * 2.5);
+    box-sizing: border-box;
+  }
+}
+
+.qld-header-brand--co-brand .qld-header-brand-image svg {
+  min-height: 3.5rem;
+}
+
+@media (width >= 768px) {
+  .qld-header-brand--co-brand .qld-header-site-title {
+    font-size: var(--font-size-sm);
+    line-height: 1.25;
+  }
+}
+
+// Brand lock up image sizing and layout. See qld-header-logo for colour and behaviour of the logo itself.
+.qld-header-brand-image {
+  display: none;
+}
+
+@media (width >= 992px) {
+  .qld-header-brand-image {
+    display: block;
+  }
+}
+
+.qld-header-brand-image img {
+  margin: auto 0;
+  display: block;
+}
+
+.qld-header-brand-image svg {
+  vertical-align: text-bottom;
+  pointer-events: none;
+}
+
+.qld-header-secondary-content {
+  display: inline-block;
+  flex-wrap: wrap;
+  align-items: baseline;
+  text-wrap: balance;
+  padding-block: var(--spacing-sm);
+}
+
+@media (width >= 768px) {
+  .qld-header-secondary-content {
+    padding-block: var(--spacing-md);
+  }
+}
+
+@media (width >= 992px) {
+  .qld-header-secondary-content {
+    display: flex;
+    padding-block: 0;
+    flex-flow: column nowrap;
+    justify-content: center;
+    border-left: 2px solid var(--qld-header-brand-divider-color);
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-md);
+  }
+}
+
+.qld-header-secondary-image {
+  height: 2.5rem;
+}
+
+@media (width >= 768px) {
+  .qld-header-secondary-image {
+    height: 3.5rem;
+  }
+}
+
+.qld-header-site-title {
+  font-size: var(--base-font-size);
+  font-weight: 700;
+  line-height: 1.25;
+  padding: 0;
+  font-family:
+    "Noto Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    roboto,
+    "Helvetica Neue",
+    arial,
+    sans-serif;
+  color: var(--qld-site-title-color);
+  text-decoration: underline solid 0 transparent;
+  transition-property: text-decoration, color;
+  transition-duration: $header-duration-fast;
+  transition-timing-function: $header-timing-function;
+}
+
+a:hover .qld-header-site-title {
+  color: var(--qld-site-title-color);
+  text-decoration-thickness: var(--qld-link-underline-thickness-hover, 2px);
+  /* stylelint-disable-next-line declaration-no-important */
+  text-decoration-color: currentcolor !important; // overrides link hover colour
+}
+
+@media (width >= 768px) {
+  .qld-header-site-title {
+    font-size: var(--font-size-sm);
+    line-height: 1.2;
+  }
+}
+
+.qld-header-subline {
+  color: var(--qld-header-subline-color);
+  font-size: var(--font-size-xs);
+  line-height: 1.14;
+  max-width: 80ch;
+  text-decoration: underline solid 0 transparent;
+  transition-property: text-decoration, color;
+  transition-duration: $header-duration-fast;
+  transition-timing-function: $header-timing-function;
+}
+
+a:hover .qld-header-subline {
+  color: var(--qld-header-subline-color);
+  text-decoration-thickness: var(--qld-link-underline-thickness-hover, 2px);
+  /* stylelint-disable-next-line declaration-no-important */
+  text-decoration-color: currentcolor !important; // overrides link hover colour
+}
+
+@media (width >= 768px) {
+  .qld-header-subline {
+    font-size: var(--base-font-size);
+    line-height: 1.25;
+  }
+}
+
+.qld-header-site-search {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-sm) var(--qld-container-padding-x);
+  background-color: var(--qld-body-bg, #fff);
+}
+
+.qld-header-site-search.is-open {
+  display: block;
+}
+
+@media (width >= 992px) {
+  .qld-header-site-search {
+    z-index: unset;
+    display: block;
+    position: static;
+    padding: 0;
+    background-color: transparent;
+  }
+}

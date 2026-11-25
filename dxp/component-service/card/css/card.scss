@@ -1,0 +1,594 @@
+// QGDS Cards (Advanced)
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Spacing, font-size and line-height use kernel tokens (src/styles/common/_variables.scss); values with no
+// exact token are expressed as calc() of a token so they render identically to the QGDS source.
+// Breakpoints follow the QGDS grid: md 700px, lg 992px.
+// The --qld-card-* custom properties are read by the QGDS Bootstrap card base styles (qld.bootstrap.css).
+$cards-bp-md: 700px;
+$cards-bp-lg: 992px;
+
+.card {
+  // 20px line height has no kernel token (line-height-sm is 24px)
+  --card-line-height-compact: calc(var(--base-line-height) * 5 / 6);
+  --qld-card-bg: #fff;
+  --qld-card-color: #414141;
+  --qld-card-title-color: #04284c;
+  --qld-card-spacer-x: var(--spacing-sm);
+  --qld-card-spacer-y: var(--spacing-sm);
+  --qld-card-title-spacer-y: var(--spacing-xs);
+  --qld-card-title-font-size: var(--font-size-sm);
+  --qld-card-title-line-height: var(--line-height-sm);
+  --qld-card-font-size: var(--font-size-xs);
+  --qld-card-line-height: var(--card-line-height-compact);
+  --qld-card-border-width: 1px;
+  --qld-card-border-color: #7a7a7a;
+  --qld-card-border-radius: #{toRem(12)};
+  --qld-card-box-shadow: 0px 1px 2px rgb(0 0 0 / 30%), 0px 2px 6px 2px rgb(0 0 0 / 15%); // level 2 shadow
+  --qld-card-cap-padding-y: var(--spacing-xs);
+  --qld-card-cap-padding-x: var(--spacing-sm);
+  --qld-card-img-overlay-padding: var(--spacing-sm);
+  --qld-card-link-color: #09549f;
+  --qld-card-date-color: #636363;
+  --qld-card-footer-border: #ebebeb;
+  --qld-card-img-border-radius: 0px 0px 6.0883% / 10.8108% 0px; // from QHDS website
+  --qld-card-img-overlay-color: #09549f;
+  --qld-link-hover-colour: #003e7d;
+  --qld-link-hover-text-colour: #fff;
+  // Icon variables
+  --qld-card-icon-color: #008635;
+  --qld-card-icon-color-hover: #005b23;
+  --qld-card-icon-background-color: #f5f5f5;
+  // Side positioned icon as default
+  --qld-card-icon-height: #{toRem(64)};
+  --qld-card-icon-width: #{toRem(64)};
+  --qld-card-icon-font-size: #{toRem(36)};
+  --qld-card-icon-line-height: #{toRem(64)};
+
+  // Video styled card
+  .video-overlay {
+    --qld-video-nav-bg: #09549f;
+    --qld-video-nav-bg-rgb: 0, 94, 184;
+    --qld-video-nav-bg-hover: #003e7d;
+    --qld-video-nav-bg-hover-rgb: 0, 62, 150;
+    --qld-video-nav-bg-opacity: 0.9;
+    --qld-video-nav-color: #fff;
+    --qld-video-clock-icon-size: var(--font-size-sm);
+    --qld-video-play-icon-color: #fff;
+  }
+
+  .icon-top {
+    --qld-card-icon-height: #{toRem(128)};
+    --qld-card-icon-width: #{toRem(128)};
+    --qld-card-icon-font-size: #{toRem(60)};
+    --qld-card-icon-line-height: #{toRem(128)};
+  }
+
+  &.card-no-action {
+    --qld-icon-color: var(--qld-card-title-color);
+  }
+
+  &.default {
+    .card-icon-background {
+      background-color: #f5f5f5;
+    }
+  }
+
+  &.card-arrow {
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .card-title {
+        margin-bottom: 0;
+      }
+
+      .qld-icon {
+        margin: 0;
+        mask-size: var(--font-size-lg);
+        transform: translateX(0);
+        transition: transform 0.25s ease-in-out;
+      }
+    }
+  }
+
+  // Colour variants
+  &-light,
+  &-default {
+    --qld-card-bg: #eff4f9;
+    --qld-card-icon-background-color: #e5eef5;
+    --qld-card-arrow-color: #008635;
+
+    &:hover {
+      --qld-card-arrow-color: #005b23;
+    }
+  }
+
+  &-default {
+    --qld-card-bg: #fff;
+    --qld-card-icon-background-color: #f5f5f5;
+  }
+
+  &-light {
+    --qld-card-footer-border: #ebebeb;
+  }
+
+  &-alt {
+    --qld-card-bg: #e8e8e8;
+    --qld-card-footer-border: #7a7a7a;
+    --qld-card-icon-background-color: #e0e0e0;
+    --qld-card-arrow-color: #008635;
+
+    &:hover {
+      --qld-card-arrow-color: #005b23;
+    }
+  }
+
+  &-dark,
+  &-dark-alt {
+    --qld-card-color: #fff;
+    --qld-card-title-color: #fff;
+    --qld-card-link-color: #fff;
+    --qld-card-date-color: #fff;
+    --qld-card-arrow-color: #ffe500;
+    --qld-card-border-color: #1d9ac6;
+    --qld-link-hover-colour: #add33f;
+    --qld-link-hover-text-colour: #121940;
+
+    &:hover {
+      --qld-card-arrow-color: #ffef60;
+    }
+
+    &:not(.card-no-action) {
+      --qld-card-icon-color: #ffe500;
+    }
+
+    .video-overlay {
+      --qld-video-nav-bg: #78ba00;
+      --qld-video-nav-bg-rgb: 132, 211, 255;
+      --qld-video-nav-bg-hover: #add33f;
+      --qld-video-nav-bg-hover-rgb: 166, 247, 255;
+      --qld-video-nav-color: #121940;
+      --qld-video-play-icon-color: #121940;
+    }
+  }
+
+  &-dark {
+    --qld-card-bg: #09549f;
+    --qld-card-icon-background-color: #04498f;
+    --qld-card-icon-color: #fff;
+    --qld-card-footer-border: #1d9ac6;
+  }
+
+  &-dark-alt {
+    --qld-card-bg: #05325f;
+    --qld-card-icon-background-color: #052c53;
+    --qld-card-icon-color: #fff;
+    --qld-card-footer-border: #09acfe;
+  }
+
+  &.icon-top {
+    position: relative;
+  }
+
+  &.icon-top .card-icon-background {
+    width: #{toRem(128)};
+    height: #{toRem(128)};
+    background-color: var(--qld-card-icon-background-color);
+    border-radius: 400px;
+    margin-block-start: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.icon-top .qld-icon-xxl {
+    width: #{toRem(64)};
+    height: #{toRem(64)};
+    mask-size: #{toRem(64)};
+    background-size: #{toRem(64)};
+    border-radius: 0;
+  }
+
+  &.icon-left .card-icon-background {
+    width: #{toRem(64)};
+    height: #{toRem(64)};
+    mask-size: #{toRem(64)};
+    background-size: #{toRem(64)};
+    background-color: var(--qld-card-icon-background-color);
+    margin-left: calc(var(--spacing-sm) * 1.25);
+    margin-block-start: calc(var(--spacing-sm) * -1);
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.icon-left .qld-icon-lg {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: #{$cards-bp-md}) {
+  .card {
+    --qld-card-spacer-x: calc(var(--spacing-sm) * 1.25);
+    --qld-card-spacer-y: calc(var(--spacing-sm) * 1.25);
+    --qld-card-font-size: var(--base-font-size);
+    --qld-card-line-height: var(--base-line-height);
+  }
+}
+
+@media (min-width: #{$cards-bp-lg}) {
+  .card {
+    --qld-card-spacer-x: var(--spacing-md);
+    --qld-card-spacer-y: var(--spacing-md);
+    --qld-card-title-font-size: var(--font-size-md);
+    --qld-card-title-line-height: var(--line-height-lg);
+    --qld-card-box-shadow: 7px 6px 13px rgb(0 0 0 / 2%), 0px 2px 5px rgb(0 0 0 / 10%), 0px 13px 20px rgb(0 0 0 / 10%); // Level 4 shadow
+
+    &-feature {
+      --qld-card-title-font-size: var(--font-size-lg);
+      --qld-card-title-line-height: var(--line-height-xl);
+    }
+  }
+}
+
+// Component styles
+// Ordering and nesting mirror the QGDS source so the cascade is unchanged.
+/* stylelint-disable no-duplicate-selectors, max-nesting-depth */
+.card {
+  font-size: var(--qld-card-font-size);
+  line-height: var(--qld-card-line-height);
+  overflow: hidden;
+
+  &-date {
+    color: var(--qld-card-date-color);
+    font-size: var(--font-size-xs);
+    line-height: var(--card-line-height-compact);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .card-title {
+    font-size: var(--qld-card-title-font-size);
+    line-height: var(--qld-card-title-line-height);
+    color: var(--qld-card-title-color);
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-xs) * 1.5);
+    display: flex;
+    justify-content: space-between;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      font-weight: 600;
+    }
+
+    .qld-icon {
+      flex-shrink: 0;
+      align-self: center;
+    }
+  }
+
+  .card-body li {
+    margin-top: var(--spacing-xs);
+  }
+
+  .card-text > :last-child {
+    margin-bottom: 0;
+  }
+
+  &-single-action,
+  &-multi-action {
+    box-shadow: var(--qld-card-box-shadow);
+  }
+
+  &-single-action {
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover,
+    &:focus-within {
+      .card-img::after {
+        opacity: 0.1;
+      }
+
+      .video-nav {
+        .video-watch {
+          background-color: rgb(var(--qld-video-nav-bg-hover-rgb));
+
+          span {
+            // Must beat the underline rules on the nested link text.
+            /* stylelint-disable-next-line declaration-no-important */
+            text-decoration: underline !important;
+            text-underline-offset: 0.3em;
+            text-decoration-thickness: 0.5px;
+            text-shadow: 0.6px 0 0 currentcolor;
+          }
+        }
+
+        .video-duration {
+          text-shadow: 0.6px 0 0 currentcolor;
+          background-color: rgba(var(--qld-video-nav-bg-hover-rgb), var(--qld-video-nav-bg-opacity));
+        }
+      }
+
+      .icon-arrow {
+        margin-left: calc(var(--spacing-xs) / 2);
+        margin-right: var(--spacing-sm);
+      }
+    }
+
+    &:focus-within {
+      outline: #0085b3 solid 3px;
+      outline-offset: 2px;
+    }
+
+    a {
+      color: var(--qld-card-link-color);
+      text-decoration-color: var(--qld-card-link-color);
+      outline-style: none;
+
+      &:visited,
+      &:hover,
+      &:visited:hover {
+        color: var(--qld-card-link-color);
+        text-decoration-color: var(--qld-card-link-color);
+      }
+
+      &:focus {
+        outline-style: none;
+        text-decoration-color: var(--qld-card-link-color);
+      }
+    }
+  }
+
+  &-img {
+    // Fix: Prevent .ratio:before from blocking clicks on card heading in multi-action cards
+    &.ratio::before {
+      display: inline-block;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--qld-card-img-overlay-color);
+      opacity: 0;
+    }
+
+    [class^="card-img"] {
+      background-image: var(--card-image);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+      border-radius: var(--qld-card-img-border-radius);
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border: var(--qld-card-border-width) solid var(--qld-card-border-color);
+        border-radius: var(--qld-card-img-border-radius);
+      }
+    }
+
+    .video-overlay {
+      background-color: transparent;
+      z-index: 1;
+
+      .video-nav,
+      .video-watch {
+        transition: none;
+      }
+
+      .video-watch {
+        background-color: rgb(var(--qld-video-nav-bg-rgb));
+      }
+
+      .video-duration {
+        background-color: rgba(var(--qld-video-nav-bg-rgb), 0.5);
+      }
+
+      .video-duration,
+      .video-watch {
+        padding: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        height: 100%;
+
+        .qld-icon {
+          background-color: var(--qld-video-play-icon-color);
+        }
+      }
+    }
+  }
+
+  &.icon-left,
+  &.card-arrow {
+    flex-flow: row wrap;
+    align-items: center;
+
+    .card-body {
+      width: calc(100% - var(--qld-card-icon-width) - (2 * var(--qld-card-spacer-x)));
+
+      &:not(:last-child) {
+        padding-bottom: var(--qld-card-spacer-y);
+      }
+    }
+
+    .card-title {
+      padding-right: var(--spacing-sm);
+    }
+  }
+
+  &.card-arrow {
+    &:hover {
+      .qld-icon {
+        transform: translateX(0.25rem);
+        transition: transform 0.25s ease-in-out;
+      }
+    }
+  }
+
+  &.icon-top {
+    align-items: center;
+
+    .card-body {
+      text-align: center;
+    }
+
+    .card-title {
+      justify-content: center;
+    }
+  }
+
+  &-body:not(:last-child) {
+    padding-bottom: 0;
+  }
+
+  &-footer {
+    color: var(--qld-card-color);
+    line-height: var(--base-line-height);
+    background: none;
+    border-top: 0;
+    position: relative;
+    padding: 0 var(--qld-card-spacer-x) var(--qld-card-spacer-y) var(--qld-card-spacer-x);
+    width: 100%;
+    flex: 0 1 auto;
+
+    &::before {
+      content: "";
+      display: block;
+      position: relative;
+      margin: calc(var(--spacing-sm) * 1.25) 0;
+      height: 1px;
+      background: var(--qld-card-footer-border);
+    }
+
+    // Override default spacing on tag component
+    .tag-list {
+      margin: 0;
+      padding: 0;
+      gap: var(--spacing-xs);
+      display: flex;
+      flex-wrap: wrap;
+
+      .tag-item {
+        margin: 0;
+        font-weight: normal;
+      }
+    }
+
+    // Override default spacing on link list component for icon links
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      margin: var(--spacing-sm) 0;
+      padding: 0;
+      gap: calc(var(--spacing-xs) * 1.5);
+
+      .link-item {
+        margin: 0;
+
+        a {
+          gap: calc(var(--spacing-xs) * 1.5);
+        }
+      }
+    }
+  }
+
+  .card-footer {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--qld-card-title-color);
+
+    li {
+      font-size: var(--base-font-size);
+    }
+
+    .tag-list {
+      li.tag-link {
+        border-color: var(--qld-card-link-color);
+        font-size: var(--font-size-xs);
+
+        &:hover {
+          border-color: var(--qld-link-hover-colour);
+          background-color: var(--qld-link-hover-colour);
+          text-decoration: none;
+
+          a {
+            color: var(--qld-link-hover-text-colour);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: #{$cards-bp-md}) {
+  .card {
+    &-feature {
+      flex-direction: row;
+      flex: 0 1 100%;
+      min-height: #{toRem(300)};
+
+      .card-img,
+      .card-inner {
+        flex: 1;
+      }
+
+      &.card-feature-right {
+        flex-direction: row-reverse;
+
+        .card-img-right,
+        .card-img-right::before {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: #{$cards-bp-lg}) {
+  .card {
+    box-shadow: none;
+
+    &-single-action {
+      &:hover,
+      &:focus {
+        box-shadow: var(--qld-card-box-shadow);
+      }
+    }
+
+    &-feature {
+      min-height: #{toRem(440)};
+
+      .card-img {
+        flex: 2;
+      }
+
+      .card-inner {
+        flex: 1;
+      }
+    }
+
+    &.card-multi-action.card-feature {
+      .card-body {
+        padding: calc(var(--spacing-sm) * 2);
+        padding-block-end: 0;
+      }
+
+      .card-footer {
+        padding: calc(var(--spacing-sm) * 2);
+        padding-block-start: 0;
+      }
+    }
+  }
+}

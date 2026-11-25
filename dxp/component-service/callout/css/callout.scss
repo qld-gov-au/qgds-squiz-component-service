@@ -1,0 +1,58 @@
+.callout {
+  --callout-padding: var(--spacing-md) var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --callout-bg-color: #f5f5f5;
+  --callout-border-color: #008635;
+  --callout-border-width: #{toRem(4)};
+  --callout-title-color: #04284c;
+  --callout-text-color: #414141;
+  --callout-spacer: var(--spacing-sm);
+
+  .light & {
+    --callout-bg-color: #e5eef5;
+  }
+
+  .alt & {
+    --callout-bg-color: #e0e0e0;
+  }
+
+  .dark &,
+  .dark-alt & {
+    --callout-title-color: #fff;
+    --callout-text-color: #fff;
+  }
+
+  .dark & {
+    --callout-bg-color: #04498f;
+  }
+
+  .dark-alt & {
+    --callout-bg-color: #052c53;
+  }
+
+  background-color: var(--callout-bg-color);
+  border-inline-start: var(--callout-border-width) solid var(--callout-border-color);
+  padding: var(--callout-padding);
+
+  &-title {
+    color: var(--callout-title-color);
+    margin-block-end: 0;
+  }
+
+  &-text {
+    color: var(--callout-text-color);
+
+    p,
+    ul,
+    ol {
+      &:last-child {
+        margin-block-end: 0;
+      }
+    }
+  }
+
+  // Add space above text only if there is a title
+  &-title + &-text {
+    margin-block-start: var(--callout-spacer);
+  }
+}

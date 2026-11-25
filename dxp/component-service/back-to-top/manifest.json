@@ -1,0 +1,77 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.1.0",
+  "name": "back-to-top",
+  "displayName": "Back to top",
+  "description": "QGDS Bootstrap 5 - Back to Top Component",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "arrow_upward",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "required": ["label", "href"],
+        "properties": {
+          "wrapperClasses": {
+            "type": "string",
+            "title": "Wrapper classes",
+            "default": ""
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "default": "Back to top",
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "href": {
+            "type": "string",
+            "title": "Href",
+            "default": "#"
+          },
+          "position": {
+            "type": "string",
+            "title": "Position",
+            "default": "left",
+            "enum": ["left", "right"],
+            "ui:metadata": {
+              "quickOption": true
+            }
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": {
+            "path": "preview.html"
+          },
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}

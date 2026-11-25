@@ -1,0 +1,92 @@
+.alert {
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --alert-bg-color: #fff;
+  --alert-text-color: #414141;
+  --alert-heading-color: #04284c;
+  --alert-accent-color: #339d37;
+  --alert-icon-color: #fff;
+  --alert-icon-size: #{toRem(24)};
+  --alert-bar-width: #{toRem(48)};
+
+  position: relative;
+  margin-block-end: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-xl);
+  overflow-wrap: break-word;
+  color: var(--alert-text-color);
+  background-color: var(--alert-bg-color);
+  border: #{toRem(2)} solid var(--alert-accent-color);
+
+  .alert-heading {
+    margin: 0 0 var(--spacing-sm);
+    padding: 0;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    line-height: var(--line-height-sm);
+    color: var(--alert-heading-color);
+  }
+
+  p,
+  ul,
+  ol {
+    line-height: var(--line-height-sm);
+  }
+
+  > :last-child {
+    margin-block-end: 0;
+  }
+
+  // Coloured bar and icon
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+  }
+
+  &::before {
+    width: var(--alert-bar-width);
+    background-color: var(--alert-accent-color);
+  }
+
+  &::after {
+    box-sizing: content-box;
+    width: var(--alert-icon-size);
+    height: 100%;
+    // 12px each side centres the icon in the 48px bar (no matching spacing token)
+    padding: 0 #{toRem(12)};
+    background-color: var(--alert-icon-color);
+    mask: var(--alert-icon) center / var(--alert-icon-size) var(--alert-icon-size) no-repeat content-box;
+  }
+
+  // Close button for dismissible alerts
+  .btn-close {
+    position: absolute;
+    inset-block-start: var(--spacing-sm);
+    inset-inline-end: var(--spacing-sm);
+    width: #{toRem(32)};
+    height: #{toRem(32)};
+    background: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg style='mix-blend-mode:multiply'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23F5F5F5'/%3E%3C/g%3E%3Cpath d='M17.2871 15.9004L21.3105 11.916L22.1309 11.0957C22.248 10.9785 22.248 10.7832 22.1309 10.627L21.2715 9.76758C21.1152 9.65039 20.9199 9.65039 20.8027 9.76758L15.998 14.6113L11.1543 9.76758C11.0371 9.65039 10.8418 9.65039 10.6855 9.76758L9.82617 10.627C9.70898 10.7832 9.70898 10.9785 9.82617 11.0957L14.6699 15.9004L9.82617 20.7441C9.70898 20.8613 9.70898 21.0566 9.82617 21.2129L10.6855 22.0723C10.8418 22.1895 11.0371 22.1895 11.1543 22.0723L15.998 17.2285L19.9824 21.252L20.8027 22.0723C20.9199 22.1895 21.1152 22.1895 21.2715 22.0723L22.1309 21.2129C22.248 21.0566 22.248 20.8613 22.1309 20.7441L17.2871 15.9004Z' fill='%231D1D1D'/%3E%3C/svg%3E")
+      no-repeat center center;
+  }
+
+  &-success {
+    --alert-accent-color: #339d37;
+    --alert-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e %3cpath fill='currentColor' d='m13.854 19.507-3.633-3.643a.954.954 0 0 0-.67-.273.918.918 0 0 0-.689.288.915.915 0 0 0-.28.672c0 .26.093.484.28.671l4.184 4.2a1.094 1.094 0 0 0 1.616-.001l8.432-8.423a.98.98 0 0 0 .29-.684.92.92 0 0 0-.29-.69.948.948 0 0 0-.694-.273.954.954 0 0 0-.68.288l-7.866 7.868ZM16.003 30c-1.927 0-3.74-.367-5.44-1.102a14.205 14.205 0 0 1-4.455-3.004 14.202 14.202 0 0 1-3.005-4.452C2.368 19.742 2 17.929 2 16.002c0-1.936.367-3.756 1.102-5.46a14.038 14.038 0 0 1 3.004-4.446 14.307 14.307 0 0 1 4.452-2.993C12.258 2.368 14.071 2 15.998 2c1.936 0 3.756.367 5.46 1.102a14.142 14.142 0 0 1 4.446 2.992 14.14 14.14 0 0 1 2.993 4.445C29.632 12.242 30 14.06 30 15.997c0 1.927-.367 3.74-1.102 5.44a14.308 14.308 0 0 1-2.992 4.455 14.036 14.036 0 0 1-4.444 3.005c-1.704.735-3.523 1.103-5.46 1.103ZM16 28.148c3.384 0 6.255-1.18 8.613-3.543 2.357-2.363 3.535-5.23 3.535-8.605 0-3.384-1.178-6.255-3.535-8.613C22.255 5.03 19.384 3.852 16 3.852c-3.374 0-6.243 1.178-8.605 3.535C5.033 9.745 3.852 12.616 3.852 16c0 3.374 1.18 6.242 3.543 8.605 2.362 2.362 5.23 3.543 8.605 3.543Z'/%3e %3c/svg%3e");
+  }
+
+  &-info {
+    --alert-accent-color: #0085b3;
+    --alert-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e %3cpath fill='currentColor' d='M28.9 10.5c-.7-1.7-1.7-3.2-3-4.4-1.3-1.3-2.7-2.3-4.4-3C19.8 2.4 17.9 2 16 2s-3.8.4-5.5 1.1c-1.7.7-3.2 1.7-4.4 3-1.3 1.3-2.3 2.7-3 4.4C2.4 12.2 2 14.1 2 16s.4 3.8 1.1 5.5c.7 1.7 1.7 3.2 3 4.4 1.3 1.3 2.7 2.3 4.4 3 1.7.7 3.5 1.1 5.5 1.1 1.9 0 3.7-.4 5.5-1.1 1.7-.7 3.2-1.7 4.4-3 1.3-1.3 2.3-2.7 3-4.4.7-1.7 1.1-3.5 1.1-5.5 0-1.9-.4-3.8-1.1-5.5Zm-4.3 14.1c-2.4 2.4-5.2 3.5-8.6 3.5-3.4 0-6.3-1.2-8.6-3.5C5 22.2 3.9 19.4 3.9 16c0-3.4 1.2-6.3 3.5-8.6s5.2-3.5 8.6-3.5c3.4 0 6.3 1.2 8.6 3.5 2.4 2.4 3.5 5.2 3.5 8.6 0 3.4-1.1 6.2-3.5 8.6ZM16 9c-.4 0-.7.1-.9.4-.2.2-.4.5-.4.9 0 .3.1.6.4.9.2.2.5.4.9.4s.7-.1.9-.4c.2-.2.4-.5.4-.9s-.1-.7-.4-.9c-.2-.3-.5-.4-.9-.4Zm0 5c-.3 0-.5.1-.7.3-.2.2-.3.4-.3.7v7c0 .3.1.5.3.7.2.2.4.3.7.3.3 0 .5-.1.7-.3.2-.2.3-.4.3-.7v-7c0-.3-.1-.5-.3-.7-.2-.2-.4-.3-.7-.3Z'/%3e %3c/svg%3e");
+  }
+
+  &-warning {
+    --alert-accent-color: #ffcc2c;
+    --alert-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e %3cpath fill='currentColor' d='M16 22.5c-.4 0-.7.1-.9.4-.2.2-.4.5-.4.9s.1.7.4.9c.2.2.5.4.9.4s.7-.1.9-.4c.2-.2.4-.5.4-.9s-.1-.7-.4-.9c-.3-.3-.5-.4-.9-.4Zm13.8 4.2L17 4.6c-.1-.2-.3-.3-.4-.4-.2-.2-.4-.2-.6-.2-.2 0-.4 0-.6.1-.2.1-.3.2-.4.4L2.2 26.7c-.2.2-.2.4-.2.6 0 .2.1.4.2.5.1.2.2.3.4.4.2.1.4.2.6.2h25.7c.2 0 .4-.1.6-.2.2-.1.3-.2.4-.4.1-.2.2-.3.2-.5-.1-.2-.1-.4-.3-.6Zm-25.4-.1L16 6.5l11.6 20.1H4.4Zm10.9-13.9c-.2.2-.3.4-.3.7v6c0 .3.1.5.3.7.2.2.4.3.7.3.3 0 .5-.1.7-.3.2-.2.3-.4.3-.7v-6c0-.3-.1-.5-.3-.7-.2-.2-.4-.3-.7-.3-.3.1-.5.1-.7.3Z'/%3e %3c/svg%3e");
+  }
+
+  &-error {
+    --alert-accent-color: #e22339;
+    --alert-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e %3cpath fill='currentColor' d='M29.8 10.2c-.1-.3-.3-.6-.6-.8l-6.6-6.6c-.2-.2-.5-.4-.8-.6-.3-.1-.7-.2-1-.2h-9.5c-.3 0-.7.1-1 .2-.4.1-.7.3-.9.6L2.8 9.4c-.2.2-.4.5-.6.8-.1.3-.2.7-.2 1v9.5c0 .3.1.7.2 1 .1.3.3.6.6.8l6.6 6.6c.2.2.5.4.8.6.3.1.7.2 1 .2h9.5c.3 0 .7-.1 1-.2.3-.1.6-.3.8-.6l6.6-6.6c.2-.2.4-.5.6-.8.1-.3.2-.7.2-1v-9.5c.1-.3 0-.6-.1-1ZM27.9 21l-7 7H11l-7-7V11l7-7h10l7 7v10h-.1Zm-12.6-3.3c-.2-.2-.3-.4-.3-.7V9c0-.3.1-.5.3-.7.2-.2.4-.3.7-.3.3 0 .5.1.7.3.2.2.3.4.3.7v8c0 .3-.1.5-.3.7-.2.2-.4.3-.7.3-.3 0-.5-.1-.7-.3Zm1.7 3.2c.3.3.4.6.4 1s-.1.7-.4 1c-.3.3-.6.4-1 .4s-.7-.1-1-.4c-.3-.3-.4-.6-.4-1s.1-.7.4-1c.3-.3.6-.4 1-.4s.7.1 1 .4Z'/%3e %3c/svg%3e");
+  }
+}

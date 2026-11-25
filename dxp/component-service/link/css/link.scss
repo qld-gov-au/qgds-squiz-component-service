@@ -1,0 +1,72 @@
+.link {
+  // Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+  --link-color: #09549f;
+  --link-underline-color: #09549f;
+  --link-hover-underline-color: #3f7ab4;
+  --link-icon-hover-color: #005b23;
+  --link-focus-color: #0085b3;
+  --link-gap: var(--spacing-xs);
+  --link-underline-offset: 0.25em;
+  --link-underline-thickness: 0.5px;
+  --link-underline-thickness-hover: 2px;
+
+  .dark &,
+  .dark-alt & {
+    --link-color: #fff;
+    --link-underline-color: #fff;
+    --link-icon-hover-color: #ffef60;
+    --link-focus-color: #01b0e5;
+
+    &:visited {
+      color: var(--link-color);
+      text-decoration-color: var(--link-underline-color);
+    }
+  }
+
+  display: flex;
+  gap: var(--link-gap);
+  align-items: center;
+  width: fit-content;
+  color: var(--link-color);
+  text-decoration-color: var(--link-underline-color);
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: var(--link-underline-offset);
+  backface-visibility: hidden;
+
+  &:hover {
+    --qld-icon-color: var(--link-icon-hover-color);
+
+    text-decoration-thickness: var(--link-underline-thickness-hover);
+    text-decoration-color: var(--link-hover-underline-color);
+  }
+
+  &:visited {
+    color: var(--link-color);
+    text-decoration-color: var(--link-underline-color);
+
+    &:hover {
+      text-decoration-color: var(--link-underline-color);
+    }
+  }
+
+  &:focus {
+    outline: toRem(3) solid var(--link-focus-color);
+    outline-offset: toRem(2);
+    border-radius: toRem(4);
+  }
+}
+
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-sm);
+
+  li {
+    margin-top: var(--spacing-xs);
+    line-height: var(--line-height-sm);
+  }
+
+  li:first-child {
+    margin-top: 0;
+  }
+}

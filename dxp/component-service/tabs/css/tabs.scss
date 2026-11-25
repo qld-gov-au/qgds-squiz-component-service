@@ -1,0 +1,633 @@
+// QGDS Tabs component
+// Colours are literal QGDS (legacy token set) values so the look does not depend on kernel's global palette.
+// Breakpoints follow the QGDS grid: sm 400px, md 700px, lg 992px, xl 1312px.
+$tabs-bp-xl: 1311.98px;
+$tabs-bp-lg: 991.98px;
+$tabs-bp-md: 699.98px;
+$tabs-bp-sm: 399.98px;
+
+// Variables a section-tabs set takes from the intro section that precedes it.
+@mixin tabs-after-light($bg) {
+  --tabs-tab-hover-text-color: #fff;
+  --tabs-tab-icon-color: #008635;
+  --tabs-tab-disabled-colour: #636363;
+  --tabs-tab-text-colour-heading: #04284c;
+  --tabs-tab-background-hover: #003e7d;
+  --tabs-tab-focus-colour: #0085b3;
+  --tabs-tab-active-focus-colour: #0085b3;
+  --tabs-scroll-bg-color: #{$bg};
+  --tabs-scroll-area-bg-color: #{$bg};
+  --tabs-tab-icon-color-hover: #ffe500;
+  --tabs-nav-link-color: #09549f;
+
+  .tabs-area {
+    background-color: $bg;
+  }
+}
+
+@mixin tabs-after-dark($area-bg) {
+  --tabs-tab-background-hover: #add33f;
+  --tabs-tab-hover-text-color: #121940;
+  --tabs-tab-icon-color: #ffe500;
+  --tabs-tab-disabled-colour: #deebf9;
+  --tabs-tab-text-colour-heading: #fff;
+  --tabs-scroll-bg-color: #fff;
+  --tabs-tab-icon-color-hover: #121940;
+  --tabs-nav-link-color: #fff;
+
+  .tabs-area {
+    background-color: $area-bg;
+  }
+}
+
+.qld-tabs {
+  --tabs-accent-colour: #008635;
+  --tabs-border-radius: #{toRem(4)};
+  --tabs-section-content-padding: var(--spacing-xl);
+  --tabs-max-width: #{toRem(1312)};
+  --tabs-gutter: var(--spacing-xl);
+
+  // tabs colours
+  --default-bg-colour: #fff;
+  --light-bg-colour: #eff4f9;
+  --alt-bg-colour: #e8e8e8;
+  --dark-bg-colour: #09549f;
+  --dark-alt-bg-colour: #05325f;
+  --light-border-colour: #7a7a7a;
+  --light-colour: #04284c;
+  --dark-border-colour: #09acfe;
+  --dark-colour: #fff;
+  --icon-dropshadow: 0 1px 2px rgb(0 0 0 / 20%), 0 1px 3px 1px rgb(0 0 0 / 10%);
+
+  // Bootstrap variables
+  --bs-nav-tabs-border-radius: var(--tabs-border-radius);
+
+  // animation
+  --fade-time: 0.15s;
+
+  position: relative;
+
+  .default &,
+  .default,
+  &.default {
+    --tabs-tab-background: #f5f5f5;
+  }
+
+  .alt &,
+  .alt,
+  &.alt {
+    --qld-body-bg: #e8e8e8;
+    --tabs-border-color: #7a7a7a;
+    --tabs-tab-background: #e0e0e0;
+  }
+
+  .light &,
+  .light,
+  &.light {
+    --qld-body-bg: #eff4f9;
+    --tabs-border-color: #cde;
+    --tabs-tab-background: #e5eef5;
+    --tabs-tab-background-hover: #003e7d;
+  }
+
+  .dark &,
+  .dark,
+  &.dark {
+    --tabs-border-color: #1d9ac6;
+    --tabs-tab-background: #04498f;
+  }
+
+  .dark-alt &,
+  .dark-alt,
+  &.dark-alt {
+    --qld-body-bg: #05325f;
+    --tabs-border-color: #09acfe;
+    --tabs-tab-background: #052c53;
+  }
+
+  &.default,
+  &.light,
+  &.alt {
+    --tabs-tab-hover-text-color: #fff;
+    --tabs-tab-icon-color: #008635;
+    --tabs-tab-background-hover: #003e7d;
+    --tabs-border-color: var(--light-border-colour);
+    --tabs-tab-icon-color-hover: #ffe500;
+    --tabs-tab-focus-colour: #0085b3;
+    --tabs-tab-active-focus-colour: #0085b3;
+    --tabs-scroll-bg-color: var(--default-bg-colour);
+    --tabs-nav-link-color: #09549f;
+  }
+
+  &.dark,
+  &.dark-alt {
+    --tabs-tab-background-hover: #add33f;
+    --tabs-tab-hover-text-color: #121940;
+    --tabs-tab-icon-color: #ffe500;
+    --tabs-tab-disabled-colour: #deebf9;
+    --tabs-tab-text-colour-heading: #fff;
+    --tabs-border-color: #09acfe;
+    --tabs-tab-icon-color-hover: #121940;
+    --tabs-tab-focus-colour: #01b0e5;
+    --tabs-tab-active-focus-colour: #01b0e5;
+    --tabs-scroll-bg-color: var(--default-bg-colour);
+    --tabs-nav-link-color: #fff;
+  }
+
+  &.container-tabs {
+    --scroll-distance: 0;
+    --gradient-percentage: 80%;
+
+    background-color: transparent;
+    padding-block-end: calc(var(--spacing-xl) + var(--spacing-sm));
+    margin-block-start: var(--spacing-lg);
+    width: 100%;
+    max-width: var(--tabs-max-width);
+    margin-inline: auto;
+  }
+
+  &.container-tabs .nav-tabs {
+    background-color: transparent;
+    align-items: end;
+  }
+
+  &.container-tabs .nav-tabs .nav-item .nav-link {
+    background-color: var(--tabs-tab-background);
+    padding-block: calc(var(--spacing-sm) * 0.75 - #{toRem(3)}) calc(var(--spacing-sm) * 0.75 - #{toRem(1)});
+  }
+
+  &.container-tabs .nav-tabs .nav-item .nav-link.active {
+    background-color: var(--qld-body-bg, #fff);
+  }
+
+  &.container-tabs .nav-tabs .nav-item .nav-link span {
+    display: flex;
+  }
+
+  &.container-tabs .tabs-area {
+    --qld-gutter-x: 0;
+
+    padding-inline: 0;
+  }
+
+  &.container-tabs .tabs-area .nav-tabs {
+    margin-block-end: -1px;
+  }
+
+  &.container-tabs .tab-content {
+    padding: calc(var(--spacing-sm) * 1.25);
+  }
+
+  &.container-tabs .tab-content .tab-pane p:last-of-type {
+    margin-block-end: 0;
+  }
+
+  &.section-tabs {
+    --scroll-distance: calc(var(--spacing-sm) * 1.75);
+    --gradient-percentage: 50%;
+
+    background-color: transparent;
+  }
+
+  &.section-tabs .tabs-area {
+    padding-inline: var(--tabs-gutter);
+    margin-inline: auto;
+    border-block-end: 1px solid;
+
+    @media (max-width: #{$tabs-bp-xl}) {
+      padding-inline: var(--spacing-lg);
+    }
+
+    @media (max-width: #{$tabs-bp-lg}) {
+      padding-inline: calc(var(--spacing-sm) * 2);
+    }
+
+    @media (max-width: #{$tabs-bp-sm}) {
+      padding-inline: var(--spacing-sm);
+    }
+  }
+
+  &.section-tabs .tabs-area .nav-tabs {
+    max-width: fit-content;
+    margin-inline: 0;
+  }
+
+  &.section-tabs .tabs-area .nav-tabs .nav-item {
+    display: flex;
+  }
+
+  &.section-tabs .tabs-area .nav-tabs .nav-item .nav-link {
+    border-block-end: 0;
+    padding-block: calc(var(--spacing-sm) * 0.7) calc(var(--spacing-sm) * 0.65);
+  }
+
+  &.section-tabs .tabs-area .nav-tabs .nav-item .nav-link.active {
+    padding-block: calc(var(--spacing-sm) * 0.7) calc(var(--spacing-sm) * 0.75);
+  }
+
+  &.section-tabs .tab-content {
+    padding-inline: var(--tabs-gutter);
+    margin-inline: auto;
+    background-color: var(--qld-body-bg, #fff);
+    border: 0;
+    border-block-start: 0;
+    margin-block-start: -1px;
+
+    @media (max-width: #{$tabs-bp-xl}) {
+      padding-inline: var(--spacing-lg);
+    }
+
+    @media (max-width: #{$tabs-bp-lg}) {
+      padding-inline: calc(var(--spacing-sm) * 2);
+    }
+
+    @media (max-width: #{$tabs-bp-sm}) {
+      padding-inline: var(--spacing-sm);
+    }
+  }
+
+  &.section-tabs .tab-content .tab-pane p:last-of-type {
+    margin-block-end: 0;
+  }
+
+  &.section-tabs .tab-content > article {
+    max-width: var(--tabs-max-width);
+    margin-inline: auto;
+  }
+
+  .tabs-area {
+    position: relative;
+    z-index: 10;
+  }
+
+  .tabs-area .nav-tabs {
+    background-color: transparent;
+    margin-block-end: -1px;
+  }
+
+  .tabs-area .show {
+    display: flex;
+  }
+
+  // Active tab, light themes
+  &.default .tabs-area,
+  &.light .tabs-area,
+  &.alt .tabs-area {
+    border-block-end-color: var(--light-border-colour);
+  }
+
+  &.default .tabs-area .nav-link.active,
+  &.light .tabs-area .nav-link.active,
+  &.alt .tabs-area .nav-link.active {
+    border: 1px solid var(--light-border-colour);
+  }
+
+  &.default .tabs-area .nav-link.active span,
+  &.default .tabs-area .nav-link.active span:hover,
+  &.default .tabs-area .nav-link.active span i,
+  &.light .tabs-area .nav-link.active span,
+  &.light .tabs-area .nav-link.active span:hover,
+  &.light .tabs-area .nav-link.active span i,
+  &.alt .tabs-area .nav-link.active span,
+  &.alt .tabs-area .nav-link.active span:hover,
+  &.alt .tabs-area .nav-link.active span i {
+    color: var(--light-colour);
+  }
+
+  &.default {
+    --tabs-scroll-area-bg-color: var(--default-bg-colour);
+  }
+
+  &.default .tabs-area .nav-link.active {
+    background-color: var(--default-bg-colour);
+    border-block-end: 0 solid var(--default-bg-colour);
+  }
+
+  &.light {
+    --tabs-scroll-bg-color: var(--light-bg-colour);
+    --tabs-scroll-area-bg-color: var(--light-bg-colour);
+  }
+
+  &.light .tabs-area .nav-link.active {
+    background-color: var(--light-bg-colour);
+    border-block-end: 0 solid var(--light-bg-colour);
+  }
+
+  &.alt {
+    --tabs-scroll-bg-color: var(--alt-bg-colour);
+    --tabs-scroll-area-bg-color: var(--alt-bg-colour);
+  }
+
+  &.alt .tabs-area .nav-link.active {
+    background-color: var(--alt-bg-colour);
+    border-block-end: 0 solid var(--alt-bg-colour);
+  }
+
+  // Active tab, dark themes
+  &.dark .tabs-area,
+  &.dark-alt .tabs-area {
+    border-block-end-color: var(--dark-border-colour);
+  }
+
+  &.dark .tabs-area .nav-item .nav-link.active,
+  &.dark-alt .tabs-area .nav-item .nav-link.active {
+    --tabs-tab-focus-colour: #01b0e5;
+    --tabs-tab-active-focus-colour: #01b0e5;
+
+    border: 1px solid var(--dark-border-colour);
+    border-block-end-color: transparent;
+  }
+
+  &.dark .tabs-area .nav-item .nav-link.active span,
+  &.dark-alt .tabs-area .nav-item .nav-link.active span {
+    color: var(--dark-colour);
+  }
+
+  &.dark .tabs-area .nav-item .nav-link.active span:hover,
+  &.dark .tabs-area .nav-item .nav-link.active span i,
+  &.dark-alt .tabs-area .nav-item .nav-link.active span:hover,
+  &.dark-alt .tabs-area .nav-item .nav-link.active span i {
+    background-color: var(--dark-colour);
+  }
+
+  &.dark {
+    --tabs-scroll-area-bg-color: var(--dark-bg-colour);
+  }
+
+  &.dark .tabs-area .nav-tabs .nav-item .nav-link.active {
+    background-color: var(--dark-bg-colour);
+    border-block-end: 0 solid var(--dark-bg-colour);
+  }
+
+  &.dark .tabs-area .nav-tabs .nav-item .nav-link.active:hover,
+  &.dark-alt .nav-tabs .nav-item .nav-link.active:hover {
+    border-color: var(--dark-border-colour);
+  }
+
+  &.dark-alt {
+    --tabs-scroll-area-bg-color: var(--dark-alt-bg-colour);
+  }
+
+  &.dark-alt .nav-tabs .nav-item .nav-link.active {
+    background-color: var(--dark-alt-bg-colour);
+    border-block-end: 0 solid var(--dark-alt-bg-colour);
+  }
+
+  // Scroll buttons (hidden unless the script adds .show)
+  .scroll {
+    position: absolute;
+    width: #{toRem(47)};
+    height: #{toRem(47)};
+    background-color: transparent;
+    border: none;
+    z-index: 20;
+    inset-block-start: #{toRem(5)};
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scroll i {
+    background-color: var(--tabs-scroll-bg-color);
+    border-radius: #{toRem(30)};
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    box-shadow: var(--icon-dropshadow);
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+  }
+
+  .scroll i::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #008635;
+    mask-position: center;
+    mask-size: #{toRem(18)};
+    mask-repeat: no-repeat;
+  }
+
+  .scroll.scroll-left {
+    inset-inline-start: var(--scroll-distance);
+    inset-block: 0 -1px;
+    justify-content: end;
+    background-image: linear-gradient(to bottom, transparent, var(--tabs-scroll-area-bg-color) var(--gradient-percentage));
+  }
+
+  .scroll.scroll-left i::before {
+    mask-image: var(--qgds-icon-chevron-left);
+  }
+
+  .scroll.scroll-right {
+    inset-inline-end: var(--scroll-distance);
+    inset-block-start: 0;
+    justify-content: start;
+    background-image: linear-gradient(to bottom, rgb(255 0 0 / 0%), var(--tabs-scroll-area-bg-color) var(--gradient-percentage));
+  }
+
+  .scroll.scroll-right i::before {
+    mask-image: var(--qgds-icon-chevron-right);
+  }
+
+  // Tab list and buttons
+  .nav-tabs {
+    overflow: scroll clip;
+    position: relative;
+    margin-block-end: -1px;
+    z-index: 10;
+    display: flex;
+    flex-flow: row nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    gap: calc(var(--spacing-xs) / 2);
+    border-block-end: 0;
+    align-items: end;
+  }
+
+  .nav-tabs .nav-item {
+    align-items: baseline;
+    appearance: auto;
+    background-attachment: scroll;
+    background-clip: border-box;
+  }
+
+  .nav-tabs .nav-item .nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-inline: calc(var(--spacing-sm) * 1.25);
+    background-color: var(--tabs-tab-background);
+    scroll-snap-align: start;
+    outline-offset: calc(var(--spacing-sm) * -0.625);
+    margin-block-end: 1px;
+  }
+
+  .nav-tabs .nav-item .nav-link[tabindex="0"]:focus,
+  .nav-tabs .nav-item .nav-link[tabindex="-1"]:focus,
+  .nav-tabs .nav-item .nav-link:focus-visible {
+    outline: #{toRem(3)} solid var(--tabs-tab-focus-colour);
+    box-shadow: none;
+  }
+
+  .nav-tabs .nav-item .nav-link span {
+    display: flex;
+    gap: var(--spacing-xs);
+    white-space: nowrap;
+    color: var(--tabs-nav-link-color);
+    align-items: anchor-center;
+  }
+
+  .nav-tabs .nav-item .nav-link span i {
+    font-size: #{toRem(18)};
+    background-color: var(--tabs-tab-icon-color);
+  }
+
+  .nav-tabs .nav-item .nav-link span.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .nav-tabs .nav-item .nav-link:hover {
+    border: 1px solid transparent;
+    background-color: var(--tabs-tab-background-hover);
+  }
+
+  .nav-tabs .nav-item .nav-link:hover span {
+    color: var(--tabs-tab-hover-text-color);
+    text-decoration: underline;
+    text-underline-offset: #{toRem(4.8)};
+    text-decoration-thickness: #{toRem(2)};
+  }
+
+  .nav-tabs .nav-item .nav-link:hover span i {
+    background-color: var(--tabs-tab-icon-color-hover);
+  }
+
+  .nav-tabs .nav-item .nav-link::after {
+    content: "";
+    display: block;
+    height: calc(var(--spacing-xs) / 2);
+    margin-block-end: calc(var(--spacing-sm) * -0.8 - #{toRem(2)});
+  }
+
+  .nav-tabs .nav-item .nav-link.active {
+    pointer-events: none;
+    cursor: default;
+    background-color: var(--qld-body-bg, #fff);
+    margin-block: 1px 0;
+    padding-block-start: calc(var(--spacing-sm) * 0.75);
+  }
+
+  .nav-tabs .nav-item .nav-link.active[tabindex="0"]:focus,
+  .nav-tabs .nav-item .nav-link.active[tabindex="-1"]:focus,
+  .nav-tabs .nav-item .nav-link.active:focus-visible {
+    outline: #{toRem(3)} solid var(--tabs-tab-active-focus-colour);
+  }
+
+  .nav-tabs .nav-item .nav-link.active::after {
+    content: "";
+    border-radius: 0;
+    border-start-end-radius: var(--tabs-border-radius);
+    border-start-start-radius: var(--tabs-border-radius);
+    background-color: var(--tabs-accent-colour);
+    margin-block-end: calc(var(--spacing-sm) * -0.75);
+  }
+
+  .nav-tabs .nav-item .nav-link.active:hover {
+    border-color: var(--tabs-border-color);
+  }
+
+  .nav-tabs .nav-item .nav-link.active:hover span {
+    text-decoration: none;
+  }
+
+  .nav-tabs .nav-item .nav-link.active span {
+    font-weight: 600;
+  }
+
+  .nav-tabs .nav-item .nav-link.active span,
+  .nav-tabs .nav-item .nav-link.active span:hover,
+  .nav-tabs .nav-item .nav-link.active span i {
+    color: var(--tabs-tab-text-colour-heading);
+  }
+
+  .nav-tabs .nav-item .nav-link:disabled,
+  .nav-tabs .nav-item .nav-link[disabled] {
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+
+  .nav-tabs .nav-item .nav-link:disabled span,
+  .nav-tabs .nav-item .nav-link:disabled span i,
+  .nav-tabs .nav-item .nav-link[disabled] span,
+  .nav-tabs .nav-item .nav-link[disabled] span i {
+    color: var(--tabs-tab-disabled-colour);
+  }
+
+  // Panels
+  .tab-content {
+    position: relative;
+    z-index: 5;
+    background-color: var(--qld-body-bg, #fff);
+    border: 1px solid var(--tabs-border-color);
+    padding-block: var(--tabs-section-content-padding);
+    padding-inline: calc(var(--spacing-sm) * 2.5);
+  }
+
+  .tab-content h2 {
+    line-height: var(--line-height-xl);
+  }
+
+  .tab-content .qld-cta-link {
+    margin-block-start: calc(var(--spacing-sm) * 2);
+  }
+
+  .tab-content .show {
+    display: block;
+  }
+
+  @media (max-width: #{$tabs-bp-md}) {
+    --tabs-section-content-padding: calc(var(--spacing-sm) * 2.5);
+  }
+
+  .fade {
+    opacity: 0;
+    transition: opacity var(--fade-time) linear;
+  }
+
+  .fade.show {
+    opacity: 1;
+  }
+
+  .fade:not(.show) {
+    display: none;
+  }
+}
+
+// Section tabs take their theme from the intro section that precedes them.
+.default ~ .qld-tabs.section-tabs {
+  @include tabs-after-light(#fff);
+}
+
+.light ~ .qld-tabs.section-tabs {
+  @include tabs-after-light(#eff4f9);
+}
+
+.alt ~ .qld-tabs.section-tabs {
+  @include tabs-after-light(#e8e8e8);
+}
+
+.dark ~ .qld-tabs.section-tabs {
+  @include tabs-after-dark(#09549f);
+
+  --tabs-scroll-area-bg-color: #09549f;
+}
+
+.dark-alt ~ .qld-tabs.section-tabs {
+  @include tabs-after-dark(#05325f);
+
+  color: #fff;
+  background-color: #05325f;
+}

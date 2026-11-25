@@ -1,0 +1,35 @@
+{
+  "settings": {
+    "wrapperClasses": "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4",
+    "variant": "default",
+    "action": "single",
+    "isArrowVisible": false,
+    "equalHeight": false
+  },
+  "cards": [
+    {
+      "heading": {
+        "title": "Card title",
+        "headingTag": "h3",
+        "link": {
+          "url": "#"
+        }
+      },
+      "body": {
+        "date": "",
+        "content": "Card body text"
+      },
+      "icon": {},
+      "image": {},
+      "feature": {
+        "enabled": false
+      },
+      "video": {
+        "enabled": false
+      },
+      "footer": {
+        "content": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "0.2.2",
+  "name": "cards-listing",
+  "displayName": "Cards Listing",
+  "description": "QGDS Bootstrap 5 - Cards Listing. A list of cards for the child pages of the current page or of a chosen root node.",
+  "namespace": "qgds-bs5",
+  "icon": {
+    "id": "view_list",
+    "color": {
+      "type": "hex",
+      "value": "#6bbe27"
+    }
+  },
+  "environment": [
+    {
+      "name": "API_IDENTIFIER",
+      "required": false
+    },
+    {
+      "name": "BASE_DOMAIN",
+      "required": false
+    },
+    {
+      "name": "BASE_PATH",
+      "required": false
+    },
+    {
+      "name": "BASE_URL",
+      "required": false
+    },
+    {
+      "name": "MX_API",
+      "required": false
+    },
+    {
+      "name": "BEARER_AUTH",
+      "required": false
+    },
+    {
+      "name": "AMAPI_TOKEN",
+      "required": false
+    },
+    {
+      "name": "AMAPI_CACHE_TTL_WEEKS",
+      "required": false
+    },
+    {
+      "name": "IS_LOCAL",
+      "required": false
+    }
+  ],
+  "mainFunction": "main",
+  "type": "edge",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.ts",
+      "input": {
+        "type": "object",
+        "properties": {
+          "intro": {
+            "type": "object",
+            "title": "Introduction",
+            "description": "Optional heading above the cards",
+            "required": [],
+            "properties": {
+              "headingTag": {
+                "type": "string",
+                "title": "Heading tag",
+                "enum": ["h2", "h3", "h4", "h5", "h6"],
+                "default": "h2"
+              },
+              "title": {
+                "type": "string",
+                "title": "Title",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            }
+          },
+          "listing": {
+            "type": "object",
+            "title": "Listing source",
+            "description": "Choose which pages the cards are built from: the child pages of the page this component is on, or the child pages of a root node you select",
+            "required": [],
+            "properties": {
+              "source": {
+                "type": "string",
+                "title": "Source",
+                "enum": ["current", "custom"],
+                "default": "current",
+                "description": "Current page: lists the child pages of the page this component is placed on. Custom root: lists the child pages of the root node you select below."
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "source": {
+                      "const": "custom"
+                    }
+                  },
+                  "required": ["source"]
+                },
+                "then": {
+                  "properties": {
+                    "rootNode": {
+                      "type": "string",
+                      "format": "matrix-asset-uri",
+                      "title": "Root node",
+                      "description": "Select the page whose child pages are listed"
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ]
+          },
+          "settings": {
+            "type": "object",
+            "title": "Settings",
+            "required": [],
+            "ui:metadata": {
+              "collapsedByDefault": true
+            },
+            "properties": {
+              "columns": {
+                "type": "string",
+                "title": "Columns",
+                "enum": ["1", "2", "3"],
+                "default": "2",
+                "description": "Cards per row on medium and larger screens. Small screens always show one card per row."
+              },
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "enum": ["default", "light", "alt", "dark", "dark-alt"],
+                "default": "default",
+                "description": "Defines color variant",
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              },
+              "display": {
+                "type": "string",
+                "title": "Display",
+                "enum": ["name", "name-and-description"],
+                "default": "name",
+                "description": "name - page name with an arrow; name-and-description - page name and a description from a metadata field"
+              },
+              "isEqualHeight": {
+                "type": "boolean",
+                "title": "Equal height",
+                "default": true,
+                "description": "Makes cards the same height within a row"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "display": {
+                      "const": "name-and-description"
+                    }
+                  },
+                  "required": ["display"]
+                },
+                "then": {
+                  "properties": {
+                    "descriptionMetadataFieldKey": {
+                      "type": "string",
+                      "title": "Description metadata field key",
+                      "description": "Metadata key on each child page that holds the description, e.g. page-lead"
+                    }
+                  },
+                  "required": []
+                }
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  },
+  "staticFiles": {
+    "locationRoot": "./"
+  }
+}
